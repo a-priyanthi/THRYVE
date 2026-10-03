@@ -1,4 +1,12 @@
-const { DatabaseSync } = require('node:sqlite');
+let DatabaseSync;
+try {
+  ({ DatabaseSync } = require('node:sqlite'));
+} catch (err) {
+  throw new Error(
+    `Failed to load built-in 'node:sqlite'. Your current Node.js version is ${process.version}. ` +
+    `node:sqlite requires Node.js >= 22.5.0. On Vercel, please set Node.js Version to '22.x' in Project Settings > General.`
+  );
+}
 const fs = require('fs');
 const path = require('path');
 const config = require('./index');

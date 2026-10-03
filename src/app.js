@@ -18,8 +18,14 @@ app.use(express.static(config.PUBLIC_DIR));
 // Serve uploaded user files securely
 app.use('/uploads', express.static(config.UPLOAD_DIR));
 
-// Mount REST API
+// Mount REST API (support both /api prefix and root-level API calls)
 app.use('/api', apiRoutes);
+app.use(apiRoutes);
+
+// Root route fallback to serve frontend
+app.get('/', (req, res) => {
+  res.sendFile(path.join(config.PUBLIC_DIR, 'index.html'));
+});
 
 // Catch unknown API requests
 app.use(notFoundHandler);
