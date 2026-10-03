@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Thryve — AI Collaborative Learning Intelligence</title>
+<style>
+:root{--ink:#171717;--paper:#f8f0dc;--paper2:#fff8e8;--teal:#148f84;--teal2:#72cfc0;--pink:#ef63b4;--pink2:#f7a7d6;--yellow:#f7dd58;--blue:#4d75d8;--orange:#f39b58;--green:#a9d968;--red:#ef7777;--shadow:8px 8px 0 var(--ink);--shadow-sm:5px 5px 0 var(--ink)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:linear-gradient(rgba(23,23,23,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(23,23,23,.08) 1px,transparent 1px),var(--teal);background-size:36px 36px;font-family:Arial,Helvetica,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:3px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:30}.brand{display:flex;align-items:center;gap:12px;cursor:pointer}.logo{width:48px;height:48px;border:3px solid var(--ink);background:var(--pink);display:grid;place-items:center;font-weight:1000;font-size:24px;box-shadow:4px 4px 0 var(--ink);transform:rotate(-3deg)}.brand h1{font-family:Georgia,serif;font-size:26px;margin:0;letter-spacing:-1px}.brand small{display:block;font-size:10px;font-weight:900;letter-spacing:2px}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav button,.pill{border:2px solid var(--ink);background:var(--paper2);padding:9px 13px;font-weight:900;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;font-size:11px}.nav button.active{background:var(--yellow)}.main{max-width:1380px;margin:0 auto;padding:30px}.screen{display:none}.screen.active{display:block}.hero{min-height:calc(100vh - 136px);display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}.hero-copy h2{font-family:Georgia,serif;font-size:clamp(54px,7vw,100px);line-height:.86;margin:0 0 24px;letter-spacing:-5px}.hero-copy h2 span{background:var(--pink);padding:0 10px;display:inline-block;transform:rotate(-2deg)}.hero-copy p{font-size:18px;line-height:1.45;max-width:650px;font-weight:700}.eyebrow{font-size:12px;font-weight:1000;letter-spacing:3px;text-transform:uppercase}.btn{border:3px solid var(--ink);background:var(--yellow);padding:12px 17px;font-weight:1000;box-shadow:var(--shadow-sm);text-transform:uppercase;transition:.12s;display:inline-block;text-align:center;text-decoration:none;color:var(--ink)}.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}.btn.pink{background:var(--pink)}.btn.blue{background:var(--blue);color:#fff}.btn.paper{background:var(--paper)}.btn.teal{background:var(--teal2)}.btn.red{background:var(--red);color:#fff}.btn:disabled{opacity:.5;cursor:not-allowed}.hero-art{position:relative;min-height:520px}.window{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);position:absolute;overflow:hidden}.window .titlebar{height:40px;background:var(--pink);border-bottom:3px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-weight:1000}.dots{display:flex;gap:5px}.dots i{width:11px;height:11px;border:2px solid var(--ink);border-radius:50%;background:var(--yellow)}.dots i:nth-child(2){background:var(--teal2)}.dots i:nth-child(3){background:var(--pink2)}.window.one{width:75%;right:2%;top:4%;transform:rotate(2deg)}.window.two{width:66%;left:0;top:34%;transform:rotate(-3deg)}.window.three{width:72%;right:6%;bottom:2%;transform:rotate(1deg)}.artbody{padding:20px}.big-sticker{border:3px solid var(--ink);background:var(--yellow);padding:18px;box-shadow:var(--shadow-sm);font-family:Georgia,serif;font-size:34px}.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.mini{border:2px solid var(--ink);padding:12px;background:var(--paper2);font-weight:900}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px;gap:15px}.section-head h2{font-family:Georgia,serif;font-size:48px;margin:0;letter-spacing:-2px}.section-head p{font-weight:700;max-width:600px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card,.panel,.form-card,.side,.choice{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow-sm)}.card{padding:20px;position:relative}.card:nth-child(2n){background:var(--paper2)}.card:nth-child(3n){background:#f6d9ec}.card h3{font-family:Georgia,serif;font-size:28px;margin:5px 0 10px}.tag{display:inline-block;border:2px solid var(--ink);padding:5px 8px;background:var(--yellow);font-size:10px;font-weight:1000}.tag.pink{background:var(--pink2)}.tag.teal{background:var(--teal2)}.tag.blue{background:#d6e5ff}.tag.green{background:var(--green)}.card .arrow{position:absolute;right:14px;bottom:12px;font-size:25px}.form-shell{max-width:780px;margin:40px auto}.form-card{padding:30px}.form-card h2{font-family:Georgia,serif;font-size:44px;margin:0 0 8px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}label{display:block;font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:1px;margin:14px 0 7px}input,textarea,select{width:100%;border:3px solid var(--ink);background:#fffdf2;padding:12px;outline:none;box-shadow:3px 3px 0 var(--ink)}textarea{min-height:100px;resize:vertical}.member{border:2px solid var(--ink);padding:14px;background:#fff8e8;margin-top:12px}.dashboard{display:grid;grid-template-columns:220px 1fr 300px;gap:18px;align-items:start}.side{padding:15px;position:sticky;top:95px}.side h3{font-family:Georgia,serif;font-size:26px;margin:5px 0 20px}.side button{display:block;width:100%;text-align:left;border:2px solid var(--ink);background:var(--paper2);padding:11px;margin:8px 0;font-weight:900}.side button.active{background:var(--yellow)}.profile{display:flex;gap:12px;align-items:center;border:2px solid var(--ink);padding:10px;background:var(--pink2)}.avatar{width:46px;height:46px;border:3px solid var(--ink);background:var(--teal2);display:grid;place-items:center;font-weight:1000}.dash-main{display:grid;gap:18px}.panel{padding:20px}.panel h3{font-family:Georgia,serif;font-size:30px;margin:0 0 14px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:2px solid var(--ink);padding:14px;background:var(--yellow)}.stat:nth-child(2){background:var(--pink2)}.stat:nth-child(3){background:var(--teal2)}.stat strong{font-size:30px;display:block}.progress{height:22px;border:3px solid var(--ink);background:#fff;margin:10px 0;overflow:hidden}.progress span{display:block;height:100%;background:var(--teal);width:72%}.task{border:2px solid var(--ink);padding:13px;background:#fffdf2;margin:10px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}.task.done{background:#dff0bb}.task.pending{background:#ffd4e9}.task.blocked{background:#ffd1d1}.status{border:2px solid var(--ink);padding:5px 8px;font-size:10px;font-weight:1000;white-space:nowrap}.chatbox{height:360px;display:flex;flex-direction:column}.messages{flex:1;overflow:auto;border:2px solid var(--ink);padding:10px;background:#fffdf2}.msg{padding:8px 10px;border:2px solid var(--ink);margin:8px 0;max-width:88%;font-size:13px;font-weight:700}.msg.ai{background:var(--teal2)}.msg.me{background:var(--pink2);margin-left:auto}.msg.team{background:var(--yellow)}.chatinput{display:flex;gap:8px;margin-top:8px}.chatinput input{box-shadow:none}.insights{display:grid;grid-template-columns:1fr 1fr;gap:12px}.insight{border:2px solid var(--ink);padding:14px;background:#fffdf2}.insight h4{margin:0 0 8px;font-family:Georgia,serif;font-size:21px}.insight.good{background:#dff0bb}.insight.warn{background:#ffd4e9}.insight.info{background:#d6e5ff}.timeline{border-left:4px solid var(--ink);padding-left:18px}.timeline-item{position:relative;margin:0 0 18px}.timeline-item:before{content:"";position:absolute;left:-27px;top:3px;width:14px;height:14px;border:3px solid var(--ink);background:var(--yellow)}.footer-note{text-align:center;font-size:11px;font-weight:900;padding:30px}.toast{position:fixed;right:22px;bottom:22px;border:3px solid var(--ink);background:var(--yellow);box-shadow:var(--shadow-sm);padding:15px;font-weight:1000;display:none;z-index:80;max-width:420px}.notice{border:3px solid var(--ink);background:var(--yellow);padding:12px;box-shadow:var(--shadow-sm);font-weight:900;margin:12px 0}.notice.pink{background:var(--pink2)}.notice.green{background:#dff0bb}.notice.blue{background:#d6e5ff}.notice.red{background:#ffd1d1}.choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.choice{padding:20px;cursor:pointer}.choice:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}.choice h3{font-family:Georgia,serif;font-size:27px;margin:4px 0 8px}.upload{border:3px dashed var(--ink);padding:22px;background:#fffdf2;text-align:center;font-weight:900}.file-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:2px solid var(--ink);padding:11px;background:var(--paper2);margin-top:9px}.approval{border:2px solid var(--ink);padding:12px;background:#d6e5ff;margin-top:10px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{border:2px solid var(--ink);padding:13px;background:var(--yellow)}.metric:nth-child(2){background:var(--pink2)}.metric:nth-child(3){background:var(--teal2)}.metric:nth-child(4){background:#d6e5ff}.metric strong{font-size:27px;display:block}.table{width:100%;border-collapse:collapse;background:#fffdf2}.table th,.table td{border:2px solid var(--ink);padding:10px;text-align:left;font-size:12px}.table th{background:var(--pink);font-weight:1000}.chip{display:inline-block;border:2px solid var(--ink);padding:4px 7px;background:var(--paper2);font-size:10px;font-weight:1000;margin:2px}.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.kpi{border:2px solid var(--ink);padding:12px;background:#fffdf2}.kpi strong{display:block;font-size:24px}.small{font-size:12px}.muted{opacity:.72}.center{text-align:center}.modal{position:fixed;inset:0;background:rgba(23,23,23,.45);display:none;align-items:center;justify-content:center;z-index:70;padding:20px}.modal.show{display:flex}.modal-card{width:min(650px,100%);border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);padding:24px}.modal-card h3{font-family:Georgia,serif;font-size:34px;margin:0 0 10px}.list{margin:0;padding-left:18px}.bar-label{display:flex;justify-content:space-between;font-size:11px;font-weight:1000}.search{display:flex;gap:8px}.search input{box-shadow:none}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tabs button{border:2px solid var(--ink);background:var(--paper2);padding:8px 11px;font-weight:1000}.tabs button.active{background:var(--yellow)}
+@media(max-width:1100px){.dashboard{grid-template-columns:190px 1fr}.dashboard>aside:last-child{grid-column:1/-1}.choice-grid,.three-col{grid-template-columns:1fr 1fr}.metric-grid{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr}.hero-art{min-height:430px}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.main{padding:18px}.nav{display:none}.grid,.form-row,.stats,.insights,.split,.two-col,.three-col,.choice-grid,.metric-grid{grid-template-columns:1fr}.dashboard{grid-template-columns:1fr}.side{position:static}.dashboard>.side{display:none}.hero-copy h2{font-size:60px}.hero-art{min-height:380px}.section-head{align-items:flex-start;flex-direction:column}}
+
+/* THRYVE UI PATCH — prevent overlap at laptop/tablet widths */
+body{overflow-x:hidden}.main{width:100%;min-width:0}.dashboard{grid-template-columns:minmax(190px,220px) minmax(0,1fr) minmax(240px,300px)}.dash-main,.panel,.card,.side{min-width:0}.section-head h2{overflow-wrap:anywhere}.file-row>span{min-width:0;overflow-wrap:anywhere}.file-row .btn{flex:0 0 auto}.two-col,.three-col,.grid,.choice-grid,.metric-grid,.insights,.split{min-width:0}@media(max-width:1180px){.dashboard{grid-template-columns:200px minmax(0,1fr)}.dashboard>aside{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.dashboard>aside .panel{margin:0!important}.dashboard .side{grid-row:1/3}.dash-main{grid-column:2}.dashboard{align-items:start}}@media(max-width:900px){.topbar{height:auto;align-items:flex-start;gap:12px;flex-direction:column}.nav{width:100%}.main{padding:18px}.dashboard{grid-template-columns:1fr}.dashboard .side,.dash-main,.dashboard>aside{grid-column:auto}.dashboard>aside{grid-template-columns:1fr}.side{position:relative;top:auto}.stats,.metric-grid,.three-col,.two-col,.split,.insights,.grid,.choice-grid{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.section-head h2{font-size:40px}.form-row{grid-template-columns:1fr}}@media(max-width:560px){.topbar{padding:10px 14px}.brand h1{font-size:22px}.nav button{flex:1 1 45%}.main{padding:12px}.panel{padding:14px}.task{align-items:flex-start;flex-direction:column}.file-row{align-items:flex-start;flex-direction:column}.file-row .btn{width:100%}.chatinput{flex-direction:column}}
+
+/* THRYVE V4 UI HARDENING — preserves the neo-brutalist theme while preventing dashboard overlap */
+html,body{max-width:100%;overflow-x:hidden}
+.main{width:100%;min-width:0}
+.dashboard{grid-template-columns:minmax(210px,230px) minmax(0,1fr) minmax(250px,290px);gap:18px;align-items:start}
+.dashboard>.side,.dashboard>.dash-main,.dashboard>.dash-rail{min-width:0;max-width:100%}
+.dash-main,.dash-rail{display:grid;gap:18px;align-content:start}
+.dash-rail{min-width:0}
+.panel,.card,.side,.choice,.form-card{min-width:0;overflow:hidden}
+.section-head{min-width:0;flex-wrap:wrap}
+.section-head>div{min-width:0}
+.section-head h2{font-size:clamp(34px,4vw,48px);line-height:.95;overflow-wrap:anywhere;word-break:normal}
+.panel h3,.card h3{overflow-wrap:anywhere}
+.notice,.insight,.task,.approval,.file-row{overflow-wrap:anywhere}
+.file-row{align-items:flex-start}
+.file-row>span:last-child{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.upload{cursor:pointer}
+.upload:hover{background:var(--paper2);transform:translateY(-1px)}
+.dash-upload-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.dash-upload-actions .btn{flex:1 1 160px;text-align:center}
+.request-card{background:#f6d9ec!important}
+.request-meta{font-size:12px;font-weight:800;line-height:1.45}
+.request-status{margin-top:10px;border-top:2px solid var(--ink);padding-top:10px}
+@media(max-width:1180px){
+  .dashboard{grid-template-columns:minmax(195px,210px) minmax(0,1fr)}
+  .dashboard>.dash-rail{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+}
+@media(max-width:900px){
+  .dashboard{grid-template-columns:1fr}
+  .dashboard>.dash-rail{grid-column:auto;grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .section-head h2{font-size:38px}
+  .file-row>span:last-child{justify-content:flex-start}
+}
+
+.sprint-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.member-sprint{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow-sm);padding:18px}.member-sprint:nth-child(2n){background:var(--paper2)}.member-sprint:nth-child(3n){background:#f6d9ec}.member-sprint-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:12px}.member-sprint-head h3{font-family:Georgia,serif;font-size:28px;margin:0 0 4px}.checklist{display:grid;gap:9px}.check-item{border:2px solid var(--ink);background:#fffdf2;padding:10px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start}.check-item.done{background:#dff0bb}.check-item.late{background:#ffd1d1}.check-item input{width:20px;height:20px;margin:2px 0;box-shadow:none}.check-item .check-title{font-weight:1000}.check-item .check-meta{font-size:10px;font-weight:800;margin-top:3px}.deadline-badge{border:2px solid var(--ink);padding:5px 7px;font-size:9px;font-weight:1000;white-space:nowrap;background:var(--yellow)}.deadline-badge.ontime{background:var(--green)}.deadline-badge.late{background:#ffb8b8}.sprint-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.sprint-summary .metric{min-width:0}.project-sprint{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);padding:20px;margin-bottom:18px}.project-sprint h3{font-family:Georgia,serif;font-size:30px;margin:0 0 8px}.checklist-progress{height:18px;border:3px solid var(--ink);background:#fff;margin-top:8px;overflow:hidden}.checklist-progress span{display:block;height:100%;background:var(--teal2);width:0}.deadline-note{border:2px solid var(--ink);padding:10px;background:var(--blue);color:#fff;font-weight:900;margin-top:10px}.sprint-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.sprint-tabs button{border:2px solid var(--ink);background:var(--paper2);padding:8px 12px;font-weight:1000;box-shadow:3px 3px 0 var(--ink)}.sprint-tabs button.active{background:var(--yellow)}
+@media(max-width:900px){.sprint-board{grid-template-columns:1fr}.sprint-summary{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<style>
+/* THRYVE REPORTS — team/member reporting layer, same neo-brutalist visual language */
+.report-page{padding-bottom:40px}
+.report-hero{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);padding:24px;margin-bottom:18px;position:relative;overflow:hidden}
+.report-hero:after{content:"REPORT";position:absolute;right:-22px;top:-26px;font-family:Georgia,serif;font-size:110px;font-weight:1000;opacity:.08;transform:rotate(-8deg);pointer-events:none}
+.report-title{font-family:"Segoe Print","Comic Sans MS",cursive;font-size:clamp(44px,7vw,78px);line-height:.9;margin:2px 0 12px;text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:8px;letter-spacing:-3px}
+.report-subtitle{font-weight:900;max-width:720px;margin:0}
+.report-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.report-toolbar select,.report-toolbar input{width:auto;min-width:150px;box-shadow:3px 3px 0 var(--ink)}
+.report-tabs{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 18px}
+.report-tabs button{border:3px solid var(--ink);background:var(--paper2);padding:12px 18px;font-weight:1000;box-shadow:4px 4px 0 var(--ink);text-transform:uppercase;cursor:pointer}
+.report-tabs button.active{background:var(--yellow);transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.report-tabs button[data-member="Priya"]{background:#ffd2e8}.report-tabs button[data-member="Meena"]{background:#f5cfe7}.report-tabs button[data-member="Vishal"]{background:#dff0bb}.report-tabs button[data-member="Arun"]{background:#cfe9e6}
+.report-tabs button.active[data-member="team"]{background:var(--yellow)}
+.report-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.report-card{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow-sm);padding:20px}
+.report-card:nth-child(2n){background:var(--paper2)}
+.report-card h3{font-family:Georgia,serif;font-size:29px;margin:0 0 14px}
+.report-section-label{font-size:11px;font-weight:1000;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.report-checklist{display:grid;gap:9px}
+.report-check{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;border:2px solid var(--ink);padding:11px;background:#fffdf2}
+.report-check.done{background:#dff0bb}.report-check.late{background:#ffd1d1}.report-check.risk{background:#ffd4e9}
+.report-check .box{width:20px;height:20px;border:3px solid var(--ink);display:grid;place-items:center;background:var(--paper)}
+.report-check.done .box:after{content:"✓";font-weight:1000}.report-check.late .box:after{content:"!";font-weight:1000}.report-check.risk .box:after{content:"?";font-weight:1000}
+.report-check b{display:block}.report-check small{display:block;font-weight:700;margin-top:3px}
+.report-time{border:2px solid var(--ink);padding:5px 7px;font-size:10px;font-weight:1000;white-space:nowrap;background:var(--yellow)}
+.report-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.report-kpi{border:2px solid var(--ink);padding:13px;background:var(--yellow)}.report-kpi:nth-child(2){background:var(--pink2)}.report-kpi:nth-child(3){background:var(--teal2)}.report-kpi:nth-child(4){background:#d6e5ff}
+.report-kpi strong{font-size:28px;display:block;margin-top:4px}.report-kpi span{font-size:10px;font-weight:1000;letter-spacing:1px}
+.time-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}.time-box{border:3px solid var(--ink);padding:15px;background:#fffdf2}.time-box strong{font-size:31px;display:block}.time-box.est{background:#d6e5ff}.time-box.actual{background:#dff0bb}
+.report-efficiency{border:3px solid var(--ink);background:var(--pink2);padding:16px;box-shadow:3px 3px 0 var(--ink)}
+.report-efficiency strong{font-family:Georgia,serif;font-size:42px;display:block}
+.report-table-wrap{overflow:auto}.report-table{width:100%;border-collapse:collapse;background:#fffdf2}.report-table th,.report-table td{border:2px solid var(--ink);padding:10px;text-align:left;font-size:12px}.report-table th{background:var(--pink);font-weight:1000}.report-table td:nth-child(4){font-weight:1000}
+.report-signoff{border:3px dashed var(--ink);padding:18px;background:var(--yellow);font-weight:900}
+.report-note{font-size:11px;font-weight:800;opacity:.78}
+@media(max-width:900px){.report-grid{grid-template-columns:1fr}.report-kpis{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.report-kpis{grid-template-columns:1fr}.report-check{grid-template-columns:24px 1fr}.report-time{grid-column:2}.time-compare{grid-template-columns:1fr}}
+</style>
+
+<style>
+@media print{body{background:#fff!important}.topbar,.nav,.report-toolbar,.report-tabs,.footer-note,.toast,.modal{display:none!important}.main{max-width:none;padding:0}.screen{display:none!important}.screen#reports{display:block!important}.report-hero,.report-card{box-shadow:none;break-inside:avoid}.report-page{padding:0}.report-title{font-size:56px}.report-kpis{grid-template-columns:repeat(4,1fr)}button{display:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand" onclick="go('home')">
+    <div class="logo">T</div>
+    <div><h1>Thryve</h1><small>LEARN • SHARE • BUILD</small></div>
+  </div>
+  <nav class="nav">
+    <button data-go="home">Home</button>
+    <button data-go="teamlogin">Team Login</button>
+    <button data-go="teamhub">Workspace</button>
+    <button data-go="dashboard">Dashboard</button>
+    <button data-go="analysis">Analysis</button>
+    <button data-go="reports">Reports</button>
+  </nav>
+</header>
+<main class="main">
+
+<!-- SCREEN: HOME -->
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">AI-BASED COLLABORATIVE LEARNING INTELLIGENCE</div>
+      <h2>MAKE TEAM<br><span>THINKING</span><br>VISIBLE.</h2>
+      <p>One shared workspace for team discussions, project documents, task contributions and AI-powered collaboration intelligence — built for student teams.</p>
+      <button class="btn" onclick="go('teamlogin')">Enter your team ↗</button> 
+      <button class="btn pink" onclick="go('teamsignup')">New team +</button>
+      <div class="notice green" style="max-width:680px;margin-top:20px">
+        ⚡ <b>LIVE BACKEND CONNECTED:</b> Persistent Node.js + SQLite backend is active with real file uploads, live sprint tracking, and AI collaboration intelligence.
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="window one">
+        <div class="titlebar"><span>TEAM / INSIGHTS</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="artbody">
+          <div class="big-sticker" id="homeStickProgress">78%<br><small>COLLECTIVE INTELLIGENCE</small></div>
+          <div class="mini-grid">
+            <div class="mini" id="homeStickMembers">4 MEMBERS</div>
+            <div class="mini" id="homeStickDocs">14 DOCS</div>
+          </div>
+        </div>
+      </div>
+      <div class="window two">
+        <div class="titlebar"><span>AI / KNOWLEDGE MAP</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="artbody">
+          <div class="mini">PYTHON ↔ BACKEND ↔ DATA</div>
+          <div class="mini" style="background:var(--teal2)">KNOWLEDGE GAP DETECTED</div>
+        </div>
+      </div>
+      <div class="window three">
+        <div class="titlebar"><span>CHAT / PROJECT-01</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="artbody">
+          <div class="mini">AI: “15-min peer teaching can unblock Meena.”</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: TEAM LOGIN -->
+<section id="teamlogin" class="screen">
+  <div class="form-shell">
+    <div class="form-card">
+      <div class="eyebrow">TEAM WORKSPACE / 00</div>
+      <h2>WELCOME, TEAM.</h2>
+      <p><b>Team login is the top-level gate. Projects and members live inside this workspace.</b></p>
+      <label>Team email</label>
+      <input id="teamLoginEmail" value="studysync@team.demo" type="email">
+      <label>Team ID</label>
+      <input id="teamLoginId" value="STUDY-01">
+      <label>Password</label>
+      <input id="teamLoginPass" value="demo1234" type="password">
+      <br>
+      <button class="btn" onclick="submitTeamLogin()">LOGIN TO TEAM →</button> 
+      <button class="btn pink" onclick="go('teamsignup')">NEW TEAM SIGNUP +</button>
+      <div class="notice blue">Forgot password? For the real build, this button sends a reset link to the team email.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: TEAM SIGNUP -->
+<section id="teamsignup" class="screen">
+  <div class="form-shell">
+    <div class="form-card">
+      <div class="eyebrow">TEAM SIGNUP / 00A</div>
+      <h2>CREATE THE TEAM.</h2>
+      <label>Team name</label>
+      <input id="newTeamName" value="StudySync">
+      <label>Team email</label>
+      <input id="newTeamEmail" value="studysync@team.demo" type="email">
+      <label>Team lead name</label>
+      <input id="newTeamLead" value="Priya">
+      <label>Number of users</label>
+      <select id="newTeamUsers">
+        <option>4</option>
+        <option>3</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+      </select>
+      <label>Team password</label>
+      <input id="newTeamPass" value="demo1234" type="password">
+      <div class="notice blue">The team email is the approval channel. New user signups, additions, deletions and share approvals notify the team lead.</div>
+      <button class="btn" onclick="submitTeamSignup()">CREATE TEAM →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: TEAM HUB / WORKSPACE -->
+<section id="teamhub" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">TEAM CONTROL PANEL</div>
+      <h2>CHOOSE YOUR MOVE.</h2>
+    </div>
+    <span class="pill" id="hubStatsPill">4 USERS / 2 PROJECTS</span>
+  </div>
+  <div class="notice green" id="hubLeadNotice">✓ Team lead inbox: <b>3 requests waiting</b> — 1 new user, 1 delete request, 1 document share.</div>
+  <div class="choice-grid">
+    <div class="choice" onclick="go('projects')">
+      <span class="tag">PROJECTS</span>
+      <h3>Create / choose project</h3>
+      <p>Choose an existing project or create a new one with name, description and member count.</p>
+    </div>
+    <div class="choice" onclick="go('usersignup')">
+      <span class="tag teal">ADD USER</span>
+      <h3>New user signup</h3>
+      <p>Collect email + personalisation. A random temporary password is emailed.</p>
+    </div>
+    <div class="choice" onclick="go('memberlogin')">
+      <span class="tag pink">PROJECT LOGIN</span>
+      <h3>Enter a project</h3>
+      <p>Members log in separately once a project has been selected.</p>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>LEAD APPROVAL QUEUE</h3>
+    <div id="leadApprovalQueue">
+      <!-- Dynamically populated from /api/approvals -->
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: USER SIGNUP -->
+<section id="usersignup" class="screen">
+  <div class="form-shell">
+    <div class="form-card">
+      <div class="eyebrow">GENERAL USER SIGNUP / APPROVAL REQUIRED</div>
+      <h2>ADD A PERSON.</h2>
+      <p>Every new user gets a random temporary password by email. The team lead is notified before activation.</p>
+      <label>User email *</label>
+      <input id="newUserEmail" value="kavya@team.demo" type="email">
+      <label>Full name</label>
+      <input id="newUserName" value="Kavya Raman">
+      <label>Personal description / learning profile</label>
+      <textarea id="newUserBio">Interested in Python, machine learning and data analysis. Comfortable with SQL and wants to learn API integration.</textarea>
+      <label>Optional skills</label>
+      <input id="newUserSkills" value="Python, ML, SQL, Data Analysis">
+      <label>Preferred learning style (optional)</label>
+      <select id="newUserStyle">
+        <option>Hands-on / examples</option>
+        <option>Visual</option>
+        <option>Discussion first</option>
+        <option>Independent</option>
+      </select>
+      <div class="notice pink">AI uses the profile + skills to recommend a role. The leader can accept, edit or manually assign it.</div>
+      <button class="btn" onclick="submitUserSignup()">SEND INVITE →</button> 
+      <button class="btn paper" onclick="go('teamhub')">CANCEL</button>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: DELETE USER -->
+<section id="deleteuser" class="screen">
+  <div class="form-shell">
+    <div class="form-card">
+      <div class="eyebrow">DELETE USER / DOUBLE CHECK</div>
+      <h2>REMOVE A PERSON?</h2>
+      <p><b>The account is not removed immediately.</b> A request is emailed to the team lead.</p>
+      <label>Type the user name</label>
+      <input id="deleteName" placeholder="e.g. Vishal" value="Vishal">
+      <label>Type the user email again</label>
+      <input id="deleteEmail" value="vishal@team.demo" type="email">
+      <div class="notice red">⚠ Team-lead approval is required. The user remains active until approval.</div>
+      <button class="btn red" onclick="submitDeleteUser()">REQUEST DELETE</button> 
+      <button class="btn paper" onclick="go('memberlogin')">CANCEL</button>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: PROJECTS -->
+<section id="projects" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">TEAM WORKSPACE / PROJECT SELECT</div>
+      <h2>CHOOSE YOUR PROJECT.</h2>
+    </div>
+    <button class="btn pink" onclick="go('setup')">+ CREATE PROJECT</button>
+  </div>
+  <div class="notice blue">This is the post-team-login routing page: select a project, create one, add a user or enter project login.</div>
+  <div class="grid" id="projectsGrid">
+    <!-- Dynamically loaded from /api/projects -->
+  </div>
+</section>
+
+<!-- SCREEN: SETUP (CREATE PROJECT) -->
+<section id="setup" class="screen">
+  <div class="form-shell">
+    <div class="form-card">
+      <div class="eyebrow">PROJECT SETUP / 01</div>
+      <h2>BUILD YOUR CREW.</h2>
+      <p><b>Project description + number of members + personal profiles feed the AI planning layer.</b></p>
+      <label>Project name</label>
+      <input id="setupProjectName" value="StudySync AI">
+      <label>Project description</label>
+      <textarea id="setupProjectDesc">An AI platform that analyzes authorized team discussions, documents and task contributions to identify knowledge exchange patterns, summarize collective insights and recommend meaningful collaboration activities.</textarea>
+      <label>Number of members</label>
+      <select id="setupMemberCount">
+        <option>4</option>
+        <option>3</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+
+      <div class="member">
+        <b>MEMBER 01 — TEAM LEAD</b>
+        <div class="form-row">
+          <div><label>Name</label><input id="setupM1Name" value="Priya"></div>
+          <div><label>Email</label><input id="setupM1Email" value="lead@team.demo"></div>
+        </div>
+        <label>Personal description</label>
+        <textarea id="setupM1Bio" style="min-height:65px">Backend builder who enjoys AI workflows and leading student projects.</textarea>
+        <label>Skills</label>
+        <input id="setupM1Skills" value="Python, AI, Backend, Leadership">
+      </div>
+
+      <div class="member">
+        <b>MEMBER 02</b>
+        <div class="form-row">
+          <div><label>Name</label><input id="setupM2Name" value="Arun"></div>
+          <div><label>Email</label><input id="setupM2Email" value="arun@team.demo"></div>
+        </div>
+        <label>Personal description</label>
+        <textarea id="setupM2Bio" style="min-height:65px">Likes UI and building clean web interfaces; comfortable explaining frontend concepts.</textarea>
+        <label>Skills</label>
+        <input id="setupM2Skills" value="Frontend, React, UI, JavaScript">
+      </div>
+
+      <div class="member">
+        <b>MEMBER 03</b>
+        <div class="form-row">
+          <div><label>Name</label><input id="setupM3Name" value="Meena"></div>
+          <div><label>Email</label><input id="setupM3Email" value="meena@team.demo"></div>
+        </div>
+        <label>Personal description</label>
+        <textarea id="setupM3Bio" style="min-height:65px">Enjoys data and wants to learn how APIs connect to analytics dashboards.</textarea>
+        <label>Skills</label>
+        <input id="setupM3Skills" value="Database, SQL, Analytics, Python">
+      </div>
+
+      <div class="member">
+        <b>MEMBER 04</b>
+        <div class="form-row">
+          <div><label>Name</label><input id="setupM4Name" value="Vishal"></div>
+          <div><label>Email</label><input id="setupM4Email" value="vishal@team.demo"></div>
+        </div>
+        <label>Personal description</label>
+        <textarea id="setupM4Bio" style="min-height:65px">Likes testing, deployment and writing clear technical documentation.</textarea>
+        <label>Skills</label>
+        <input id="setupM4Skills" value="Testing, DevOps, Documentation, Git">
+      </div>
+
+      <div class="notice green">AI will propose roles + individual sprint timelines. The team lead must approve the generated sprint before it becomes the published sprint.</div>
+      <button class="btn" onclick="submitCreateProject()">CREATE PROJECT + ANALYZE TEAM →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: ROLES -->
+<section id="roles" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">AI ROLE ASSIGNMENT / LEADER CONTROL</div>
+      <h2>WHO SHOULD DO WHAT?</h2>
+    </div>
+    <span class="pill">PROFILE + SKILLS + PROJECT</span>
+  </div>
+  <div class="notice blue">AI assignment is optional. If the leader does not use AI, the leader can manually enter the work for each member.</div>
+  
+  <div class="grid" id="rolesGrid">
+    <div class="card">
+      <span class="tag">PRIYA</span>
+      <h3>AI / Backend Lead</h3>
+      <p>Reason: Python + AI + backend experience and leadership profile.</p>
+      <button class="btn" onclick="toast('Priya role accepted ✓')">ACCEPT</button> 
+      <button class="btn paper" onclick="openModal('manualRole','Priya')">EDIT</button>
+    </div>
+    <div class="card">
+      <span class="tag teal">ARUN</span>
+      <h3>Frontend / UX</h3>
+      <p>Reason: React + UI skills and frontend-focused profile.</p>
+      <button class="btn teal" onclick="toast('Arun role accepted ✓')">ACCEPT</button> 
+      <button class="btn paper" onclick="openModal('manualRole','Arun')">EDIT</button>
+    </div>
+    <div class="card">
+      <span class="tag pink">MEENA</span>
+      <h3>Data / Analytics</h3>
+      <p>Reason: SQL + analytics skills and API-learning goal.</p>
+      <button class="btn pink" onclick="toast('Meena role accepted ✓')">ACCEPT</button> 
+      <button class="btn paper" onclick="openModal('manualRole','Meena')">EDIT</button>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>MANUAL WORK ASSIGNMENT</h3>
+    <div class="two-col">
+      <div>
+        <label>Member</label>
+        <select id="manualMemberSelect">
+          <option>Priya</option>
+          <option>Arun</option>
+          <option>Meena</option>
+          <option>Vishal</option>
+        </select>
+      </div>
+      <div>
+        <label>Work</label>
+        <input id="manualWorkInput" value="Build discussion-analysis API">
+      </div>
+    </div>
+    <button class="btn paper" style="margin-top:14px" onclick="submitManualWork()">SAVE MANUAL TASK</button> 
+    <button class="btn" onclick="go('sprint')">CONTINUE TO SPRINT →</button>
+  </div>
+</section>
+
+<!-- SCREEN: MEMBER LOGIN -->
+<section id="memberlogin" class="screen">
+  <div class="form-shell">
+    <div class="form-card">
+      <div class="eyebrow">STUDYSYNC / PROJECT LOGIN</div>
+      <h2>WHO'S IN?</h2>
+      <p>Members log into the selected project. A first-time temporary password can be changed after login.</p>
+      <label>Member email</label>
+      <input id="memberLoginEmail" value="lead@team.demo" type="email">
+      <label>Password</label>
+      <input id="memberLoginPass" value="demo1234" type="password">
+      <div class="notice blue">First login? Use the random password sent to your email, then change it from Profile → Security.</div>
+      <button class="btn blue" onclick="submitMemberLogin()">LOGIN ↗</button>
+      <div class="choice-grid" style="grid-template-columns:1fr 1fr">
+        <div class="choice" onclick="go('usersignup')">
+          <span class="tag teal">ADD USER</span>
+          <h3>Add</h3>
+          <p>General signup + lead approval.</p>
+        </div>
+        <div class="choice" onclick="go('deleteuser')">
+          <span class="tag pink">DELETE</span>
+          <h3>Delete user</h3>
+          <p>Double-check identity, then request lead approval.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: DASHBOARD -->
+<section id="dashboard" class="screen">
+  <div class="dashboard">
+    <aside class="side">
+      <div class="profile">
+        <div class="avatar" id="sideAvatar">P</div>
+        <div><b id="sideName">Priya</b><small style="display:block" id="sideTitle">TEAM LEAD</small></div>
+      </div>
+      <h3 id="sideProjectName">StudySync</h3>
+      <button class="active" onclick="go('dashboard')">▣ Overview</button>
+      <button onclick="go('sprint')">◫ My Sprint</button>
+      <button onclick="go('sprintcheck')">☑ Sprint Checklist</button>
+      <button onclick="go('documents')">▤ Documents</button>
+      <button onclick="go('requests')">↗ Requests</button>
+      <button onclick="go('analysis')">▣ Analysis</button>
+      <button onclick="go('reports')">▤ Reports</button>
+      <button onclick="go('insights')">✦ AI Insights</button>
+      <button onclick="go('profile')">◎ Profile</button>
+      <button onclick="go('projects')">← Projects</button>
+    </aside>
+
+    <div class="dash-main">
+      <div class="panel">
+        <div class="eyebrow" id="dashDateHeader">TODAY</div>
+        <h3 id="dashGreeting">GOOD MORNING, PRIYA. 👋</h3>
+        <div class="notice green">✦ AI is using only authorized project context: project chat, approved shared documents, sprint updates and contribution history.</div>
+        <p><b>Your team is building StudySync.</b> The dashboard combines execution + learning signals.</p>
+        <div class="stats">
+          <div class="stat"><span>TEAM PROGRESS</span><strong id="dashTeamProg">72%</strong></div>
+          <div class="stat"><span>MY PROGRESS</span><strong id="dashMyProg">84%</strong></div>
+          <div class="stat"><span>OPEN TASKS</span><strong id="dashOpenTasks">03</strong></div>
+        </div>
+        <div class="bar-label">
+          <span>OVERALL PROJECT</span>
+          <span id="dashOverallProg">72%</span>
+        </div>
+        <div class="progress"><span id="dashProgBar" style="width:72%"></span></div>
+      </div>
+
+      <div class="panel">
+        <h3>MY SPRINT UPDATE</h3>
+        <div id="dashMySprintTasks">
+          <!-- Dynamically loaded from /api/projects/1/sprint -->
+        </div>
+        <button class="btn" onclick="toast('Work update saved ✓');notifyTeam('Priya updated sprint status')">UPDATE STATUS</button> 
+        <button class="btn pink" onclick="toast('Team notified: Priya is blocked ✓');notifyTeam('Priya requested help on Review AI insights')">REQUEST HELP</button>
+      </div>
+
+      <div class="panel">
+        <h3>SPRINT DEADLINE CHECKLIST</h3>
+        <div class="notice blue">
+          <b id="dashChecklistNotice">Project sprint status: 8 / 12 checklist items complete.</b> Each task records whether it was completed before its deadline.
+        </div>
+        <div id="dashDeadlineTasks">
+          <!-- Dynamically loaded -->
+        </div>
+        <button class="btn teal" onclick="go('sprintcheck')">VIEW ENTIRE PROJECT SPRINT →</button>
+      </div>
+
+      <div class="panel">
+        <h3>PROJECT DOCUMENTS + CODE</h3>
+        <p class="request-meta">Upload your actual work files or an entire folder from the dashboard. New uploads stay private until you choose to share them.</p>
+        <div class="dash-upload-actions">
+          <button class="btn teal" onclick="document.getElementById('dashFileUpload').click()">＋ UPLOAD FILES</button>
+          <button class="btn pink" onclick="document.getElementById('dashFolderUpload').click()">＋ UPLOAD FOLDER</button>
+        </div>
+        <input id="dashFileUpload" type="file" multiple hidden onchange="handleRealUpload(this, false, 'dashFileList')">
+        <input id="dashFolderUpload" type="file" webkitdirectory directory multiple hidden onchange="handleRealUpload(this, true, 'dashFileList')">
+        <div class="upload" style="margin-top:10px" onclick="document.getElementById('dashFileUpload').click()">
+          DROP / SELECT YOUR WORK<br>
+          <small>PDF • DOCX • ZIP • PY • JS • images • datasets • any project file</small>
+        </div>
+        <div id="dashFileList">
+          <!-- Populated from /api/projects/1/documents -->
+        </div>
+      </div>
+
+      <div class="panel request-card">
+        <h3>REQUEST COMPLETED WORK</h3>
+        <p class="request-meta">Need work a teammate has already finished for your integration? Send a targeted request and the teammate gets an in-app project notification.</p>
+        <div class="form-row">
+          <div>
+            <label>Teammate</label>
+            <select id="dashRequestPerson">
+              <option>Arun — Frontend</option>
+              <option>Meena — Analytics</option>
+              <option>Vishal — QA / DevOps</option>
+            </select>
+          </div>
+          <div>
+            <label>Completed work needed</label>
+            <input id="dashRequestItem" value="frontend-build / API integration code">
+          </div>
+        </div>
+        <label>Integration reason</label>
+        <textarea id="dashRequestReason">I need the completed API integration module to connect it with the analytics dashboard.</textarea>
+        <button class="btn teal" onclick="sendDashboardWorkRequest()">SEND REQUEST TO TEAMMATE</button>
+        <div id="dashSentRequests" class="request-status">
+          <!-- Loaded from /api/projects/1/requests -->
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>AI PLACEHOLDER BUILDER</h3>
+        <p>If you are blocked, AI can prepare a temporary code/program scaffold using the <b>authorized documents + project chat + your current sprint</b>.</p>
+        <div class="notice pink">AI suggests; the user approves. The generated placeholder is labelled as a scaffold and does not silently replace your work.</div>
+        <button class="btn pink" onclick="openModal('placeholder')">GENERATE PLACEHOLDER CODE</button>
+      </div>
+
+      <div class="panel chatbox">
+        <h3>TEAM + AI CHAT</h3>
+        <div class="tabs">
+          <button class="active" onclick="setChatMode('all',this)">TEAM + AI</button>
+          <button onclick="setChatMode('ai',this)">ASK AI</button>
+          <button onclick="setChatMode('team',this)">TEAM ONLY</button>
+        </div>
+        <div class="messages" id="messages">
+          <!-- Loaded from /api/projects/1/chat -->
+        </div>
+        <div class="chatinput">
+          <input id="chat" placeholder="Message your team or ask AI..." onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="btn" onclick="sendChat()">SEND</button>
+        </div>
+        <div class="notice blue">Chat signals can be used by AI to prepare a <b>detailed sprint suggestion</b>. It will only change the sprint after the user approves the notification.</div>
+      </div>
+    </div>
+
+    <aside class="dash-rail">
+      <div class="panel">
+        <div class="eyebrow">AI RECOMMENDATION</div>
+        <h3>COLLAB ACTIVITY</h3>
+        <div class="insight good">
+          <b>PEER TEACHING</b>
+          <p>Arun → Meena<br>15 min on API integration.</p>
+          <button class="btn" onclick="toast('Activity proposed to team ✓')">PROPOSE</button>
+        </div>
+        <div class="insight info" style="margin-top:10px">
+          <b>KNOWLEDGE EXCHANGE</b>
+          <p>4 useful document shares + 6 help interactions this sprint.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>TEAM AT A GLANCE</h3>
+        <div class="kpi"><span>PRIYA</span><strong>84%</strong><div class="progress"><span style="width:84%"></span></div></div>
+        <div class="kpi"><span>ARUN</span><strong>68%</strong><div class="progress"><span style="width:68%"></span></div></div>
+        <div class="kpi"><span>MEENA</span><strong>55%</strong><div class="progress"><span style="width:55%"></span></div></div>
+        <div class="kpi"><span>VISHAL</span><strong>91%</strong><div class="progress"><span style="width:91%"></span></div></div>
+      </div>
+
+      <div class="panel">
+        <h3>ALERTS</h3>
+        <div class="notice pink">Meena is behind her timeline. Entire team notified.</div>
+        <div class="notice blue">1 document share request needs lead approval.</div>
+        <div class="notice green">Sprint 01 has a pending leader approval.</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- SCREEN: DOCUMENTS -->
+<section id="documents" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">PROJECT KNOWLEDGE BASE</div>
+      <h2>DOCUMENTS + WORK.</h2>
+      <p>Upload individual files or an entire project folder. Keep private work private until you explicitly share it.</p>
+    </div>
+    <div>
+      <button class="btn" onclick="document.getElementById('fileUpload').click()">+ UPLOAD FILES</button> 
+      <button class="btn pink" onclick="document.getElementById('folderUpload').click()">+ UPLOAD FOLDER</button>
+      <input id="fileUpload" type="file" multiple hidden onchange="handleRealUpload(this,false,'docsFileList')">
+      <input id="folderUpload" type="file" webkitdirectory directory multiple hidden onchange="handleRealUpload(this,true,'docsFileList')">
+    </div>
+  </div>
+  <div class="notice blue">Uploads are stored as <b>private by default</b>. You choose when to share them with the project. Shared files become available to authorized AI analysis.</div>
+  
+  <div class="two-col">
+    <div class="panel">
+      <h3>MY WORKSPACE</h3>
+      <div class="upload" onclick="document.getElementById('fileUpload').click()">
+        DROP WORK FILES HERE<br>
+        <span class="small">PDF • DOCX • ZIP • PY • JS • images • datasets • any project file</span>
+      </div>
+      <div id="docsFileList">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>REQUEST COMPLETED WORK</h3>
+      <div class="notice pink">Need something another teammate already finished? Send a targeted request for the exact file, folder, code module or document you need for your integration.</div>
+      <div class="form-row">
+        <div>
+          <label>Teammate</label>
+          <select id="requestPerson">
+            <option>Arun — Frontend</option>
+            <option>Meena — Analytics</option>
+            <option>Vishal — QA / DevOps</option>
+          </select>
+        </div>
+        <div>
+          <label>Needed work</label>
+          <input id="requestItem" value="frontend-build / API integration code">
+        </div>
+      </div>
+      <label>Why do you need it?</label>
+      <textarea id="requestReason">I need the completed API integration module to connect it with the analytics dashboard.</textarea>
+      <button class="btn teal" onclick="sendWorkRequest()">SEND WORK REQUEST</button>
+      <div id="sentRequests">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>PROJECT-SHARED FILES</h3>
+    <div class="three-col">
+      <div class="kpi"><b id="docStatFiles">12 FILES</b><br><span class="small">Available to authorized AI analysis</span></div>
+      <div class="kpi"><b id="docStatFolders">03 FOLDERS</b><br><span class="small">Shared project directories</span></div>
+      <div class="kpi"><b id="docStatReqs">04 REQUESTS</b><br><span class="small">Pending teammate/document requests</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: REQUESTS -->
+<section id="requests" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">COLLABORATION REQUESTS</div>
+      <h2>REQUESTS.</h2>
+      <p>Ask teammates for completed work you need for your integration, or approve incoming document/work requests.</p>
+    </div>
+    <button class="btn" onclick="go('documents')">+ NEW WORK REQUEST</button>
+  </div>
+
+  <div class="grid" id="requestsGrid">
+    <div class="card">
+      <span class="tag blue">WORK REQUEST</span>
+      <h3>Priya → Arun</h3>
+      <p>Need <b>frontend-build / API integration code</b> for analytics integration.</p>
+      <button class="btn teal" onclick="toast('Request sent to Arun ✓')">REQUEST SENT</button>
+    </div>
+    <div class="card">
+      <span class="tag pink">DOCUMENT</span>
+      <h3>Meena → Priya</h3>
+      <p>Request: <b>API_Spec_v2.pdf</b></p>
+      <button class="btn teal" onclick="approveWorkRequest(2,'API_Spec_v2.pdf','Meena')">APPROVE & AUTO-SHARE</button>
+    </div>
+    <div class="card">
+      <span class="tag green">COMPLETED</span>
+      <h3>Vishal → Team</h3>
+      <p>Testing checklist is completed and ready for the integration team.</p>
+      <button class="btn paper" onclick="toast('Completed work marked available ✓')">VIEW WORK</button>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>REQUEST INBOX</h3>
+    <div id="requestsInbox">
+      <!-- Loaded dynamically -->
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>WHAT GETS NOTIFIED?</h3>
+    <div class="three-col">
+      <div class="kpi"><b>WORK REQUEST</b><br><span class="small">Target teammate gets an in-app + project notification</span></div>
+      <div class="kpi"><b>SHARE APPROVAL</b><br><span class="small">Owner approves; AI grants access automatically</span></div>
+      <div class="kpi"><b>BLOCKED / LATE</b><br><span class="small">Whole project team receives a collaboration alert</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: SPRINT (FULL SPRINT 01) -->
+<section id="sprint" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">ENTIRE PROJECT SPRINT / AI-GENERATED + LEADER APPROVAL</div>
+      <h2>SPRINT 01.</h2>
+      <p>One complete sprint view for the whole StudySync project — every teammate, every task, every deadline and every completion state.</p>
+    </div>
+    <div>
+      <button class="btn" onclick="submitApproveSprint()">APPROVE SPRINT</button> 
+      <button class="btn pink" onclick="openModal('replan')">REJECT + REGENERATE</button>
+    </div>
+  </div>
+  <div class="notice blue"><b>Approval gate:</b> AI drafts the complete sprint from the project description, member profiles, skills, authorized chat and approved documents. The team lead publishes it.</div>
+  
+  <div class="sprint-summary">
+    <div class="metric"><span>SPRINT PROGRESS</span><strong id="sprintProgress">67%</strong></div>
+    <div class="metric"><span>COMPLETED</span><strong id="sprintDone">8 / 12</strong></div>
+    <div class="metric"><span>BEFORE DEADLINE</span><strong id="sprintOnTime">7</strong></div>
+    <div class="metric"><span>LATE / AT RISK</span><strong id="sprintLate">1</strong></div>
+  </div>
+
+  <div class="project-sprint">
+    <h3>PROJECT TIMELINE</h3>
+    <div class="three-col">
+      <div class="kpi"><b>09:00</b><br><span class="small">Sprint starts • authentication + planning</span></div>
+      <div class="kpi"><b>13:00</b><br><span class="small">Integration checkpoint • frontend + API</span></div>
+      <div class="kpi"><b>16:00</b><br><span class="small">Final sprint checkpoint • testing + analysis</span></div>
+    </div>
+    <div class="deadline-note">DEADLINE RULE: a task is marked <b>BEFORE DEADLINE</b> only when its completion time is on or before the assigned deadline.</div>
+  </div>
+
+  <div class="sprint-board" id="sprintBoard">
+    <!-- Populated dynamically from /api/projects/1/sprint -->
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>AI SPRINT LOGIC</h3>
+    <div class="two-col">
+      <div>
+        <b>Inputs</b>
+        <ul class="list">
+          <li>Project description</li>
+          <li>User personalisation + skills</li>
+          <li>Current tasks + workload</li>
+          <li>Authorized project chat</li>
+          <li>Approved documents</li>
+        </ul>
+      </div>
+      <div>
+        <b>Outputs</b>
+        <ul class="list">
+          <li>Role + task allocation</li>
+          <li>Individual timeline</li>
+          <li>Peer-learning activity</li>
+          <li>Risk / blocked alerts</li>
+          <li>Optional detailed re-plan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: SPRINT CHECKLIST -->
+<section id="sprintcheck" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">DASHBOARD / DEADLINE TRACKER</div>
+      <h2>SPRINT CHECKLIST.</h2>
+      <p>Track every project task and see clearly whether each sprint item was completed before its deadline.</p>
+    </div>
+    <span class="pill" id="sprintCheckPill">SPRINT 01 / 12 ITEMS</span>
+  </div>
+  <div class="notice green"><b>Purpose:</b> this checklist separates completion from timeliness — a task can be completed and still be marked <b>LATE</b>.</div>
+  
+  <div class="sprint-tabs">
+    <button class="active" onclick="filterSprintChecklist('all',this)">ALL MEMBERS</button>
+    <button onclick="filterSprintChecklist('Priya',this)">PRIYA</button>
+    <button onclick="filterSprintChecklist('Arun',this)">ARUN</button>
+    <button onclick="filterSprintChecklist('Meena',this)">MEENA</button>
+    <button onclick="filterSprintChecklist('Vishal',this)">VISHAL</button>
+  </div>
+
+  <div id="deadlineChecklist">
+    <!-- Populated dynamically from /api/projects/1/sprint -->
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>WHAT THE TEAM SEES</h3>
+    <div class="three-col">
+      <div class="kpi"><b>✓ BEFORE DEADLINE</b><br><span class="small">Completed on or before the task deadline.</span></div>
+      <div class="kpi"><b>! LATE</b><br><span class="small">Completed after the deadline. This becomes a sprint risk signal.</span></div>
+      <div class="kpi"><b>○ PENDING</b><br><span class="small">Not completed yet. Team lead can monitor or trigger collaboration help.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: ANALYSIS -->
+<section id="analysis" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">TEAM INTELLIGENCE / DETAILED VIEW</div>
+      <h2>ANALYSIS.</h2>
+    </div>
+    <span class="pill">AI + TASK + DOCS + CHAT</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric"><span>TEAM PROGRESS</span><strong id="analysisTeamProg">72%</strong></div>
+    <div class="metric"><span>KNOWLEDGE EXCHANGE</span><strong>78%</strong></div>
+    <div class="metric"><span>DOCS SHARED</span><strong id="analysisDocsShared">14</strong></div>
+    <div class="metric"><span>HELP REQUESTS</span><strong>03</strong></div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>WHO DID WHAT?</h3>
+    <table class="table">
+      <thead>
+        <tr><th>Member</th><th>AI role</th><th>Work</th><th>Progress</th><th>Knowledge signal</th><th>Status</th></tr>
+      </thead>
+      <tbody id="analysisWhoTable">
+        <tr><td>Priya</td><td>AI / Backend Lead</td><td>Auth + analyzer</td><td>84%</td><td>Shared 4 docs</td><td><span class="chip">ON TRACK</span></td></tr>
+        <tr><td>Arun</td><td>Frontend</td><td>Dashboard + chat</td><td>68%</td><td>Helped Meena</td><td><span class="chip">ON TRACK</span></td></tr>
+        <tr><td>Meena</td><td>Data / Analytics</td><td>Knowledge metrics</td><td>55%</td><td>3 repeated questions</td><td><span class="chip" style="background:var(--pink2)">BLOCKED</span></td></tr>
+        <tr><td>Vishal</td><td>QA / DevOps</td><td>Testing + deploy</td><td>91%</td><td>Shared test checklist</td><td><span class="chip" style="background:var(--green)">DONE</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid" style="margin-top:18px">
+    <div class="card">
+      <span class="tag">ROLE ASSIGNMENT</span>
+      <h3>AI → People</h3>
+      <p>Roles inferred from personal description + skills. Lead can accept, edit or manually assign.</p>
+      <button class="btn paper" onclick="go('roles')">REVIEW ROLES</button>
+    </div>
+    <div class="card">
+      <span class="tag pink">SPRINT SIGNAL</span>
+      <h3>Meena is blocked</h3>
+      <p>Repeated API questions triggered a peer session + placeholder recommendation.</p>
+      <button class="btn pink" onclick="openModal('sprintChange')">REVIEW SUGGESTION</button>
+    </div>
+    <div class="card">
+      <span class="tag teal">COLLECTIVE SUMMARY</span>
+      <h3>Team knowledge</h3>
+      <p>Modular API, shared auth and common contribution workflow are emerging as the collective solution.</p>
+      <button class="btn paper" onclick="toast('Collective summary refreshed ✓')">REFRESH SUMMARY</button>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>KNOWLEDGE EXCHANGE MAP</h3>
+    <div class="three-col">
+      <div class="kpi"><b>ARUN → MEENA</b><br><span class="small">Frontend/API explanation • 2 interactions</span></div>
+      <div class="kpi"><b>PRIYA → TEAM</b><br><span class="small">API spec + analyzer notes • 4 shares</span></div>
+      <div class="kpi"><b>VISHAL → TEAM</b><br><span class="small">Testing checklist • 1 share</span></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>SPRINT CHANGE CONTROL</h3>
+    <div class="notice blue">AI can use chat doubts and work signals to prepare a more detailed sprint. <b>It only changes the published sprint after the user approves the notification.</b></div>
+    <button class="btn" onclick="openModal('sprintChange')">SEND / REVIEW USER APPROVAL</button> 
+    <button class="btn paper" onclick="toast('Current sprint remains unchanged')">KEEP CURRENT SPRINT</button>
+  </div>
+</section>
+
+<!-- SCREEN: INSIGHTS -->
+<section id="insights" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">AI / COLLABORATION INTELLIGENCE</div>
+      <h2>THE TEAM BRAIN.</h2>
+    </div>
+    <span class="pill">LIVE ANALYSIS</span>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">KNOWLEDGE EXCHANGE</span>
+      <h3>78%</h3>
+      <p>Discussions are transferring useful knowledge between frontend, backend and data members.</p>
+    </div>
+    <div class="card">
+      <span class="tag pink">KNOWLEDGE GAP</span>
+      <h3>API CONTRACT</h3>
+      <p>Two members repeatedly ask for the same clarification — a signal for peer teaching.</p>
+    </div>
+    <div class="card">
+      <span class="tag teal">CONTRIBUTIONS</span>
+      <h3>18 / 25</h3>
+      <p>Task completion is strong, while documentation contributions are lower.</p>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>COLLECTIVE INSIGHTS</h3>
+    <div class="insights">
+      <div class="insight good"><h4>✓ Strong exchange</h4>Arun shared frontend patterns with the backend discussion, helping unblock an API task.</div>
+      <div class="insight warn"><h4>! Collaboration risk</h4>Meena's repeated API questions suggest a knowledge dependency.</div>
+      <div class="insight info"><h4>→ Recommended activity</h4>Run a 15-minute peer teaching session and attach the notes to shared project knowledge.</div>
+      <div class="insight"><h4>▣ Collective summary</h4>The team is converging on modular APIs, shared authentication and common task ownership.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>AI FEEDBACK LOOP</h3>
+    <div class="timeline">
+      <div class="timeline-item"><b>01 — Authorized inputs</b><br>Project discussions, approved documents and task updates.</div>
+      <div class="timeline-item"><b>02 — Pattern analysis</b><br>Who contributes, who helps whom, repeated questions and knowledge gaps.</div>
+      <div class="timeline-item"><b>03 — Team intelligence</b><br>Summarize collective knowledge and recommend meaningful collaboration activities.</div>
+      <div class="timeline-item"><b>04 — Feedback loop</b><br>Track whether recommended activities improve progress and knowledge exchange.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: REPORTS -->
+<section id="reports" class="screen report-page">
+  <div class="report-hero">
+    <div class="eyebrow">TEAM INTELLIGENCE / REPORT GENERATOR</div>
+    <h2 class="report-title">TEAM REPORT</h2>
+    <p class="report-subtitle">Turn sprint activity into a clean team or member report — work done, timed checklist, task/risk count, efficiency, estimated time and actual completed time.</p>
+    <div class="report-toolbar">
+      <select id="reportType" onchange="setReportType(this.value)">
+        <option value="team">TEAM REPORT</option>
+        <option value="member">MEMBER REPORT</option>
+      </select>
+      <select id="reportPeriod">
+        <option>SPRINT 01</option>
+        <option>THIS WEEK</option>
+        <option>PROJECT TO DATE</option>
+      </select>
+      <button class="btn" onclick="generateReport()">GENERATE REPORT ↗</button>
+      <button class="btn pink" onclick="printReport()">PRINT / SAVE PDF</button>
+    </div>
+  </div>
+
+  <div class="report-tabs" id="reportTabs">
+    <button class="active" data-member="team" onclick="selectReportMember('team',this)">TEAM</button>
+    <button data-member="Priya" onclick="selectReportMember('Priya',this)">PRIYA</button>
+    <button data-member="Meena" onclick="selectReportMember('Meena',this)">MEENA</button>
+    <button data-member="Vishal" onclick="selectReportMember('Vishal',this)">VISHAL</button>
+    <button data-member="Arun" onclick="selectReportMember('Arun',this)">ARUN</button>
+  </div>
+
+  <div id="reportContent">
+    <div class="report-kpis">
+      <div class="report-kpi"><span>WORK DONE</span><strong id="reportWorkDone">18 / 25</strong></div>
+      <div class="report-kpi"><span>CHECKLIST</span><strong id="reportChecklist">8 / 12</strong></div>
+      <div class="report-kpi"><span>NO. OF TASKS</span><strong id="reportTasks">12</strong></div>
+      <div class="report-kpi"><span>NO. OF RISKS</span><strong id="reportRisks">3</strong></div>
+    </div>
+
+    <div class="report-grid" style="margin-top:18px">
+      <div class="report-card">
+        <div class="report-section-label">01 / Work done</div>
+        <h3 id="reportHeading">Team execution checklist</h3>
+        <div class="report-checklist" id="reportChecklistItems">
+          <!-- Loaded dynamically from /api/reports -->
+        </div>
+      </div>
+
+      <div class="report-card">
+        <div class="report-section-label">02 / Efficiency</div>
+        <h3>Time + output</h3>
+        <div class="report-efficiency">
+          <span>TEAM EFFICIENCY</span>
+          <strong id="reportEfficiency">78%</strong>
+          <small>Based on completed work, deadline adherence and estimated vs actual time.</small>
+        </div>
+        <div class="time-compare" style="margin-top:12px">
+          <div class="time-box est"><span>ESTIMATED TIME</span><strong id="reportEstimated">18h</strong></div>
+          <div class="time-box actual"><span>ACTUAL COMPLETED</span><strong id="reportActual">19.5h</strong></div>
+        </div>
+        <div class="notice blue" style="margin-bottom:0"><b>Risk signal:</b> late completion and unfinished checklist items are separated from completed work.</div>
+      </div>
+    </div>
+
+    <div class="report-card" style="margin-top:18px">
+      <div class="report-section-label">03 / Member snapshot</div>
+      <h3>Contribution report</h3>
+      <div class="report-table-wrap">
+        <table class="report-table">
+          <thead>
+            <tr><th>Member</th><th>Work done</th><th>Tasks</th><th>Risks</th><th>Efficiency</th><th>Estimated</th><th>Actual</th></tr>
+          </thead>
+          <tbody id="reportMemberRows">
+            <!-- Loaded dynamically from /api/reports -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="report-card" style="margin-top:18px">
+      <div class="report-section-label">04 / Checklist with time</div>
+      <h3>What the report records</h3>
+      <div class="three-col">
+        <div class="kpi"><b>✓ BEFORE DEADLINE</b><br><span class="small">Completion timestamp is on or before the deadline.</span></div>
+        <div class="kpi"><b>! LATE</b><br><span class="small">Completed after the deadline and counted as a risk signal.</span></div>
+        <div class="kpi"><b>○ PENDING</b><br><span class="small">Not completed yet; estimated time remains visible for planning.</span></div>
+      </div>
+    </div>
+
+    <div class="report-signoff" style="margin-top:18px">
+      <span id="reportGeneratedLabel">REPORT READY • TEAM VIEW</span><br>
+      <span class="report-note">Connected directly to the Thryve persistent SQLite database. All times, tasks, and efficiency are computed dynamically from live sprint records.</span>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN: PROFILE -->
+<section id="profile" class="screen">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">MY ACCOUNT / PERSONALISATION</div>
+      <h2>PROFILE.</h2>
+    </div>
+    <span class="pill" id="profilePill">PRIYA / TEAM LEAD</span>
+  </div>
+  <div class="two-col">
+    <div class="panel">
+      <h3>ABOUT ME</h3>
+      <label>Name</label>
+      <input id="profileName" value="Priya">
+      <label>Email</label>
+      <input id="profileEmail" value="lead@team.demo" type="email" readonly style="opacity:0.8">
+      <label>Personal description</label>
+      <textarea id="profileBio">Backend builder who enjoys AI workflows and leading student projects.</textarea>
+      <label>Skills</label>
+      <input id="profileSkills" value="Python, AI, Backend, Leadership">
+      <button class="btn" onclick="submitSaveProfile()">SAVE PROFILE</button>
+    </div>
+    <div class="panel">
+      <h3>SECURITY</h3>
+      <p class="small">New users receive a random password by email. After first login they can replace it here.</p>
+      <label>Current password</label>
+      <input id="profCurrentPass" type="password" value="demo1234">
+      <label>New password</label>
+      <input id="profNewPass" type="password" placeholder="New password">
+      <label>Confirm password</label>
+      <input id="profConfirmPass" type="password" placeholder="Repeat password">
+      <button class="btn pink" onclick="submitChangePassword()">CHANGE PASSWORD</button>
+      <div class="notice green">Live database authentication active. Passwords are saved persistently in SQLite.</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="toast" class="toast"></div>
+<div id="modal" class="modal"><div class="modal-card" id="modalCard"></div></div>
+</div>
+
+<script>
+// Global App State
+let activeScreen = 'home';
+let currentProjectId = 1;
+let currentMember = {
+  name: 'Priya',
+  email: 'lead@team.demo',
+  role: 'AI / Backend Lead',
+  title: 'TEAM LEAD',
+  isLead: true
+};
+let chatActiveMode = 'all';
+let selectedReportMember = 'team';
+
+const screens = [...document.querySelectorAll('.screen')];
+
+function go(id) {
+  activeScreen = id;
+  screens.forEach(s => s.classList.toggle('active', s.id === id));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('active', b.dataset.go === id));
+
+  // Trigger real-time data loads based on screen
+  if (id === 'teamhub') loadApprovals();
+  if (id === 'projects') loadProjects();
+  if (id === 'dashboard') { loadDashboard(); loadSprint(); loadDocuments(); loadRequests(); loadChat(); }
+  if (id === 'sprint' || id === 'sprintcheck') loadSprint();
+  if (id === 'documents') loadDocuments();
+  if (id === 'requests') loadRequests();
+  if (id === 'reports') renderReport(selectedReportMember);
+  if (id === 'analysis') loadAnalysis();
+}
+
+document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(window.__toast);
+  window.__toast = setTimeout(() => t.style.display = 'none', 2800);
+}
+
+function notifyTeam(msg) {
+  toast('TEAM NOTIFICATION SENT ✓ ' + msg);
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// -------------------------------------------------------------
+// BACKEND API INTEGRATIONS
+// -------------------------------------------------------------
+
+// 1. Team Login
+async function submitTeamLogin() {
+  const email = document.getElementById('teamLoginEmail').value;
+  const password = document.getElementById('teamLoginPass').value;
+  const teamId = document.getElementById('teamLoginId').value;
+  try {
+    const res = await fetch('/api/auth/team-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password, teamId })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Login failed');
+    toast(`Welcome, ${data.team.name} ✓`);
+    go('teamhub');
+  } catch (err) {
+    toast(`Login Error: ${err.message}`);
+  }
+}
+
+// 2. Team Signup
+async function submitTeamSignup() {
+  const name = document.getElementById('newTeamName').value;
+  const email = document.getElementById('newTeamEmail').value;
+  const leadName = document.getElementById('newTeamLead').value;
+  const userCount = document.getElementById('newTeamUsers').value;
+  const password = document.getElementById('newTeamPass').value;
+  try {
+    const res = await fetch('/api/auth/team-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, leadName, userCount, password })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Signup failed');
+    toast('Team created ✓');
+    go('teamhub');
+  } catch (err) {
+    toast(`Signup Error: ${err.message}`);
+  }
+}
+
+// 3. Member Login
+async function submitMemberLogin() {
+  const email = document.getElementById('memberLoginEmail').value;
+  const password = document.getElementById('memberLoginPass').value;
+  try {
+    const res = await fetch('/api/auth/member-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Login failed');
+    currentMember = {
+      name: data.user.name,
+      email: data.user.email,
+      role: data.user.role,
+      title: data.user.title || (data.user.is_lead ? 'TEAM LEAD' : 'MEMBER'),
+      isLead: data.user.is_lead
+    };
+    updateMemberDisplay();
+    toast(`Logged in as ${currentMember.name} ↗`);
+    go('dashboard');
+  } catch (err) {
+    toast(`Member Login Error: ${err.message}`);
+  }
+}
+
+function updateMemberDisplay() {
+  const av = document.getElementById('sideAvatar');
+  if (av) av.textContent = (currentMember.name || 'P')[0].toUpperCase();
+  const nameEl = document.getElementById('sideName');
+  if (nameEl) nameEl.textContent = currentMember.name;
+  const titleEl = document.getElementById('sideTitle');
+  if (titleEl) titleEl.textContent = currentMember.title;
+  const greetEl = document.getElementById('dashGreeting');
+  if (greetEl) greetEl.textContent = `GOOD MORNING, ${currentMember.name.toUpperCase()}. 👋`;
+  const profPill = document.getElementById('profilePill');
+  if (profPill) profPill.textContent = `${currentMember.name.toUpperCase()} / ${currentMember.title}`;
+  const profName = document.getElementById('profileName');
+  if (profName) profName.value = currentMember.name;
+  const profEmail = document.getElementById('profileEmail');
+  if (profEmail) profEmail.value = currentMember.email;
+}
+
+// 4. User Signup (Invite)
+async function submitUserSignup() {
+  const email = document.getElementById('newUserEmail').value;
+  const name = document.getElementById('newUserName').value;
+  const description = document.getElementById('newUserBio').value;
+  const skills = document.getElementById('newUserSkills').value;
+  const learningStyle = document.getElementById('newUserStyle').value;
+  try {
+    const res = await fetch('/api/auth/user-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, name, description, skills, learningStyle })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Invitation failed');
+    toast(`Random password ${data.tempPassword} emailed + team lead notified ✓`);
+    go('memberlogin');
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 5. Delete User Request
+async function submitDeleteUser() {
+  const name = document.getElementById('deleteName').value;
+  const email = document.getElementById('deleteEmail').value;
+  try {
+    const res = await fetch('/api/auth/delete-user-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    toast('Delete request sent to team lead ✓');
+    go('memberlogin');
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 6. Lead Approval Queue
+async function loadApprovals() {
+  try {
+    const res = await fetch('/api/approvals?projectId=' + currentProjectId);
+    const items = await res.json();
+    const box = document.getElementById('leadApprovalQueue');
+    const notice = document.getElementById('hubLeadNotice');
+    if (notice) {
+      notice.innerHTML = `✓ Team lead inbox: <b>${items.length} requests waiting</b> in approval queue.`;
+    }
+    if (!items.length) {
+      box.innerHTML = '<div class="notice green">✓ All approval requests have been addressed!</div>';
+      return;
+    }
+    box.innerHTML = items.map(item => `
+      <div class="approval">
+        <b>${item.type.toUpperCase()}:</b> ${escapeHtml(item.item)}<br>
+        <small>${escapeHtml(item.reason || 'Requested by ' + item.from_name)}</small><br>
+        <button class="btn ${item.type === 'user_delete' ? 'red' : (item.type === 'share' ? 'teal' : '')}" onclick="decideApproval(${item.id}, 'approve', '${escapeHtml(item.item)}')">
+          ${item.type === 'user_delete' ? 'APPROVE DELETE' : (item.type === 'share' ? 'APPROVE & AUTO-SHARE' : 'APPROVE')}
+        </button>
+        <button class="btn paper" onclick="decideApproval(${item.id}, 'reject', '${escapeHtml(item.item)}')">
+          ${item.type === 'user_delete' ? 'KEEP USER' : (item.type === 'share' ? 'DENY' : 'REJECT')}
+        </button>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Error loading approvals:', err);
+  }
+}
+
+async function decideApproval(id, action, label) {
+  try {
+    const res = await fetch(`/api/approvals/${id}/decide`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action })
+    });
+    const data = await res.json();
+    toast(`${label} ${action}d ✓ Team lead inbox updated.`);
+    loadApprovals();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 7. Projects
+async function loadProjects() {
+  try {
+    const res = await fetch('/api/projects');
+    const list = await res.json();
+    const grid = document.getElementById('projectsGrid');
+    if (!grid) return;
+    grid.innerHTML = list.map(p => `
+      <div class="card" onclick="selectProject(${p.id}, '${escapeHtml(p.name)}')">
+        <span class="tag ${p.progress > 50 ? 'green' : 'teal'}">${p.progress > 50 ? 'ACTIVE' : 'IN BUILD'}</span>
+        <h3>${escapeHtml(p.name)}</h3>
+        <p>${escapeHtml(p.description || 'Collaborative workspace')}</p>
+        <b>${p.member_count} members • ${p.progress}% progress</b>
+        <div class="arrow">↗</div>
+      </div>
+    `).join('') + `
+      <div class="card" onclick="go('setup')">
+        <span class="tag pink">NEW</span>
+        <h3>+ Create project</h3>
+        <p>Set project goal, team size and member profiles. AI prepares the first sprint.</p>
+        <div class="arrow">+</div>
+      </div>
+    `;
+  } catch (err) {
+    console.error('Error loading projects:', err);
+  }
+}
+
+function selectProject(id, name) {
+  currentProjectId = id;
+  const pNameEl = document.getElementById('sideProjectName');
+  if (pNameEl) pNameEl.textContent = name;
+  toast(`Selected project: ${name} ↗`);
+  go('dashboard');
+}
+
+// 8. Create Project & Trigger AI Roles
+async function submitCreateProject() {
+  const name = document.getElementById('setupProjectName').value;
+  const description = document.getElementById('setupProjectDesc').value;
+  const memberCount = document.getElementById('setupMemberCount').value;
+
+  const members = [
+    { name: document.getElementById('setupM1Name').value, email: document.getElementById('setupM1Email').value, bio: document.getElementById('setupM1Bio').value, skills: document.getElementById('setupM1Skills').value },
+    { name: document.getElementById('setupM2Name').value, email: document.getElementById('setupM2Email').value, bio: document.getElementById('setupM2Bio').value, skills: document.getElementById('setupM2Skills').value },
+    { name: document.getElementById('setupM3Name').value, email: document.getElementById('setupM3Email').value, bio: document.getElementById('setupM3Bio').value, skills: document.getElementById('setupM3Skills').value },
+    { name: document.getElementById('setupM4Name').value, email: document.getElementById('setupM4Email').value, bio: document.getElementById('setupM4Bio').value, skills: document.getElementById('setupM4Skills').value }
+  ];
+
+  try {
+    const res = await fetch('/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, description, memberCount, members })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to create project');
+    currentProjectId = data.projectId;
+
+    // Render generated roles
+    const rolesGrid = document.getElementById('rolesGrid');
+    if (rolesGrid && data.roles) {
+      rolesGrid.innerHTML = data.roles.map(r => `
+        <div class="card">
+          <span class="tag ${r.name === 'Arun' ? 'teal' : (r.name === 'Meena' ? 'pink' : '')}">${r.name.toUpperCase()}</span>
+          <h3>${escapeHtml(r.role)}</h3>
+          <p>Reason: ${escapeHtml(r.why)}</p>
+          <button class="btn" onclick="toast('${r.name} role accepted ✓')">ACCEPT</button> 
+          <button class="btn paper" onclick="openModal('manualRole','${r.name}')">EDIT</button>
+        </div>
+      `).join('');
+    }
+
+    toast('Project created ✓ AI drafted roles + Sprint 01');
+    go('roles');
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 9. Manual Role & Work Assignment
+async function submitManualWork() {
+  const memberName = document.getElementById('manualMemberSelect').value;
+  const work = document.getElementById('manualWorkInput').value;
+  try {
+    await fetch(`/api/projects/${currentProjectId}/members/roles`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ memberName, work })
+    });
+    toast('Manual assignment saved ✓');
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 10. Sprint & Checklist Loading & Mutations
+async function loadSprint() {
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/sprint`);
+    const data = await res.json();
+    
+    // Summary
+    const { total, done, onTime, late, progressPct } = data.summary;
+    const progEl = document.getElementById('sprintProgress');
+    if (progEl) progEl.textContent = `${progressPct}%`;
+    const doneEl = document.getElementById('sprintDone');
+    if (doneEl) doneEl.textContent = `${done} / ${total}`;
+    const onTimeEl = document.getElementById('sprintOnTime');
+    if (onTimeEl) onTimeEl.textContent = String(onTime);
+    const lateEl = document.getElementById('sprintLate');
+    if (lateEl) lateEl.textContent = String(late);
+
+    // Dashboard widgets
+    const dTeamProg = document.getElementById('dashTeamProg');
+    if (dTeamProg) dTeamProg.textContent = `${progressPct}%`;
+    const dOverProg = document.getElementById('dashOverallProg');
+    if (dOverProg) dOverProg.textContent = `${progressPct}%`;
+    const dBar = document.getElementById('dashProgBar');
+    if (dBar) dBar.style.width = `${progressPct}%`;
+    const dNotice = document.getElementById('dashChecklistNotice');
+    if (dNotice) dNotice.textContent = `Project sprint status: ${done} / ${total} checklist items complete.`;
+
+    // Render Sprint Board (screen: sprint)
+    const board = document.getElementById('sprintBoard');
+    if (board && data.members) {
+      board.innerHTML = data.members.map(m => {
+        const mDone = m.tasks.filter(t => t.status === 'done' || t.status === 'late').length;
+        const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
+        return `
+          <div class="member-sprint">
+            <div class="member-sprint-head">
+              <div>
+                <span class="${tagClass}">${m.name.toUpperCase()}</span>
+                <h3>${escapeHtml(m.name)}</h3>
+                <span class="small">${escapeHtml(m.role || 'Contributor')}</span>
+              </div>
+              <span class="deadline-badge ${mDone === m.tasks.length ? 'ontime' : ''}">${mDone} / ${m.tasks.length} DONE</span>
+            </div>
+            <div class="checklist">
+              ${m.tasks.map(t => {
+                const isChecked = t.status === 'done' || t.status === 'late';
+                const isLate = t.status === 'late';
+                return `
+                  <label class="check-item ${isChecked ? (isLate ? 'late' : 'done') : ''}">
+                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
+                    <span>
+                      <span class="check-title">${escapeHtml(t.title)}</span>
+                      <span class="check-meta">${escapeHtml(t.start_time || '09:00')}–${escapeHtml(t.deadline_time || '11:00')} • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : (t.notes || 'in progress')}</span>
+                    </span>
+                    <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
+                      ${isChecked ? (isLate ? 'LATE' : 'ON TIME') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
+                    </span>
+                  </label>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render Deadline Checklist (screen: sprintcheck)
+    const checkContainer = document.getElementById('deadlineChecklist');
+    if (checkContainer && data.members) {
+      checkContainer.innerHTML = data.members.map((m, idx) => {
+        const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
+        const mOnTime = m.tasks.filter(t => t.is_before_deadline === 1).length;
+        return `
+          <div class="panel sprint-check-member" data-member="${escapeHtml(m.name)}" style="${idx > 0 ? 'margin-top:18px' : ''}">
+            <div class="member-sprint-head">
+              <div>
+                <span class="${tagClass}">${m.name.toUpperCase()}</span>
+                <h3>${escapeHtml(m.role || m.name)}</h3>
+              </div>
+              <span class="deadline-badge ${mOnTime === m.tasks.length ? 'ontime' : ''}">${mOnTime} / ${m.tasks.length} BEFORE DEADLINE</span>
+            </div>
+            <div class="checklist">
+              ${m.tasks.map(t => {
+                const isChecked = t.status === 'done' || t.status === 'late';
+                const isLate = t.status === 'late';
+                return `
+                  <label class="check-item ${isChecked ? (isLate ? 'late' : 'done') : ''}">
+                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
+                    <span>
+                      <span class="check-title">${escapeHtml(t.title)}</span>
+                      <span class="check-meta">Deadline ${escapeHtml(t.deadline_time || '11:00')} • ${isChecked ? (t.completed_at ? 'Completed ' + t.completed_at : 'Completed') : 'Not completed'}</span>
+                    </span>
+                    <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
+                      ${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
+                    </span>
+                  </label>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Dashboard Tasks widget
+    const dMyTasks = document.getElementById('dashMySprintTasks');
+    if (dMyTasks && data.allTasks) {
+      const myTasks = data.allTasks.filter(t => t.member_name.toLowerCase() === currentMember.name.toLowerCase()).slice(0, 3);
+      dMyTasks.innerHTML = myTasks.map(t => `
+        <div class="task ${t.status}">
+          <div>
+            <b>${escapeHtml(t.title)}</b><br>
+            <small>${escapeHtml(t.start_time || '09:00')}–${escapeHtml(t.deadline_time || '11:00')} • ${escapeHtml(t.notes || t.status)}</small>
+          </div>
+          <span class="status">${t.status.toUpperCase()}</span>
+        </div>
+      `).join('');
+    }
+
+    // Dashboard Deadline tasks
+    const dDeadTasks = document.getElementById('dashDeadlineTasks');
+    if (dDeadTasks && data.allTasks) {
+      const sample = data.allTasks.slice(0, 4);
+      dDeadTasks.innerHTML = sample.map(t => {
+        const isChecked = t.status === 'done' || t.status === 'late';
+        const isLate = t.status === 'late';
+        return `
+          <div class="task ${isChecked ? (isLate ? 'blocked' : 'done') : 'pending'}">
+            <div>
+              <b>${isChecked ? '✓' : '○'} ${escapeHtml(t.title)}</b><br>
+              <small>${escapeHtml(t.member_name)} • deadline ${escapeHtml(t.deadline_time)} • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : 'in progress'}</small>
+            </div>
+            <span class="status">${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : 'PENDING'}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+  } catch (err) {
+    console.error('Error loading sprint:', err);
+  }
+}
+
+async function toggleTaskDone(cb, taskId) {
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/sprint/toggle-task`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ taskId, isChecked: cb.checked })
+    });
+    const data = await res.json();
+    toast(cb.checked ? (data.task.status === 'late' ? 'Task completed late ⚠' : 'Sprint task completed on time ✓') : 'Sprint task reopened');
+    loadSprint();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+function filterSprintChecklist(member, btn) {
+  document.querySelectorAll('.sprint-tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.sprint-check-member').forEach(card => {
+    card.style.display = (member === 'all' || card.dataset.member === member) ? 'block' : 'none';
+  });
+}
+
+async function submitApproveSprint() {
+  try {
+    await fetch(`/api/projects/${currentProjectId}/sprint/approve`, { method: 'POST' });
+    toast('Sprint 01 published ✓ Team lead approval recorded.');
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 11. Documents & Real File/Folder Uploads
+async function loadDocuments() {
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/documents`);
+    const docs = await res.json();
+    
+    // Stats
+    const filesCount = docs.filter(d => !d.is_folder).length;
+    const foldersCount = docs.filter(d => d.is_folder).length;
+    const fStat = document.getElementById('docStatFiles');
+    if (fStat) fStat.textContent = `${filesCount} FILES`;
+    const folStat = document.getElementById('docStatFolders');
+    if (folStat) folStat.textContent = `${foldersCount} FOLDERS`;
+
+    const renderList = (containerId) => {
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      el.innerHTML = docs.map(d => `
+        <div class="file-row">
+          <span>
+            ${d.is_folder ? '📁' : '📄'} <b>${escapeHtml(d.filename)}</b>
+            <span class="chip" style="${d.is_shared ? 'background:var(--teal2)' : ''}">${d.is_shared ? 'SHARED' : 'PRIVATE'}</span>
+            <br>
+            <small>${escapeHtml(d.user_name)} • ${d.is_shared ? 'shared' : 'private'} • ${escapeHtml(d.filesize || '')}</small>
+          </span>
+          <span>
+            ${d.filepath ? `<a class="btn paper" href="/api/documents/download/${d.id}" target="_blank">DOWNLOAD</a>` : ''}
+            ${d.is_shared 
+              ? `<button class="btn paper" onclick="copyDocLink('${escapeHtml(d.filename)}')">COPY</button>` 
+              : `<button class="btn teal" onclick="shareDocument(${d.id}, '${escapeHtml(d.filename)}')">SHARE</button>`
+            }
+          </span>
+        </div>
+      `).join('');
+    };
+
+    renderList('docsFileList');
+    renderList('dashFileList');
+  } catch (err) {
+    console.error('Error loading documents:', err);
+  }
+}
+
+async function handleRealUpload(input, isFolder, targetId) {
+  if (!input.files || !input.files.length) return;
+  const formData = new FormData();
+  for (let i = 0; i < input.files.length; i++) {
+    formData.append('files', input.files[i]);
+  }
+  formData.append('userName', currentMember.name);
+  formData.append('isFolder', isFolder ? 'true' : 'false');
+  if (isFolder && input.files[0].webkitRelativePath) {
+    formData.append('folderName', input.files[0].webkitRelativePath.split('/')[0] + '/');
+  }
+
+  try {
+    toast(`Uploading ${input.files.length} item(s)...`);
+    const res = await fetch(`/api/projects/${currentProjectId}/documents/upload`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Upload failed');
+    toast((isFolder ? 'Folder' : 'Files') + ' uploaded to workspace (private by default) ✓');
+    loadDocuments();
+    input.value = '';
+  } catch (err) {
+    toast(`Upload Error: ${err.message}`);
+  }
+}
+
+async function shareDocument(id, filename) {
+  try {
+    await fetch(`/api/projects/${currentProjectId}/documents/share`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ docId: id, filename })
+    });
+    toast(`${filename} shared with project members ✓`);
+    loadDocuments();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+function copyDocLink(filename) {
+  navigator.clipboard?.writeText(window.location.origin + '/uploads/' + filename);
+  toast(`Share link copied for ${filename} ✓`);
+}
+
+// 12. Collaboration Requests
+async function loadRequests() {
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/requests`);
+    const items = await res.json();
+    
+    // Sent requests
+    const sentBox = document.getElementById('sentRequests');
+    if (sentBox) {
+      sentBox.innerHTML = items.filter(r => r.from_name === currentMember.name).map(r => `
+        <div class="approval">
+          <b>REQUESTED • ${escapeHtml(r.to_name)}</b><br>
+          <span class="small">${escapeHtml(r.item)} • ${escapeHtml(r.reason || '')} • Status: ${r.status.toUpperCase()}</span>
+        </div>
+      `).join('');
+    }
+    const dashSentBox = document.getElementById('dashSentRequests');
+    if (dashSentBox) {
+      dashSentBox.innerHTML = items.slice(0, 2).map(r => `
+        <div class="approval">
+          <b>REQUESTED • ${escapeHtml(r.to_name)}</b><br>
+          <span class="small">${escapeHtml(r.item)} • ${escapeHtml(r.reason || '')}</span>
+        </div>
+      `).join('');
+    }
+
+    // Inbox requests
+    const inbox = document.getElementById('requestsInbox');
+    if (inbox) {
+      inbox.innerHTML = items.filter(r => r.to_name === currentMember.name || r.to_name === 'Team' || r.to_name === 'Lead').map(r => `
+        <div class="task ${r.status === 'pending' ? 'pending' : (r.status === 'approved' ? 'done' : 'blocked')}">
+          <div>
+            <b>${escapeHtml(r.from_name)} requests ${escapeHtml(r.item)}</b><br>
+            <span class="small">Reason: ${escapeHtml(r.reason || 'Project integration')}</span>
+          </div>
+          ${r.status === 'pending' 
+            ? `<button class="btn teal" onclick="approveWorkRequest(${r.id}, '${escapeHtml(r.item)}', '${escapeHtml(r.from_name)}')">APPROVE & SHARE</button>`
+            : `<span class="status">${r.status.toUpperCase()}</span>`
+          }
+        </div>
+      `).join('');
+    }
+  } catch (err) {
+    console.error('Error loading requests:', err);
+  }
+}
+
+async function sendWorkRequest() {
+  const person = document.getElementById('requestPerson').value;
+  const item = document.getElementById('requestItem').value.trim();
+  const reason = document.getElementById('requestReason').value.trim();
+  if (!item) return toast('Enter the work you need first');
+
+  const toName = person.split(' — ')[0];
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/requests`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fromName: currentMember.name, toName, item, reason, type: 'work' })
+    });
+    const data = await res.json();
+    toast(`Work request sent to ${toName} ✓`);
+    loadRequests();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+async function sendDashboardWorkRequest() {
+  const person = document.getElementById('dashRequestPerson').value;
+  const item = document.getElementById('dashRequestItem').value.trim();
+  const reason = document.getElementById('dashRequestReason').value.trim();
+  if (!item) return toast('Enter the completed work you need first');
+
+  const toName = person.split(' — ')[0];
+  try {
+    await fetch(`/api/projects/${currentProjectId}/requests`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fromName: currentMember.name, toName, item, reason, type: 'work' })
+    });
+    toast(`Work request sent to ${toName} ✓`);
+    notifyTeam(`${toName} received a completed-work request`);
+    loadRequests();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+async function approveWorkRequest(id, item, fromName) {
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/requests/${id}/approve`, { method: 'POST' });
+    const data = await res.json();
+    toast(`${fromName} approved ✓ AI automatically shared ${item}`);
+    loadRequests();
+    loadDocuments();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 13. Team & AI Live Chat
+async function loadChat() {
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/chat?mode=${chatActiveMode}`);
+    const messages = await res.json();
+    const box = document.getElementById('messages');
+    if (!box) return;
+    box.innerHTML = messages.map(m => `
+      <div class="msg ${m.sender_type}">
+        ${m.sender_type === 'ai' ? '✦ ' : ''}<b>${escapeHtml(m.sender_name)}:</b> ${escapeHtml(m.message)}
+      </div>
+    `).join('');
+    box.scrollTop = box.scrollHeight;
+  } catch (err) {
+    console.error('Error loading chat:', err);
+  }
+}
+
+function setChatMode(mode, el) {
+  chatActiveMode = mode;
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  loadChat();
+  toast(mode === 'ai' ? 'AI-only mode selected' : (mode === 'team' ? 'Team-only chat selected' : 'Team + AI mode active'));
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat');
+  if (!input || !input.value.trim()) return;
+  const message = input.value.trim();
+  input.value = '';
+
+  const box = document.getElementById('messages');
+  // Optimistic render
+  const m = document.createElement('div');
+  m.className = 'msg me';
+  m.innerHTML = `<b>${escapeHtml(currentMember.name)}:</b> ${escapeHtml(message)}`;
+  box.appendChild(m);
+  box.scrollTop = box.scrollHeight;
+
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        senderName: currentMember.name,
+        message,
+        mode: chatActiveMode
+      })
+    });
+    const data = await res.json();
+    if (data.aiMessage) {
+      setTimeout(() => {
+        const a = document.createElement('div');
+        a.className = 'msg ai';
+        a.innerHTML = `✦ <b>Thryve:</b> ${escapeHtml(data.aiMessage.message.replace(/^✦\s*Thryve:\s*/i, ''))}`;
+        box.appendChild(a);
+        box.scrollTop = box.scrollHeight;
+      }, 350);
+    }
+  } catch (err) {
+    console.error('Error sending chat:', err);
+  }
+}
+
+// 14. Analysis Screen
+function loadAnalysis() {
+  fetch(`/api/projects/${currentProjectId}/sprint`)
+    .then(r => r.json())
+    .then(data => {
+      const p = document.getElementById('analysisTeamProg');
+      if (p) p.textContent = `${data.summary.progressPct}%`;
+    });
+}
+
+// 15. Reports Engine
+async function renderReport(member) {
+  selectedReportMember = member;
+  try {
+    const res = await fetch(`/api/reports?member=${member}&projectId=${currentProjectId}`);
+    const d = await res.json();
+
+    const ids = {
+      reportWorkDone: d.work,
+      reportChecklist: d.checklist,
+      reportTasks: d.tasks,
+      reportRisks: d.risks,
+      reportEfficiency: d.eff,
+      reportEstimated: d.est,
+      reportActual: d.actual
+    };
+    Object.entries(ids).forEach(([id, v]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = v;
+    });
+
+    const h = document.getElementById('reportHeading');
+    if (h) h.textContent = d.heading;
+    const label = document.getElementById('reportGeneratedLabel');
+    if (label) label.textContent = 'REPORT READY • ' + (member === 'team' ? 'TEAM VIEW' : member.toUpperCase() + ' MEMBER VIEW');
+
+    const list = document.getElementById('reportChecklistItems');
+    if (list && d.items) {
+      list.innerHTML = d.items.map(x => `
+        <div class="report-check ${x[0]}">
+          <span class="box"></span>
+          <div><b>${escapeHtml(x[1])}</b><small>${escapeHtml(x[2])}</small></div>
+          <span class="report-time">${escapeHtml(x[3])}</span>
+        </div>
+      `).join('');
+    }
+
+    const rows = document.getElementById('reportMemberRows');
+    if (rows && d.memberRows) {
+      rows.innerHTML = d.memberRows.map(r => `
+        <tr>
+          <td>${escapeHtml(r.member)}</td>
+          <td>${escapeHtml(r.work)}</td>
+          <td>${escapeHtml(r.tasks)}</td>
+          <td>${escapeHtml(r.risks)}</td>
+          <td>${escapeHtml(r.eff)}</td>
+          <td>${escapeHtml(r.est)}</td>
+          <td>${escapeHtml(r.actual)}</td>
+        </tr>
+      `).join('');
+    }
+  } catch (err) {
+    console.error('Error rendering report:', err);
+  }
+}
+
+function selectReportMember(member, button) {
+  selectedReportMember = member;
+  document.querySelectorAll('#reportTabs button').forEach(b => b.classList.remove('active'));
+  if (button) button.classList.add('active');
+  const type = document.getElementById('reportType');
+  if (type) type.value = member === 'team' ? 'team' : 'member';
+  renderReport(member);
+}
+
+function setReportType(type) {
+  if (type === 'team') {
+    selectReportMember('team', document.querySelector('#reportTabs button[data-member="team"]'));
+  } else {
+    const current = selectedReportMember === 'team' ? 'Priya' : selectedReportMember;
+    selectReportMember(current, document.querySelector(`#reportTabs button[data-member="${current}"]`));
+  }
+}
+
+function generateReport() {
+  renderReport(selectedReportMember);
+  toast((selectedReportMember === 'team' ? 'Team' : 'Member') + ' report generated from SQLite database ✓');
+}
+
+function printReport() {
+  const oldTitle = document.title;
+  document.title = 'THRYVE — ' + (selectedReportMember === 'team' ? 'Team Report' : selectedReportMember + ' Report');
+  window.print();
+  setTimeout(() => document.title = oldTitle, 500);
+}
+
+// 16. Profile & Security
+async function submitSaveProfile() {
+  const name = document.getElementById('profileName').value;
+  const bio = document.getElementById('profileBio').value;
+  const skills = document.getElementById('profileSkills').value;
+  try {
+    const res = await fetch('/api/auth/profile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: currentMember.email, name, bio, skills })
+    });
+    const data = await res.json();
+    currentMember.name = name;
+    updateMemberDisplay();
+    toast('Profile updated persistently in SQLite database ✓');
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+async function submitChangePassword() {
+  const currentPassword = document.getElementById('profCurrentPass').value;
+  const newPassword = document.getElementById('profNewPass').value;
+  const confirmPassword = document.getElementById('profConfirmPass').value;
+  if (!newPassword || newPassword !== confirmPassword) {
+    return toast('New password and confirmation do not match');
+  }
+  try {
+    const res = await fetch('/api/auth/change-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: currentMember.email, currentPassword, newPassword })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to change password');
+    toast('Password changed in database ✓');
+    document.getElementById('profNewPass').value = '';
+    document.getElementById('profConfirmPass').value = '';
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 17. Modals
+const modal = document.getElementById('modal');
+const modalInner = document.getElementById('modalCard');
+
+function closeModal() {
+  modal.classList.remove('show');
+  modalInner.innerHTML = '';
+}
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+async function openModal(type, extraArg) {
+  let html = '';
+  if (type === 'placeholder') {
+    try {
+      const res = await fetch('/api/ai/placeholder-scaffold', { method: 'POST' });
+      const scaffold = await res.json();
+      html = `
+        <div class="eyebrow">AI PLACEHOLDER / AUTHORIZED CONTEXT</div>
+        <h3>GENERATE A SAFE SCAFFOLD.</h3>
+        <p>Context used: <b>${escapeHtml(scaffold.contextUsed)}</b>.</p>
+        <div class="notice blue"><b>Suggested:</b> ${escapeHtml(scaffold.title)} with TODO markers for team-specific logic.</div>
+        <pre style="border:2px solid var(--ink);background:#fffdf2;padding:14px;overflow:auto;font-size:12px">${escapeHtml(scaffold.code)}</pre>
+        <button class="btn pink" onclick="closeModal();toast('Placeholder approved and added to your workspace ✓')">APPROVE SCAFFOLD</button> 
+        <button class="btn paper" onclick="closeModal()">CANCEL</button>
+      `;
+    } catch (err) {
+      console.error(err);
+    }
+  } else if (type === 'sprintChange') {
+    try {
+      const res = await fetch('/api/ai/sprint-suggestion', { method: 'POST' });
+      const sugg = await res.json();
+      html = `
+        <div class="eyebrow">AI SPRINT CHANGE / USER APPROVAL</div>
+        <h3>DETAILED SPRINT SUGGESTION.</h3>
+        <p>${escapeHtml(sugg.proposal)}</p>
+        <div class="insights">
+          <div class="insight good"><h4>ADD</h4>${escapeHtml(sugg.actions[0].title)}</div>
+          <div class="insight warn"><h4>MOVE</h4>${escapeHtml(sugg.actions[1].title)}</div>
+        </div>
+        <div class="notice blue">The published sprint stays unchanged until <b>you approve</b>.</div>
+        <button class="btn" onclick="approveSprintSuggestion()">APPROVE CHANGE</button> 
+        <button class="btn paper" onclick="closeModal();toast('Sprint unchanged')">KEEP CURRENT</button>
+      `;
+    } catch (err) {
+      console.error(err);
+    }
+  } else if (type === 'replan') {
+    html = `
+      <div class="eyebrow">REJECT + REGENERATE</div>
+      <h3>WHY REGENERATE?</h3>
+      <label>Leader feedback</label>
+      <textarea id="replanReason">Meena needs more time on API context; add peer teaching before analytics work.</textarea>
+      <button class="btn pink" onclick="submitReplan()">REGENERATE SPRINT</button> 
+      <button class="btn paper" onclick="closeModal()">CANCEL</button>
+    `;
+  } else if (type === 'manualRole') {
+    const memberName = extraArg || 'Priya';
+    html = `
+      <div class="eyebrow">MANUAL ROLE OVERRIDE</div>
+      <h3>EDIT ROLE FOR ${memberName.toUpperCase()}.</h3>
+      <label>Role</label>
+      <input id="editRoleInput" value="Backend / API Developer">
+      <label>Assigned work</label>
+      <textarea id="editWorkInput">Build the contribution-analysis endpoint and document the API contract.</textarea>
+      <button class="btn" onclick="submitEditRole('${memberName}')">SAVE</button> 
+      <button class="btn paper" onclick="closeModal()">CANCEL</button>
+    `;
+  }
+  modalInner.innerHTML = html;
+  modal.classList.add('show');
+}
+
+async function approveSprintSuggestion() {
+  try {
+    await fetch(`/api/projects/${currentProjectId}/sprint/replan`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason: 'Approved AI suggestion for peer teaching' })
+    });
+    closeModal();
+    toast('Detailed sprint approved ✓ Published sprint updated');
+    loadSprint();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+async function submitReplan() {
+  const reason = document.getElementById('replanReason').value;
+  try {
+    await fetch(`/api/projects/${currentProjectId}/sprint/replan`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason })
+    });
+    closeModal();
+    toast('AI regenerated Sprint 01 using leader feedback ✓');
+    loadSprint();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+async function submitEditRole(memberName) {
+  const role = document.getElementById('editRoleInput').value;
+  const work = document.getElementById('editWorkInput').value;
+  try {
+    await fetch(`/api/projects/${currentProjectId}/members/roles`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ memberName, role, work })
+    });
+    closeModal();
+    toast('Manual role + work saved ✓');
+    loadSprint();
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// Initial Boot
+document.addEventListener('DOMContentLoaded', () => {
+  updateMemberDisplay();
+  loadProjects();
+  loadApprovals();
+  loadSprint();
+  loadDocuments();
+  loadRequests();
+  loadChat();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# SQLite Database
+*.db
+*.db-journal
+
+# Uploads directory
+uploads/*
+!uploads/.gitkeep
+
+# Environment & Logs
+.env
+*.log
+npm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
