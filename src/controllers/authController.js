@@ -248,6 +248,33 @@ async function changePassword(req, res, next) {
   }
 }
 
+/**
+ * 8. Reset All Data for Fresh First-Time Experience
+ */
+function resetAllData(req, res, next) {
+  try {
+    const { resetDatabase } = require('../config/seed');
+    resetDatabase();
+    res.json({ success: true, message: 'All data cleared. Database is 100% clean and ready for fresh usage.' });
+  } catch (err) {
+    next(err);
+  }
+}
+
+/**
+ * 9. Re-seed Demo Scenario (StudySync 57h Sprint)
+ */
+function seedDemoData(req, res, next) {
+  try {
+    const { resetDatabase, seedDatabase } = require('../config/seed');
+    resetDatabase();
+    seedDatabase(true);
+    res.json({ success: true, message: 'StudySync 57-hour sprint demo scenario loaded successfully.' });
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   teamLogin,
   teamSignup,
@@ -255,5 +282,7 @@ module.exports = {
   userSignup,
   deleteUserRequest,
   updateProfile,
-  changePassword
+  changePassword,
+  resetAllData,
+  seedDemoData
 };

@@ -1,29 +1,40 @@
 const { db } = require('./db');
 
 /**
- * Seed database with initial default data if not already seeded
+ * Reset database: clears all tables so a new user/team starts completely fresh
  */
-function seedDatabase() {
-  const teamCheck = db.prepare('SELECT COUNT(*) as count FROM teams').get();
-  if (teamCheck && teamCheck.count > 0) {
-    // Check if tasks need to be upgraded to the detailed 17-task sprint
-    const taskCount = db.prepare('SELECT COUNT(*) as count FROM tasks WHERE project_id = 1').get();
-    if (!taskCount || taskCount.count < 17) {
-      db.prepare('DELETE FROM tasks WHERE project_id = 1').run();
-      seedSprintTasks();
-      try {
-        db.prepare(`
-          UPDATE sprint_meta 
-          SET goal = 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.',
-              total_est_hours = 57
-          WHERE project_id = 1
-        `).run();
-      } catch (e) {}
-    }
+function resetDatabase() {
+  db.exec(`
+    DELETE FROM tasks;
+    DELETE FROM documents;
+    DELETE FROM requests;
+    DELETE FROM chats;
+    DELETE FROM sprint_meta;
+    DELETE FROM projects;
+    DELETE FROM users;
+    DELETE FROM teams;
+  `);
+  console.log('All pre-written and existing records cleared. Database is 100% clean.');
+}
+
+/**
+ * Seed database: Populates the full StudySync 57-hour sprint demo scenario
+ * @param {boolean} force - If true, bypasses existing team checks
+ */
+function seedDatabase(force = false) {
+  if (!force && process.env.DEMO_SEED === 'false') {
+    // Explicitly opted out of demo data
     return;
   }
 
-  console.log('Seeding initial Thryve database...');
+  if (!force) {
+    const teamCheck = db.prepare('SELECT COUNT(*) as count FROM teams').get();
+    if (teamCheck && teamCheck.count > 0) {
+      return;
+    }
+  }
+
+  console.log('Seeding StudySync 57-hour sprint demo scenario...');
 
   // 1. Team
   const insertTeam = db.prepare(`
@@ -51,10 +62,17 @@ function seedDatabase() {
   insertProject.run(1, 'StudySync', 'An AI platform that analyzes authorized team discussions, documents and task contributions to identify knowledge exchange patterns, summarize collective insights and recommend meaningful collaboration activities.', 4, 72);
   insertProject.run(1, 'CampusCart', 'Student marketplace with smart matching.', 3, 41);
 
-  // 4. Tasks (Sprint 01 - 17 Detailed Tasks / 57 Hours Total)
+  // 4. Sprint Meta (57 Hours Total)
+  const insertMeta = db.prepare(`
+    INSERT INTO sprint_meta (project_id, sprint_num, status, goal, total_est_hours)
+    VALUES (?, ?, ?, ?, ?)
+  `);
+  insertMeta.run(1, 1, 'published', 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.', 57);
+
+  // 5. Tasks (Sprint 01 - 17 Detailed Tasks / 57 Hours Total)
   seedSprintTasks();
 
-  // 5. Documents
+  // 6. Documents
   const insertDoc = db.prepare(`
     INSERT INTO documents (project_id, user_name, filename, filepath, original_name, filesize, is_folder, is_shared)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -63,7 +81,7 @@ function seedDatabase() {
   insertDoc.run(1, 'Arun', 'frontend-build/', null, 'frontend-build/', '18 files', 1, 1);
   insertDoc.run(1, 'Priya', 'analyzer.py', null, 'analyzer.py', '14.2 KB', 0, 0);
 
-  // 6. Requests
+  // 7. Requests
   const insertReq = db.prepare(`
     INSERT INTO requests (project_id, from_name, to_name, item, reason, type, status)
     VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -74,7 +92,7 @@ function seedDatabase() {
   insertReq.run(1, 'Kavya', 'Lead', 'Kavya Raman (kavya@team.demo)', 'New user signup approval', 'user_add', 'pending');
   insertReq.run(1, 'Team', 'Lead', 'Vishal (vishal@team.demo)', 'User deletion request confirmation', 'user_delete', 'pending');
 
-  // 7. Chats
+  // 8. Chats
   const insertChat = db.prepare(`
     INSERT INTO chats (project_id, sender_name, sender_type, message, mode)
     VALUES (?, ?, ?, ?, ?)
@@ -83,14 +101,7 @@ function seedDatabase() {
   insertChat.run(1, 'Arun', 'team', 'I can explain the frontend → API contract.', 'all');
   insertChat.run(1, 'Priya', 'me', 'Yes, schedule 15 minutes before the next sprint.', 'all');
 
-  // 8. Sprint Meta
-  const insertMeta = db.prepare(`
-    INSERT INTO sprint_meta (project_id, sprint_num, status, goal, total_est_hours)
-    VALUES (?, ?, ?, ?, ?)
-  `);
-  insertMeta.run(1, 1, 'published', 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.', 57);
-
-  console.log('Seeding complete.');
+  console.log('StudySync demo seed complete (57 hours total).');
 }
 
 function seedSprintTasks() {
@@ -126,5 +137,6 @@ function seedSprintTasks() {
 }
 
 module.exports = {
+  resetDatabase,
   seedDatabase
 };

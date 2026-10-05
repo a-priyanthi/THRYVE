@@ -339,9 +339,20 @@ html,body{max-width:100%;overflow-x:hidden}
       <label>Password</label>
       <input id="teamLoginPass" value="demo1234" type="password">
       <br>
-      <button class="btn" onclick="submitTeamLogin()">LOGIN TO TEAM →</button> 
-      <button class="btn pink" onclick="go('teamsignup')">NEW TEAM SIGNUP +</button>
-      <div class="notice blue">Forgot password? For the real build, this button sends a reset link to the team email.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+        <button class="btn" onclick="submitTeamLogin()">LOGIN TO TEAM →</button> 
+        <button class="btn pink" onclick="go('teamsignup')">NEW TEAM SIGNUP +</button>
+      </div>
+
+      <div style="background:var(--paper);border:2px solid var(--ink);border-radius:12px;padding:14px;margin-top:14px">
+        <div style="font-size:11px;font-weight:900;letter-spacing:0.08em;color:var(--muted);margin-bottom:8px">DEVELOPER / EVALUATION QUICK CONTROLS</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="btn green small" style="font-size:12px;padding:6px 12px" onclick="quickDemoLogin()">⚡ 1-Click StudySync Login</button>
+          <button type="button" class="btn blue small" style="font-size:12px;padding:6px 12px" onclick="quickLoadDemoData()">↻ Reload 57h Sprint Demo</button>
+          <button type="button" class="btn paper small" style="font-size:12px;padding:6px 12px;border:1px dashed var(--ink)" onclick="quickResetWorkspace()">🧹 Clean DB (Start Fresh)</button>
+        </div>
+      </div>
+      <div class="notice blue" style="margin-top:14px">Forgot password? For the real build, this button sends a reset link to the team email.</div>
     </div>
   </div>
 </section>
@@ -613,6 +624,13 @@ html,body{max-width:100%;overflow-x:hidden}
       <input id="memberLoginEmail" value="lead@team.demo" type="email">
       <label>Password</label>
       <input id="memberLoginPass" value="demo1234" type="password">
+      <label>Quick Select Teammate</label>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('lead@team.demo', 'demo1234')">Priya (Lead)</button>
+        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('arun@team.demo', 'demo1234')">Arun (Frontend)</button>
+        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('meena@team.demo', 'demo1234')">Meena (Data)</button>
+        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('vishal@team.demo', 'demo1234')">Vishal (QA)</button>
+      </div>
       <div class="notice blue">First login? Use the random password sent to your email, then change it from Profile → Security.</div>
       <button class="btn blue" onclick="submitMemberLogin()">LOGIN ↗</button>
       <div class="choice-grid" style="grid-template-columns:1fr 1fr">
@@ -1275,6 +1293,14 @@ html,body{max-width:100%;overflow-x:hidden}
       <div class="notice green">Live database authentication active. Passwords are saved persistently in SQLite.</div>
     </div>
   </div>
+  <div class="panel" style="margin-top:16px">
+    <h3>WORKSPACE DATA MANAGEMENT</h3>
+    <p class="small">Control your SQLite workspace environment for testing, grading, or starting a completely new project.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button type="button" class="btn blue" onclick="quickLoadDemoData()">↻ Reload 57h Sprint Demo Scenario</button>
+      <button type="button" class="btn paper" style="border:1px dashed var(--ink)" onclick="quickResetWorkspace()">🧹 Clean Database (Start Fresh)</button>
+    </div>
+  </div>
 </section>
 
 </main>
@@ -1337,6 +1363,62 @@ function escapeHtml(s) {
 // -------------------------------------------------------------
 // BACKEND API INTEGRATIONS
 // -------------------------------------------------------------
+// QUICK DEMO & WORKSPACE RESET CONTROLS
+// -------------------------------------------------------------
+async function quickLoadDemoData() {
+  try {
+    const res = await fetch('/api/auth/seed-demo', { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to seed demo');
+    const emailEl = document.getElementById('teamLoginEmail');
+    const idEl = document.getElementById('teamLoginId');
+    const passEl = document.getElementById('teamLoginPass');
+    if (emailEl) emailEl.value = 'studysync@team.demo';
+    if (idEl) idEl.value = 'STUDY-01';
+    if (passEl) passEl.value = 'demo1234';
+    toast('⚡ StudySync 57h Sprint Demo reloaded!');
+    if (activeScreen === 'dashboard' || activeScreen === 'sprint' || activeScreen === 'reports') {
+      go(activeScreen);
+    }
+  } catch (err) {
+    toast(`Seed Error: ${err.message}`);
+  }
+}
+
+async function quickResetWorkspace() {
+  if (!confirm('Are you sure you want to clear all data? This gives you a 100% clean database for starting a new team from scratch.')) return;
+  try {
+    const res = await fetch('/api/auth/reset', { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to reset database');
+    const emailEl = document.getElementById('teamLoginEmail');
+    const idEl = document.getElementById('teamLoginId');
+    const passEl = document.getElementById('teamLoginPass');
+    if (emailEl) emailEl.value = '';
+    if (idEl) idEl.value = '';
+    if (passEl) passEl.value = '';
+    toast('🧹 Workspace database completely cleared.');
+    go('home');
+  } catch (err) {
+    toast(`Reset Error: ${err.message}`);
+  }
+}
+
+async function quickDemoLogin() {
+  try {
+    await quickLoadDemoData();
+    await submitTeamLogin();
+  } catch (err) {
+    toast(`Demo Login Error: ${err.message}`);
+  }
+}
+
+function fillMember(email, pass) {
+  const emailEl = document.getElementById('memberLoginEmail');
+  const passEl = document.getElementById('memberLoginPass');
+  if (emailEl) emailEl.value = email;
+  if (passEl) passEl.value = pass;
+}
 
 // 1. Team Login
 async function submitTeamLogin() {

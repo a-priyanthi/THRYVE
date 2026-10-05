@@ -14,5 +14,7 @@ router.post('/delete-user-request', authController.deleteUserRequest);
 // Profile & Settings
 router.post('/profile', authController.updateProfile);
 router.post('/change-password', authController.changePassword);
+router.post('/reset', authController.resetAllData);
+router.post('/seed-demo', authController.seedDemoData);
 
 module.exports = router;
