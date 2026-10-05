@@ -37,10 +37,11 @@ function sendMessage(req, res, next) {
     }
 
     // Insert user message
+    const author = senderName || 'Team Member';
     const userResult = db.prepare(`
       INSERT INTO chats (project_id, sender_name, sender_type, message, mode)
       VALUES (?, ?, 'me', ?, ?)
-    `).run(projectId, senderName || 'Priya', message, mode || 'all');
+    `).run(projectId, author, message, mode || 'all');
 
     // Run AI contextual heuristics
     const aiReply = analyzeChatAndRespond(projectId, message, mode);
@@ -57,7 +58,7 @@ function sendMessage(req, res, next) {
       success: true,
       userMessage: {
         id: Number(userResult.lastInsertRowid),
-        sender_name: senderName || 'Priya',
+        sender_name: author,
         sender_type: 'me',
         message
       },

@@ -152,16 +152,21 @@ async function userSignup(req, res, next) {
     const tempPassword = 'thryve' + Math.floor(1000 + Math.random() * 9000);
     const hashedPassword = await hashPassword(tempPassword);
 
+    const targetTeam = req.body.teamId ? db.prepare('SELECT id FROM teams WHERE id = ?').get(req.body.teamId) : db.prepare('SELECT id FROM teams ORDER BY id ASC LIMIT 1').get();
+    const targetTeamId = targetTeam ? targetTeam.id : 1;
+    const targetProj = req.body.projectId ? db.prepare('SELECT id FROM projects WHERE id = ?').get(req.body.projectId) : db.prepare('SELECT id FROM projects WHERE team_id = ? ORDER BY id ASC LIMIT 1').get(targetTeamId);
+    const targetProjId = targetProj ? targetProj.id : 1;
+
     db.prepare(`
       INSERT INTO users (team_id, name, email, password, role, title, bio, skills, learning_style, status, is_lead, progress)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(1, name || 'New Member', email, hashedPassword, 'Pending Role', 'MEMBER', description || '', skills || '', learningStyle || 'Hands-on', 'pending_approval', 0, 0);
+    `).run(targetTeamId, name || 'New Member', email, hashedPassword, 'Pending Role', 'MEMBER', description || '', skills || '', learningStyle || 'Hands-on', 'pending_approval', 0, 0);
 
     // Add to requests queue
     db.prepare(`
       INSERT INTO requests (project_id, from_name, to_name, item, reason, type, status)
       VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(1, name || 'New Member', 'Lead', `${name || 'New Member'} (${email})`, description || 'New user signup request', 'user_add', 'pending');
+    `).run(targetProjId, name || 'New Member', 'Lead', `${name || 'New Member'} (${email})`, description || 'New user signup request', 'user_add', 'pending');
 
     res.status(201).json({
       success: true,
@@ -184,10 +189,13 @@ async function deleteUserRequest(req, res, next) {
       return res.status(404).json({ error: 'User not found with this email.' });
     }
 
+    const targetProj = db.prepare('SELECT id FROM projects WHERE team_id = ? ORDER BY id ASC LIMIT 1').get(user.team_id || 1);
+    const targetProjId = targetProj ? targetProj.id : 1;
+
     db.prepare(`
       INSERT INTO requests (project_id, from_name, to_name, item, reason, type, status)
       VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(1, name || user.name, 'Lead', `${name || user.name} (${email})`, 'Double-confirmed member deletion request', 'user_delete', 'pending');
+    `).run(targetProjId, name || user.name, 'Lead', `${name || user.name} (${email})`, 'Double-confirmed member deletion request', 'user_delete', 'pending');
 
     res.json({
       success: true,
@@ -275,6 +283,45 @@ function seedDemoData(req, res, next) {
   }
 }
 
+/**
+ * 10. Forgot Password / Password Reset
+ */
+async function forgotPassword(req, res, next) {
+  try {
+    const { email, newPassword } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required.' });
+    }
+
+    const team = db.prepare('SELECT id, name, email FROM teams WHERE email = ?').get(email);
+    const user = db.prepare('SELECT id, name, email FROM users WHERE email = ?').get(email);
+
+    if (!team && !user) {
+      return res.status(404).json({ error: 'No account found with this email address.' });
+    }
+
+    if (newPassword) {
+      const hashedPassword = await hashPassword(newPassword);
+      if (team) {
+        db.prepare('UPDATE teams SET password = ? WHERE id = ?').run(hashedPassword, team.id);
+      }
+      if (user) {
+        db.prepare('UPDATE users SET password = ? WHERE id = ?').run(hashedPassword, user.id);
+      }
+      return res.json({ success: true, message: `Password reset successfully for ${email}. You can now log in!` });
+    }
+
+    res.json({
+      success: true,
+      accountType: team ? 'team' : 'member',
+      name: team ? team.name : user.name,
+      message: `Account verified for ${team ? team.name : user.name}. You may now enter your new password.`
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   teamLogin,
   teamSignup,
@@ -284,5 +331,6 @@ module.exports = {
   updateProfile,
   changePassword,
   resetAllData,
-  seedDemoData
+  seedDemoData,
+  forgotPassword
 };

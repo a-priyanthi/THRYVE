@@ -293,32 +293,32 @@ html,body{max-width:100%;overflow-x:hidden}
       <p>One shared workspace for team discussions, project documents, task contributions and AI-powered collaboration intelligence — built for student teams.</p>
       <button class="btn" onclick="go('teamlogin')">Enter your team ↗</button> 
       <button class="btn pink" onclick="go('teamsignup')">New team +</button>
-      <div class="notice green" style="max-width:680px;margin-top:20px">
-        ⚡ <b>LIVE BACKEND CONNECTED:</b> Persistent Node.js + SQLite backend is active with real file uploads, live sprint tracking, and AI collaboration intelligence.
+      <div class="notice" style="max-width:680px;margin-top:20px;background:#fef08a;border:2px solid var(--ink);border-radius:10px;padding:12px 18px;font-weight:700;box-shadow:3px 3px 0 var(--ink)">
+        ⚡ <i>"Zero gatekeeping, 100% building. No more 2 AM 'wait, who was supposed to do what?' chaos — let's cook."</i> 🚀
       </div>
     </div>
     <div class="hero-art">
       <div class="window one">
         <div class="titlebar"><span>TEAM / INSIGHTS</span><div class="dots"><i></i><i></i><i></i></div></div>
         <div class="artbody">
-          <div class="big-sticker" id="homeStickProgress">78%<br><small>COLLECTIVE INTELLIGENCE</small></div>
+          <div class="big-sticker" id="homeStickProgress">0%<br><small>COLLECTIVE INTELLIGENCE</small></div>
           <div class="mini-grid">
-            <div class="mini" id="homeStickMembers">4 MEMBERS</div>
-            <div class="mini" id="homeStickDocs">14 DOCS</div>
+            <div class="mini" id="homeStickMembers">0 MEMBERS</div>
+            <div class="mini" id="homeStickDocs">0 DOCS</div>
           </div>
         </div>
       </div>
       <div class="window two">
         <div class="titlebar"><span>AI / KNOWLEDGE MAP</span><div class="dots"><i></i><i></i><i></i></div></div>
         <div class="artbody">
-          <div class="mini">PYTHON ↔ BACKEND ↔ DATA</div>
-          <div class="mini" style="background:var(--teal2)">KNOWLEDGE GAP DETECTED</div>
+          <div class="mini">COLLABORATION INTELLIGENCE</div>
+          <div class="mini" style="background:var(--teal2)">READY TO ANALYZE</div>
         </div>
       </div>
       <div class="window three">
-        <div class="titlebar"><span>CHAT / PROJECT-01</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="titlebar"><span>CHAT / SQUAD FEED</span><div class="dots"><i></i><i></i><i></i></div></div>
         <div class="artbody">
-          <div class="mini">AI: “15-min peer teaching can unblock Meena.”</div>
+          <div class="mini">✦ Thryve AI: Ready for your squad. Create a team and start building.</div>
         </div>
       </div>
     </div>
@@ -333,26 +333,19 @@ html,body{max-width:100%;overflow-x:hidden}
       <h2>WELCOME, TEAM.</h2>
       <p><b>Team login is the top-level gate. Projects and members live inside this workspace.</b></p>
       <label>Team email</label>
-      <input id="teamLoginEmail" value="studysync@team.demo" type="email">
+      <input id="teamLoginEmail" value="" placeholder="team@example.com" type="email">
       <label>Team ID</label>
-      <input id="teamLoginId" value="STUDY-01">
+      <input id="teamLoginId" value="" placeholder="e.g. SQUAD-01">
       <label>Password</label>
-      <input id="teamLoginPass" value="demo1234" type="password">
+      <input id="teamLoginPass" value="" placeholder="Enter team password" type="password">
       <br>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
         <button class="btn" onclick="submitTeamLogin()">LOGIN TO TEAM →</button> 
         <button class="btn pink" onclick="go('teamsignup')">NEW TEAM SIGNUP +</button>
       </div>
-
-      <div style="background:var(--paper);border:2px solid var(--ink);border-radius:12px;padding:14px;margin-top:14px">
-        <div style="font-size:11px;font-weight:900;letter-spacing:0.08em;color:var(--muted);margin-bottom:8px">DEVELOPER / EVALUATION QUICK CONTROLS</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button type="button" class="btn green small" style="font-size:12px;padding:6px 12px" onclick="quickDemoLogin()">⚡ 1-Click StudySync Login</button>
-          <button type="button" class="btn blue small" style="font-size:12px;padding:6px 12px" onclick="quickLoadDemoData()">↻ Reload 57h Sprint Demo</button>
-          <button type="button" class="btn paper small" style="font-size:12px;padding:6px 12px;border:1px dashed var(--ink)" onclick="quickResetWorkspace()">🧹 Clean DB (Start Fresh)</button>
-        </div>
+      <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between">
+        <button type="button" class="btn paper small" style="border:1px solid var(--ink)" onclick="openForgotPasswordModal('team')">Forgot password? ↗</button>
       </div>
-      <div class="notice blue" style="margin-top:14px">Forgot password? For the real build, this button sends a reset link to the team email.</div>
     </div>
   </div>
 </section>
@@ -364,21 +357,15 @@ html,body{max-width:100%;overflow-x:hidden}
       <div class="eyebrow">TEAM SIGNUP / 00A</div>
       <h2>CREATE THE TEAM.</h2>
       <label>Team name</label>
-      <input id="newTeamName" value="StudySync">
+      <input id="newTeamName" value="" placeholder="e.g. AlphaSquad / DevCrew">
       <label>Team email</label>
-      <input id="newTeamEmail" value="studysync@team.demo" type="email">
+      <input id="newTeamEmail" value="" placeholder="team@example.com" type="email">
       <label>Team lead name</label>
-      <input id="newTeamLead" value="Priya">
-      <label>Number of users</label>
-      <select id="newTeamUsers">
-        <option>4</option>
-        <option>3</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-      </select>
+      <input id="newTeamLead" value="" placeholder="e.g. Alex Chen">
+      <label>Number of users (team capacity)</label>
+      <input id="newTeamUsers" type="number" min="1" max="10000" value="4" placeholder="Enter planned team size (e.g. 6, 25, 100, 1000)">
       <label>Team password</label>
-      <input id="newTeamPass" value="demo1234" type="password">
+      <input id="newTeamPass" value="" placeholder="Choose a strong password" type="password">
       <div class="notice blue">The team email is the approval channel. New user signups, additions, deletions and share approvals notify the team lead.</div>
       <button class="btn" onclick="submitTeamSignup()">CREATE TEAM →</button>
     </div>
@@ -392,9 +379,9 @@ html,body{max-width:100%;overflow-x:hidden}
       <div class="eyebrow">TEAM CONTROL PANEL</div>
       <h2>CHOOSE YOUR MOVE.</h2>
     </div>
-    <span class="pill" id="hubStatsPill">4 USERS / 2 PROJECTS</span>
+    <span class="pill" id="hubStatsPill">0 USERS / 0 PROJECTS</span>
   </div>
-  <div class="notice green" id="hubLeadNotice">✓ Team lead inbox: <b>3 requests waiting</b> — 1 new user, 1 delete request, 1 document share.</div>
+  <div class="notice green" id="hubLeadNotice">✓ Team lead inbox: <b>0 requests waiting</b> in approval queue.</div>
   <div class="choice-grid">
     <div class="choice" onclick="go('projects')">
       <span class="tag">PROJECTS</span>
@@ -416,7 +403,7 @@ html,body{max-width:100%;overflow-x:hidden}
   <div class="panel" style="margin-top:20px">
     <h3>LEAD APPROVAL QUEUE</h3>
     <div id="leadApprovalQueue">
-      <!-- Dynamically populated from /api/approvals -->
+      <div class="notice green" style="padding:16px;text-align:center">✓ No pending approval requests. Your lead queue is 100% clear!</div>
     </div>
   </div>
 </section>
@@ -429,13 +416,13 @@ html,body{max-width:100%;overflow-x:hidden}
       <h2>ADD A PERSON.</h2>
       <p>Every new user gets a random temporary password by email. The team lead is notified before activation.</p>
       <label>User email *</label>
-      <input id="newUserEmail" value="kavya@team.demo" type="email">
+      <input id="newUserEmail" value="" placeholder="user@team.demo" type="email">
       <label>Full name</label>
-      <input id="newUserName" value="Kavya Raman">
+      <input id="newUserName" value="" placeholder="e.g. Alex Chen">
       <label>Personal description / learning profile</label>
-      <textarea id="newUserBio">Interested in Python, machine learning and data analysis. Comfortable with SQL and wants to learn API integration.</textarea>
+      <textarea id="newUserBio" placeholder="Tell us about your learning goals and project interests..."></textarea>
       <label>Optional skills</label>
-      <input id="newUserSkills" value="Python, ML, SQL, Data Analysis">
+      <input id="newUserSkills" value="" placeholder="e.g. Python, SQL, React">
       <label>Preferred learning style (optional)</label>
       <select id="newUserStyle">
         <option>Hands-on / examples</option>
@@ -458,9 +445,9 @@ html,body{max-width:100%;overflow-x:hidden}
       <h2>REMOVE A PERSON?</h2>
       <p><b>The account is not removed immediately.</b> A request is emailed to the team lead.</p>
       <label>Type the user name</label>
-      <input id="deleteName" placeholder="e.g. Vishal" value="Vishal">
+      <input id="deleteName" placeholder="e.g. Teammate Name" value="">
       <label>Type the user email again</label>
-      <input id="deleteEmail" value="vishal@team.demo" type="email">
+      <input id="deleteEmail" value="" placeholder="teammate@team.demo" type="email">
       <div class="notice red">⚠ Team-lead approval is required. The user remains active until approval.</div>
       <button class="btn red" onclick="submitDeleteUser()">REQUEST DELETE</button> 
       <button class="btn paper" onclick="go('memberlogin')">CANCEL</button>
@@ -491,63 +478,43 @@ html,body{max-width:100%;overflow-x:hidden}
       <h2>BUILD YOUR CREW.</h2>
       <p><b>Project description + number of members + personal profiles feed the AI planning layer.</b></p>
       <label>Project name</label>
-      <input id="setupProjectName" value="StudySync AI">
+      <input id="setupProjectName" value="" placeholder="e.g. NextGen Platform / Core App">
       <label>Project description</label>
-      <textarea id="setupProjectDesc">An AI platform that analyzes authorized team discussions, documents and task contributions to identify knowledge exchange patterns, summarize collective insights and recommend meaningful collaboration activities.</textarea>
-      <label>Number of members</label>
-      <select id="setupMemberCount">
-        <option>4</option>
-        <option>3</option>
-        <option>5</option>
-        <option>6</option>
-      </select>
-
-      <div class="member">
-        <b>MEMBER 01 — TEAM LEAD</b>
-        <div class="form-row">
-          <div><label>Name</label><input id="setupM1Name" value="Priya"></div>
-          <div><label>Email</label><input id="setupM1Email" value="lead@team.demo"></div>
+      <textarea id="setupProjectDesc" placeholder="Describe what your squad is building and your key project milestones..."></textarea>
+      <div style="margin-top:16px;margin-bottom:12px">
+        <label style="font-weight:800">Total planned team size / number of members</label>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <input type="number" id="setupMemberCount" min="1" max="10000" value="4" placeholder="Enter planned team size (e.g. 6, 25, 100, 1000)" style="flex:1;min-width:180px" oninput="onPlannedMemberCountChange(this.value)">
+          <button type="button" class="btn paper small" onclick="adjustMemberCount(-1)">– Remove Slot</button>
+          <button type="button" class="btn small" onclick="adjustMemberCount(1)">+ Add Member Slot</button>
         </div>
-        <label>Personal description</label>
-        <textarea id="setupM1Bio" style="min-height:65px">Backend builder who enjoys AI workflows and leading student projects.</textarea>
-        <label>Skills</label>
-        <input id="setupM1Skills" value="Python, AI, Backend, Leadership">
+        <small style="color:var(--ink-light);display:block;margin-top:5px">No dropdown limits! Enter any squad size (1 to 100, 1,000+). Fill member profiles now or leave slots open for later.</small>
       </div>
 
-      <div class="member">
-        <b>MEMBER 02</b>
-        <div class="form-row">
-          <div><label>Name</label><input id="setupM2Name" value="Arun"></div>
-          <div><label>Email</label><input id="setupM2Email" value="arun@team.demo"></div>
-        </div>
-        <label>Personal description</label>
-        <textarea id="setupM2Bio" style="min-height:65px">Likes UI and building clean web interfaces; comfortable explaining frontend concepts.</textarea>
-        <label>Skills</label>
-        <input id="setupM2Skills" value="Frontend, React, UI, JavaScript">
+      <div style="background:var(--paper);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px;margin:16px 0;border-radius:2px">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:700;font-size:14px;margin:0">
+          <input type="checkbox" id="addRemainingLater" checked style="width:20px;height:20px;cursor:pointer;margin-top:2px;accent-color:var(--yellow)">
+          <div>
+            <span>Option: Add remaining members later</span>
+            <div style="font-size:12px;color:var(--ink-light);font-weight:500;margin-top:3px">
+              Have 6 planned members but only 5 profiles ready right now? Fill who is ready; Thryve reserves the remaining open slots so you can invite or add members anytime from Workspace or Dashboard.
+            </div>
+          </div>
+        </label>
       </div>
 
-      <div class="member">
-        <b>MEMBER 03</b>
-        <div class="form-row">
-          <div><label>Name</label><input id="setupM3Name" value="Meena"></div>
-          <div><label>Email</label><input id="setupM3Email" value="meena@team.demo"></div>
-        </div>
-        <label>Personal description</label>
-        <textarea id="setupM3Bio" style="min-height:65px">Enjoys data and wants to learn how APIs connect to analytics dashboards.</textarea>
-        <label>Skills</label>
-        <input id="setupM3Skills" value="Database, SQL, Analytics, Python">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:22px 0 10px 0;flex-wrap:wrap;gap:10px">
+        <div class="eyebrow" style="margin:0" id="setupMembersHeading">TEAM MEMBER PROFILES (4 PLANNED SLOTS)</div>
+        <button type="button" class="btn paper small" onclick="addMemberCardInstant()">+ ADD MEMBER INSTANTLY</button>
       </div>
 
-      <div class="member">
-        <b>MEMBER 04</b>
-        <div class="form-row">
-          <div><label>Name</label><input id="setupM4Name" value="Vishal"></div>
-          <div><label>Email</label><input id="setupM4Email" value="vishal@team.demo"></div>
-        </div>
-        <label>Personal description</label>
-        <textarea id="setupM4Bio" style="min-height:65px">Likes testing, deployment and writing clear technical documentation.</textarea>
-        <label>Skills</label>
-        <input id="setupM4Skills" value="Testing, DevOps, Documentation, Git">
+      <!-- Dynamic Member Cards Container -->
+      <div id="setupMembersContainer">
+        <!-- Rendered dynamically by renderSetupMemberCards() -->
+      </div>
+
+      <div style="margin:16px 0;display:flex;gap:10px;flex-wrap:wrap">
+        <button type="button" class="btn paper" onclick="addMemberCardInstant()">+ ADD ANOTHER MEMBER NOW</button>
       </div>
 
       <div class="notice green">AI will propose roles + individual sprint timelines. The team lead must approve the generated sprint before it becomes the published sprint.</div>
@@ -568,27 +535,7 @@ html,body{max-width:100%;overflow-x:hidden}
   <div class="notice blue">AI assignment is optional. If the leader does not use AI, the leader can manually enter the work for each member.</div>
   
   <div class="grid" id="rolesGrid">
-    <div class="card">
-      <span class="tag">PRIYA</span>
-      <h3>AI / Backend Lead</h3>
-      <p>Reason: Python + AI + backend experience and leadership profile.</p>
-      <button class="btn" onclick="toast('Priya role accepted ✓')">ACCEPT</button> 
-      <button class="btn paper" onclick="openModal('manualRole','Priya')">EDIT</button>
-    </div>
-    <div class="card">
-      <span class="tag teal">ARUN</span>
-      <h3>Frontend / UX</h3>
-      <p>Reason: React + UI skills and frontend-focused profile.</p>
-      <button class="btn teal" onclick="toast('Arun role accepted ✓')">ACCEPT</button> 
-      <button class="btn paper" onclick="openModal('manualRole','Arun')">EDIT</button>
-    </div>
-    <div class="card">
-      <span class="tag pink">MEENA</span>
-      <h3>Data / Analytics</h3>
-      <p>Reason: SQL + analytics skills and API-learning goal.</p>
-      <button class="btn pink" onclick="toast('Meena role accepted ✓')">ACCEPT</button> 
-      <button class="btn paper" onclick="openModal('manualRole','Meena')">EDIT</button>
-    </div>
+    <div class="notice blue" style="grid-column:1/-1">No roles generated yet. Complete project setup or add team members to generate AI role suggestions.</div>
   </div>
 
   <div class="panel" style="margin-top:18px">
@@ -597,19 +544,19 @@ html,body{max-width:100%;overflow-x:hidden}
       <div>
         <label>Member</label>
         <select id="manualMemberSelect">
-          <option>Priya</option>
-          <option>Arun</option>
-          <option>Meena</option>
-          <option>Vishal</option>
+          <option>Select member</option>
         </select>
       </div>
       <div>
         <label>Work</label>
-        <input id="manualWorkInput" value="Build discussion-analysis API">
+        <input id="manualWorkInput" value="" placeholder="Describe task or module to assign...">
       </div>
     </div>
-    <button class="btn paper" style="margin-top:14px" onclick="submitManualWork()">SAVE MANUAL TASK</button> 
-    <button class="btn" onclick="go('sprint')">CONTINUE TO SPRINT →</button>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <button class="btn paper" onclick="submitManualWork()">SAVE MANUAL TASK</button> 
+      <button class="btn paper teal" onclick="openAddMemberModal()">+ ADD TEAM MEMBER</button>
+      <button class="btn" onclick="go('sprint')">CONTINUE TO SPRINT →</button>
+    </div>
   </div>
 </section>
 
@@ -617,23 +564,19 @@ html,body{max-width:100%;overflow-x:hidden}
 <section id="memberlogin" class="screen">
   <div class="form-shell">
     <div class="form-card">
-      <div class="eyebrow">STUDYSYNC / PROJECT LOGIN</div>
+      <div class="eyebrow">PROJECT WORKSPACE / LOGIN</div>
       <h2>WHO'S IN?</h2>
       <p>Members log into the selected project. A first-time temporary password can be changed after login.</p>
       <label>Member email</label>
-      <input id="memberLoginEmail" value="lead@team.demo" type="email">
+      <input id="memberLoginEmail" value="" placeholder="you@team.demo" type="email">
       <label>Password</label>
-      <input id="memberLoginPass" value="demo1234" type="password">
-      <label>Quick Select Teammate</label>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
-        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('lead@team.demo', 'demo1234')">Priya (Lead)</button>
-        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('arun@team.demo', 'demo1234')">Arun (Frontend)</button>
-        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('meena@team.demo', 'demo1234')">Meena (Data)</button>
-        <button type="button" class="btn small paper" style="font-size:11px;padding:5px 9px" onclick="fillMember('vishal@team.demo', 'demo1234')">Vishal (QA)</button>
+      <input id="memberLoginPass" value="" placeholder="Enter your password" type="password">
+      <div class="notice blue">First login? Use the password provided during signup or invite, then change it anytime from Profile → Security.</div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="btn blue" onclick="submitMemberLogin()">LOGIN ↗</button>
+        <button type="button" class="btn paper small" style="border:1px solid var(--ink)" onclick="openForgotPasswordModal('member')">Forgot password? ↗</button>
       </div>
-      <div class="notice blue">First login? Use the random password sent to your email, then change it from Profile → Security.</div>
-      <button class="btn blue" onclick="submitMemberLogin()">LOGIN ↗</button>
-      <div class="choice-grid" style="grid-template-columns:1fr 1fr">
+      <div class="choice-grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
         <div class="choice" onclick="go('usersignup')">
           <span class="tag teal">ADD USER</span>
           <h3>Add</h3>
@@ -654,10 +597,11 @@ html,body{max-width:100%;overflow-x:hidden}
   <div class="dashboard">
     <aside class="side">
       <div class="profile">
-        <div class="avatar" id="sideAvatar">P</div>
-        <div><b id="sideName">Priya</b><small style="display:block" id="sideTitle">TEAM LEAD</small></div>
+        <div class="avatar" id="sideAvatar">?</div>
+        <div><b id="sideName">Guest / Not Logged In</b><small style="display:block" id="sideTitle">TEAM MEMBER</small></div>
       </div>
-      <h3 id="sideProjectName">StudySync</h3>
+      <h3 id="sideProjectName">No Active Project</h3>
+      <button class="btn small teal" style="margin:6px 0 12px 0;width:100%;font-size:11px" onclick="openAddMemberModal()">+ ADD TEAM MEMBER</button>
       <button class="active" onclick="go('dashboard')">▣ Overview</button>
       <button onclick="go('sprint')">◫ My Sprint</button>
       <button onclick="go('sprintcheck')">☑ Sprint Checklist</button>
@@ -673,19 +617,19 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="dash-main">
       <div class="panel">
         <div class="eyebrow" id="dashDateHeader">TODAY</div>
-        <h3 id="dashGreeting">GOOD MORNING, PRIYA. 👋</h3>
+        <h3 id="dashGreeting">WELCOME TO THRYVE. 👋</h3>
         <div class="notice green">✦ AI is using only authorized project context: project chat, approved shared documents, sprint updates and contribution history.</div>
-        <p><b>Your team is building StudySync.</b> The dashboard combines execution + learning signals.</p>
+        <p><b id="dashProjectIntro">Your team workspace is ready.</b> The dashboard combines execution + learning signals.</p>
         <div class="stats">
-          <div class="stat"><span>TEAM PROGRESS</span><strong id="dashTeamProg">72%</strong></div>
-          <div class="stat"><span>MY PROGRESS</span><strong id="dashMyProg">84%</strong></div>
-          <div class="stat"><span>OPEN TASKS</span><strong id="dashOpenTasks">03</strong></div>
+          <div class="stat"><span>TEAM PROGRESS</span><strong id="dashTeamProg">0%</strong></div>
+          <div class="stat"><span>MY PROGRESS</span><strong id="dashMyProg">0%</strong></div>
+          <div class="stat"><span>OPEN TASKS</span><strong id="dashOpenTasks">0</strong></div>
         </div>
         <div class="bar-label">
           <span>OVERALL PROJECT</span>
-          <span id="dashOverallProg">72%</span>
+          <span id="dashOverallProg">0%</span>
         </div>
-        <div class="progress"><span id="dashProgBar" style="width:72%"></span></div>
+        <div class="progress"><span id="dashProgBar" style="width:0%"></span></div>
       </div>
 
       <div class="panel">
@@ -693,14 +637,14 @@ html,body{max-width:100%;overflow-x:hidden}
         <div id="dashMySprintTasks">
           <!-- Dynamically loaded from /api/projects/1/sprint -->
         </div>
-        <button class="btn" onclick="toast('Work update saved ✓');notifyTeam('Priya updated sprint status')">UPDATE STATUS</button> 
-        <button class="btn pink" onclick="toast('Team notified: Priya is blocked ✓');notifyTeam('Priya requested help on Review AI insights')">REQUEST HELP</button>
+        <button class="btn" onclick="toast('Work update saved ✓');notifyTeam('Updated sprint status')">UPDATE STATUS</button> 
+        <button class="btn pink" onclick="toast('Team notified: Help requested ✓');notifyTeam('Help requested on sprint task')">REQUEST HELP</button>
       </div>
 
       <div class="panel">
         <h3>SPRINT DEADLINE CHECKLIST</h3>
         <div class="notice blue">
-          <b id="dashChecklistNotice">Project sprint status: 8 / 12 checklist items complete.</b> Each task records whether it was completed before its deadline.
+          <b id="dashChecklistNotice">Project sprint status: 0 / 0 checklist items complete.</b> Each task records whether it was completed before its deadline.
         </div>
         <div id="dashDeadlineTasks">
           <!-- Dynamically loaded -->
@@ -733,18 +677,16 @@ html,body{max-width:100%;overflow-x:hidden}
           <div>
             <label>Teammate</label>
             <select id="dashRequestPerson">
-              <option>Arun — Frontend</option>
-              <option>Meena — Analytics</option>
-              <option>Vishal — QA / DevOps</option>
+              <option>Select teammate</option>
             </select>
           </div>
           <div>
             <label>Completed work needed</label>
-            <input id="dashRequestItem" value="frontend-build / API integration code">
+            <input id="dashRequestItem" value="" placeholder="e.g. Auth module / API contract">
           </div>
         </div>
         <label>Integration reason</label>
-        <textarea id="dashRequestReason">I need the completed API integration module to connect it with the analytics dashboard.</textarea>
+        <textarea id="dashRequestReason" placeholder="Explain why your task needs this integration..."></textarea>
         <button class="btn teal" onclick="sendDashboardWorkRequest()">SEND REQUEST TO TEAMMATE</button>
         <div id="dashSentRequests" class="request-status">
           <!-- Loaded from /api/projects/1/requests -->
@@ -791,30 +733,26 @@ html,body{max-width:100%;overflow-x:hidden}
       <div class="panel">
         <div class="eyebrow">AI RECOMMENDATION</div>
         <h3>COLLAB ACTIVITY</h3>
-        <div class="insight good">
-          <b>PEER TEACHING</b>
-          <p>Arun → Meena<br>15 min on API integration.</p>
-          <button class="btn" onclick="toast('Activity proposed to team ✓')">PROPOSE</button>
-        </div>
-        <div class="insight info" style="margin-top:10px">
-          <b>KNOWLEDGE EXCHANGE</b>
-          <p>4 useful document shares + 6 help interactions this sprint.</p>
+        <div id="dashCollabActivity">
+          <div class="insight info">
+            <b>COLLABORATION READY</b>
+            <p>As your team chats and works on tasks, Thryve AI will suggest targeted peer-learning activities here.</p>
+          </div>
         </div>
       </div>
 
       <div class="panel">
         <h3>TEAM AT A GLANCE</h3>
-        <div class="kpi"><span>PRIYA</span><strong>84%</strong><div class="progress"><span style="width:84%"></span></div></div>
-        <div class="kpi"><span>ARUN</span><strong>68%</strong><div class="progress"><span style="width:68%"></span></div></div>
-        <div class="kpi"><span>MEENA</span><strong>55%</strong><div class="progress"><span style="width:55%"></span></div></div>
-        <div class="kpi"><span>VISHAL</span><strong>91%</strong><div class="progress"><span style="width:91%"></span></div></div>
+        <div id="dashTeamGlance">
+          <div class="notice blue" style="margin:0">Add teammates to view individual progress and status.</div>
+        </div>
       </div>
 
       <div class="panel">
         <h3>ALERTS</h3>
-        <div class="notice pink">Meena is behind her timeline. Entire team notified.</div>
-        <div class="notice blue">1 document share request needs lead approval.</div>
-        <div class="notice green">Sprint 01 has a pending leader approval.</div>
+        <div id="dashAlertsList">
+          <div class="notice green" style="margin:0">✓ All clear! No timeline risks or pending blocks.</div>
+        </div>
       </div>
     </aside>
   </div>
@@ -856,18 +794,16 @@ html,body{max-width:100%;overflow-x:hidden}
         <div>
           <label>Teammate</label>
           <select id="requestPerson">
-            <option>Arun — Frontend</option>
-            <option>Meena — Analytics</option>
-            <option>Vishal — QA / DevOps</option>
+            <option>Select teammate</option>
           </select>
         </div>
         <div>
           <label>Needed work</label>
-          <input id="requestItem" value="frontend-build / API integration code">
+          <input id="requestItem" value="" placeholder="e.g. Completed module / API Spec">
         </div>
       </div>
       <label>Why do you need it?</label>
-      <textarea id="requestReason">I need the completed API integration module to connect it with the analytics dashboard.</textarea>
+      <textarea id="requestReason" placeholder="Explain why you need this for your integration..."></textarea>
       <button class="btn teal" onclick="sendWorkRequest()">SEND WORK REQUEST</button>
       <div id="sentRequests">
         <!-- Loaded dynamically -->
@@ -878,9 +814,9 @@ html,body{max-width:100%;overflow-x:hidden}
   <div class="panel" style="margin-top:18px">
     <h3>PROJECT-SHARED FILES</h3>
     <div class="three-col">
-      <div class="kpi"><b id="docStatFiles">12 FILES</b><br><span class="small">Available to authorized AI analysis</span></div>
-      <div class="kpi"><b id="docStatFolders">03 FOLDERS</b><br><span class="small">Shared project directories</span></div>
-      <div class="kpi"><b id="docStatReqs">04 REQUESTS</b><br><span class="small">Pending teammate/document requests</span></div>
+      <div class="kpi"><b id="docStatFiles">0 FILES</b><br><span class="small">Available to authorized AI analysis</span></div>
+      <div class="kpi"><b id="docStatFolders">0 FOLDERS</b><br><span class="small">Shared project directories</span></div>
+      <div class="kpi"><b id="docStatReqs">0 REQUESTS</b><br><span class="small">Pending teammate/document requests</span></div>
     </div>
   </div>
 </section>
@@ -897,30 +833,13 @@ html,body{max-width:100%;overflow-x:hidden}
   </div>
 
   <div class="grid" id="requestsGrid">
-    <div class="card">
-      <span class="tag blue">WORK REQUEST</span>
-      <h3>Priya → Arun</h3>
-      <p>Need <b>frontend-build / API integration code</b> for analytics integration.</p>
-      <button class="btn teal" onclick="toast('Request sent to Arun ✓')">REQUEST SENT</button>
-    </div>
-    <div class="card">
-      <span class="tag pink">DOCUMENT</span>
-      <h3>Meena → Priya</h3>
-      <p>Request: <b>API_Spec_v2.pdf</b></p>
-      <button class="btn teal" onclick="approveWorkRequest(2,'API_Spec_v2.pdf','Meena')">APPROVE & AUTO-SHARE</button>
-    </div>
-    <div class="card">
-      <span class="tag green">COMPLETED</span>
-      <h3>Vishal → Team</h3>
-      <p>Testing checklist is completed and ready for the integration team.</p>
-      <button class="btn paper" onclick="toast('Completed work marked available ✓')">VIEW WORK</button>
-    </div>
+    <div class="notice blue" style="grid-column:1/-1">No active collaboration requests yet. Click "+ NEW WORK REQUEST" to request work or files from a teammate.</div>
   </div>
 
   <div class="panel" style="margin-top:18px">
     <h3>REQUEST INBOX</h3>
     <div id="requestsInbox">
-      <!-- Loaded dynamically -->
+      <div class="notice blue">Your request inbox is clear.</div>
     </div>
   </div>
 
@@ -940,7 +859,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <div>
       <div class="eyebrow">ENTIRE PROJECT SPRINT / AI-GENERATED + LEADER APPROVAL</div>
       <h2>SPRINT 01.</h2>
-      <p>One complete sprint view for the whole StudySync project — every teammate, every task, every deadline and every completion state.</p>
+      <p>One complete sprint view for your project — every teammate, every task, every deadline and every completion state.</p>
     </div>
     <div>
       <button class="btn" onclick="submitApproveSprint()">APPROVE SPRINT</button> 
@@ -951,21 +870,17 @@ html,body{max-width:100%;overflow-x:hidden}
   
   <div class="sprint-goal-card" style="margin-top:16px">
     <div class="eyebrow" style="color:var(--ink)">SPRINT 01 — DETAILED TASKS BY MEMBER</div>
-    <h3 id="sprintGoalText">Sprint goal: Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.</h3>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px">
-      <span class="pill" style="background:#171717;color:#fff;border-color:#171717"><b id="sprintTotalHoursBadge">TEAM ESTIMATE: 57 HOURS</b></span>
-      <span class="chip" style="background:#fff"><b>Priya:</b> 17 hrs (Reports, integration, QA, demo)</span>
-      <span class="chip" style="background:#fff"><b>Arun:</b> 14 hrs (Backend, Supabase, authentication)</span>
-      <span class="chip" style="background:#fff"><b>Meena:</b> 13 hrs (Frontend, workspace, task checklist)</span>
-      <span class="chip" style="background:#fff"><b>Vishal:</b> 13 hrs (AI features, documents)</span>
+    <h3 id="sprintGoalText">Sprint goal: Create or select a project to define sprint goals and AI-recommended tasks.</h3>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px" id="sprintMemberChips">
+      <span class="pill" style="background:#171717;color:#fff;border-color:#171717"><b id="sprintTotalHoursBadge">TEAM ESTIMATE: 0 HOURS</b></span>
     </div>
   </div>
 
   <div class="sprint-summary">
-    <div class="metric"><span>SPRINT PROGRESS</span><strong id="sprintProgress">67%</strong></div>
-    <div class="metric"><span>COMPLETED</span><strong id="sprintDone">8 / 17</strong></div>
-    <div class="metric"><span>BEFORE DEADLINE</span><strong id="sprintOnTime">7</strong></div>
-    <div class="metric"><span>LATE / AT RISK</span><strong id="sprintLate">1</strong></div>
+    <div class="metric"><span>SPRINT PROGRESS</span><strong id="sprintProgress">0%</strong></div>
+    <div class="metric"><span>COMPLETED</span><strong id="sprintDone">0 / 0</strong></div>
+    <div class="metric"><span>BEFORE DEADLINE</span><strong id="sprintOnTime">0</strong></div>
+    <div class="metric"><span>LATE / AT RISK</span><strong id="sprintLate">0</strong></div>
   </div>
 
   <div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 12px;flex-wrap:wrap;gap:10px">
@@ -973,7 +888,7 @@ html,body{max-width:100%;overflow-x:hidden}
       <button id="sprintTableViewBtn" class="active" onclick="switchSprintView('table',this)">DETAILED TASKS TABLE (MARKDOWN FORMAT)</button>
       <button id="sprintCardsViewBtn" onclick="switchSprintView('cards',this)">CHECKLIST CARDS</button>
     </div>
-    <span class="small" style="font-weight:900">17 TASKS • 4 TEAM MEMBERS • 57 TOTAL HOURS</span>
+    <span class="small" id="sprintHeaderMeta" style="font-weight:900">0 TASKS • 0 TEAM MEMBERS • 0 TOTAL HOURS</span>
   </div>
 
   <!-- Table View: Exact match to user prompt format -->
@@ -1025,12 +940,8 @@ html,body{max-width:100%;overflow-x:hidden}
   </div>
   <div class="notice green"><b>Purpose:</b> this checklist separates completion from timeliness — a task can be completed and still be marked <b>LATE</b>.</div>
   
-  <div class="sprint-tabs">
+  <div class="sprint-tabs" id="sprintCheckTabs">
     <button class="active" onclick="filterSprintChecklist('all',this)">ALL MEMBERS</button>
-    <button onclick="filterSprintChecklist('Priya',this)">PRIYA</button>
-    <button onclick="filterSprintChecklist('Arun',this)">ARUN</button>
-    <button onclick="filterSprintChecklist('Meena',this)">MEENA</button>
-    <button onclick="filterSprintChecklist('Vishal',this)">VISHAL</button>
   </div>
 
   <div id="deadlineChecklist">
@@ -1057,10 +968,10 @@ html,body{max-width:100%;overflow-x:hidden}
     <span class="pill">AI + TASK + DOCS + CHAT</span>
   </div>
   <div class="metric-grid">
-    <div class="metric"><span>TEAM PROGRESS</span><strong id="analysisTeamProg">72%</strong></div>
-    <div class="metric"><span>KNOWLEDGE EXCHANGE</span><strong>78%</strong></div>
-    <div class="metric"><span>DOCS SHARED</span><strong id="analysisDocsShared">14</strong></div>
-    <div class="metric"><span>HELP REQUESTS</span><strong>03</strong></div>
+    <div class="metric"><span>TEAM PROGRESS</span><strong id="analysisTeamProg">0%</strong></div>
+    <div class="metric"><span>KNOWLEDGE EXCHANGE</span><strong id="analysisKnowledgeEx">0%</strong></div>
+    <div class="metric"><span>DOCS SHARED</span><strong id="analysisDocsShared">0</strong></div>
+    <div class="metric"><span>HELP REQUESTS</span><strong id="analysisHelpReq">0</strong></div>
   </div>
 
   <div class="panel" style="margin-top:18px">
@@ -1070,10 +981,7 @@ html,body{max-width:100%;overflow-x:hidden}
         <tr><th>Member</th><th>AI role</th><th>Work</th><th>Progress</th><th>Knowledge signal</th><th>Status</th></tr>
       </thead>
       <tbody id="analysisWhoTable">
-        <tr><td>Priya</td><td>AI / Backend Lead</td><td>Auth + analyzer</td><td>84%</td><td>Shared 4 docs</td><td><span class="chip">ON TRACK</span></td></tr>
-        <tr><td>Arun</td><td>Frontend</td><td>Dashboard + chat</td><td>68%</td><td>Helped Meena</td><td><span class="chip">ON TRACK</span></td></tr>
-        <tr><td>Meena</td><td>Data / Analytics</td><td>Knowledge metrics</td><td>55%</td><td>3 repeated questions</td><td><span class="chip" style="background:var(--pink2)">BLOCKED</span></td></tr>
-        <tr><td>Vishal</td><td>QA / DevOps</td><td>Testing + deploy</td><td>91%</td><td>Shared test checklist</td><td><span class="chip" style="background:var(--green)">DONE</span></td></tr>
+        <tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted)">No member activity recorded yet. As your squad works on tasks, uploads documents and chats, Thryve AI generates real-time collaboration insights here!</td></tr>
       </tbody>
     </table>
   </div>
@@ -1087,24 +995,22 @@ html,body{max-width:100%;overflow-x:hidden}
     </div>
     <div class="card">
       <span class="tag pink">SPRINT SIGNAL</span>
-      <h3>Meena is blocked</h3>
-      <p>Repeated API questions triggered a peer session + placeholder recommendation.</p>
+      <h3 id="analysisSprintSignalTitle">All clear 🚀</h3>
+      <p id="analysisSprintSignalDesc">No blockers or delays detected. Your team execution is moving smoothly.</p>
       <button class="btn pink" onclick="openModal('sprintChange')">REVIEW SUGGESTION</button>
     </div>
     <div class="card">
       <span class="tag teal">COLLECTIVE SUMMARY</span>
-      <h3>Team knowledge</h3>
-      <p>Modular API, shared auth and common contribution workflow are emerging as the collective solution.</p>
+      <h3 id="analysisCollabTitle">Team knowledge</h3>
+      <p id="analysisCollabDesc">Start discussions in project chat or upload docs to generate collective AI summaries.</p>
       <button class="btn paper" onclick="toast('Collective summary refreshed ✓')">REFRESH SUMMARY</button>
     </div>
   </div>
 
   <div class="panel" style="margin-top:18px">
     <h3>KNOWLEDGE EXCHANGE MAP</h3>
-    <div class="three-col">
-      <div class="kpi"><b>ARUN → MEENA</b><br><span class="small">Frontend/API explanation • 2 interactions</span></div>
-      <div class="kpi"><b>PRIYA → TEAM</b><br><span class="small">API spec + analyzer notes • 4 shares</span></div>
-      <div class="kpi"><b>VISHAL → TEAM</b><br><span class="small">Testing checklist • 1 share</span></div>
+    <div class="three-col" id="analysisExchangeMap">
+      <div class="notice blue" style="grid-column:1/-1">No cross-functional dependencies yet. Peer teaching and shared work will be mapped here as your squad interacts.</div>
     </div>
   </div>
 
@@ -1128,28 +1034,25 @@ html,body{max-width:100%;overflow-x:hidden}
   <div class="grid">
     <div class="card">
       <span class="tag">KNOWLEDGE EXCHANGE</span>
-      <h3>78%</h3>
-      <p>Discussions are transferring useful knowledge between frontend, backend and data members.</p>
+      <h3 id="insightsKnowledgeEx">0%</h3>
+      <p>Discussions will be analyzed to track knowledge transfer between teammates.</p>
     </div>
     <div class="card">
       <span class="tag pink">KNOWLEDGE GAP</span>
-      <h3>API CONTRACT</h3>
-      <p>Two members repeatedly ask for the same clarification — a signal for peer teaching.</p>
+      <h3 id="insightsKnowledgeGap">NONE DETECTED</h3>
+      <p>Repeated questions or integration roadblocks will appear as signals for peer teaching.</p>
     </div>
     <div class="card">
       <span class="tag teal">CONTRIBUTIONS</span>
-      <h3>18 / 25</h3>
-      <p>Task completion is strong, while documentation contributions are lower.</p>
+      <h3 id="insightsContrib">0 / 0</h3>
+      <p>Completed tasks vs documentation shares across the sprint.</p>
     </div>
   </div>
 
   <div class="panel" style="margin-top:18px">
     <h3>COLLECTIVE INSIGHTS</h3>
-    <div class="insights">
-      <div class="insight good"><h4>✓ Strong exchange</h4>Arun shared frontend patterns with the backend discussion, helping unblock an API task.</div>
-      <div class="insight warn"><h4>! Collaboration risk</h4>Meena's repeated API questions suggest a knowledge dependency.</div>
-      <div class="insight info"><h4>→ Recommended activity</h4>Run a 15-minute peer teaching session and attach the notes to shared project knowledge.</div>
-      <div class="insight"><h4>▣ Collective summary</h4>The team is converging on modular APIs, shared authentication and common task ownership.</div>
+    <div class="insights" id="insightsList">
+      <div class="insight good"><h4>✓ Ready for activity</h4>As your team starts chatting and completing sprint items, AI patterns will be highlighted here.</div>
     </div>
   </div>
 
@@ -1187,18 +1090,14 @@ html,body{max-width:100%;overflow-x:hidden}
 
   <div class="report-tabs" id="reportTabs">
     <button class="active" data-member="team" onclick="selectReportMember('team',this)">TEAM</button>
-    <button data-member="Priya" onclick="selectReportMember('Priya',this)">PRIYA</button>
-    <button data-member="Meena" onclick="selectReportMember('Meena',this)">MEENA</button>
-    <button data-member="Vishal" onclick="selectReportMember('Vishal',this)">VISHAL</button>
-    <button data-member="Arun" onclick="selectReportMember('Arun',this)">ARUN</button>
   </div>
 
   <div id="reportContent">
     <div class="report-kpis">
-      <div class="report-kpi"><span>WORK DONE</span><strong id="reportWorkDone">18 / 25</strong></div>
-      <div class="report-kpi"><span>CHECKLIST</span><strong id="reportChecklist">8 / 12</strong></div>
-      <div class="report-kpi"><span>NO. OF TASKS</span><strong id="reportTasks">12</strong></div>
-      <div class="report-kpi"><span>NO. OF RISKS</span><strong id="reportRisks">3</strong></div>
+      <div class="report-kpi"><span>WORK DONE</span><strong id="reportWorkDone">0 / 0</strong></div>
+      <div class="report-kpi"><span>CHECKLIST</span><strong id="reportChecklist">0 / 0</strong></div>
+      <div class="report-kpi"><span>NO. OF TASKS</span><strong id="reportTasks">0</strong></div>
+      <div class="report-kpi"><span>NO. OF RISKS</span><strong id="reportRisks">0</strong></div>
     </div>
 
     <div class="report-grid" style="margin-top:18px">
@@ -1215,12 +1114,12 @@ html,body{max-width:100%;overflow-x:hidden}
         <h3>Time + output</h3>
         <div class="report-efficiency">
           <span>TEAM EFFICIENCY</span>
-          <strong id="reportEfficiency">78%</strong>
+          <strong id="reportEfficiency">0%</strong>
           <small>Based on completed work, deadline adherence and estimated vs actual time.</small>
         </div>
         <div class="time-compare" style="margin-top:12px">
-          <div class="time-box est"><span>ESTIMATED TIME</span><strong id="reportEstimated">18h</strong></div>
-          <div class="time-box actual"><span>ACTUAL COMPLETED</span><strong id="reportActual">19.5h</strong></div>
+          <div class="time-box est"><span>ESTIMATED TIME</span><strong id="reportEstimated">0.0h</strong></div>
+          <div class="time-box actual"><span>ACTUAL COMPLETED</span><strong id="reportActual">0.0h</strong></div>
         </div>
         <div class="notice blue" style="margin-bottom:0"><b>Risk signal:</b> late completion and unfinished checklist items are separated from completed work.</div>
       </div>
@@ -1265,40 +1164,32 @@ html,body{max-width:100%;overflow-x:hidden}
       <div class="eyebrow">MY ACCOUNT / PERSONALISATION</div>
       <h2>PROFILE.</h2>
     </div>
-    <span class="pill" id="profilePill">PRIYA / TEAM LEAD</span>
+    <span class="pill" id="profilePill">MY ACCOUNT</span>
   </div>
   <div class="two-col">
     <div class="panel">
       <h3>ABOUT ME</h3>
       <label>Name</label>
-      <input id="profileName" value="Priya">
+      <input id="profileName" value="" placeholder="Your full name">
       <label>Email</label>
-      <input id="profileEmail" value="lead@team.demo" type="email" readonly style="opacity:0.8">
+      <input id="profileEmail" value="" placeholder="Your email" type="email" readonly style="opacity:0.8">
       <label>Personal description</label>
-      <textarea id="profileBio">Backend builder who enjoys AI workflows and leading student projects.</textarea>
+      <textarea id="profileBio" placeholder="Tell your team about yourself, interests and learning goals..."></textarea>
       <label>Skills</label>
-      <input id="profileSkills" value="Python, AI, Backend, Leadership">
+      <input id="profileSkills" value="" placeholder="e.g. Python, AI, Backend">
       <button class="btn" onclick="submitSaveProfile()">SAVE PROFILE</button>
     </div>
     <div class="panel">
       <h3>SECURITY</h3>
-      <p class="small">New users receive a random password by email. After first login they can replace it here.</p>
+      <p class="small">Change your account password securely anytime.</p>
       <label>Current password</label>
-      <input id="profCurrentPass" type="password" value="demo1234">
+      <input id="profCurrentPass" type="password" placeholder="Enter current password">
       <label>New password</label>
       <input id="profNewPass" type="password" placeholder="New password">
       <label>Confirm password</label>
       <input id="profConfirmPass" type="password" placeholder="Repeat password">
       <button class="btn pink" onclick="submitChangePassword()">CHANGE PASSWORD</button>
-      <div class="notice green">Live database authentication active. Passwords are saved persistently in SQLite.</div>
-    </div>
-  </div>
-  <div class="panel" style="margin-top:16px">
-    <h3>WORKSPACE DATA MANAGEMENT</h3>
-    <p class="small">Control your SQLite workspace environment for testing, grading, or starting a completely new project.</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-      <button type="button" class="btn blue" onclick="quickLoadDemoData()">↻ Reload 57h Sprint Demo Scenario</button>
-      <button type="button" class="btn paper" style="border:1px dashed var(--ink)" onclick="quickResetWorkspace()">🧹 Clean Database (Start Fresh)</button>
+      <div class="notice green">Live database authentication active. Passwords are saved securely in SQLite.</div>
     </div>
   </div>
 </section>
@@ -1312,14 +1203,8 @@ html,body{max-width:100%;overflow-x:hidden}
 <script>
 // Global App State
 let activeScreen = 'home';
-let currentProjectId = 1;
-let currentMember = {
-  name: 'Priya',
-  email: 'lead@team.demo',
-  role: 'AI / Backend Lead',
-  title: 'TEAM LEAD',
-  isLead: true
-};
+let currentProjectId = null;
+let currentMember = null;
 let chatActiveMode = 'all';
 let selectedReportMember = 'team';
 
@@ -1332,6 +1217,7 @@ function go(id) {
   document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('active', b.dataset.go === id));
 
   // Trigger real-time data loads based on screen
+  if (id === 'setup') renderSetupMemberCards(parseInt(document.getElementById('setupMemberCount')?.value) || 4);
   if (id === 'teamhub') loadApprovals();
   if (id === 'projects') loadProjects();
   if (id === 'dashboard') { loadDashboard(); loadSprint(); loadDocuments(); loadRequests(); loadChat(); }
@@ -1361,63 +1247,104 @@ function escapeHtml(s) {
 }
 
 // -------------------------------------------------------------
-// BACKEND API INTEGRATIONS
+// DASHBOARD & MODAL HANDLERS
 // -------------------------------------------------------------
-// QUICK DEMO & WORKSPACE RESET CONTROLS
-// -------------------------------------------------------------
-async function quickLoadDemoData() {
-  try {
-    const res = await fetch('/api/auth/seed-demo', { method: 'POST' });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Failed to seed demo');
-    const emailEl = document.getElementById('teamLoginEmail');
-    const idEl = document.getElementById('teamLoginId');
-    const passEl = document.getElementById('teamLoginPass');
-    if (emailEl) emailEl.value = 'studysync@team.demo';
-    if (idEl) idEl.value = 'STUDY-01';
-    if (passEl) passEl.value = 'demo1234';
-    toast('⚡ StudySync 57h Sprint Demo reloaded!');
-    if (activeScreen === 'dashboard' || activeScreen === 'sprint' || activeScreen === 'reports') {
-      go(activeScreen);
-    }
-  } catch (err) {
-    toast(`Seed Error: ${err.message}`);
+function loadDashboard() {
+  updateMemberDisplay();
+  if (!currentProjectId) {
+    const dNotice = document.getElementById('dashChecklistNotice');
+    if (dNotice) dNotice.textContent = 'Project sprint status: 0 / 0 checklist items complete. Setup or select a project to get started.';
+    const myProg = document.getElementById('dashMyProg');
+    if (myProg) myProg.textContent = '0%';
+    const openTasks = document.getElementById('dashOpenTasks');
+    if (openTasks) openTasks.textContent = '0';
   }
 }
 
-async function quickResetWorkspace() {
-  if (!confirm('Are you sure you want to clear all data? This gives you a 100% clean database for starting a new team from scratch.')) return;
+// FORGOT PASSWORD / ACCOUNT RECOVERY
+function openForgotPasswordModal(type = 'team') {
+  const isTeam = type === 'team';
+  const label = isTeam ? 'Team Email' : 'Member Email';
+  const placeholder = isTeam ? 'team@example.com' : 'you@example.com';
+  const currentEmail = isTeam 
+    ? (document.getElementById('teamLoginEmail') ? document.getElementById('teamLoginEmail').value : '')
+    : (document.getElementById('memberLoginEmail') ? document.getElementById('memberLoginEmail').value : '');
+
+  const html = `
+    <div class="eyebrow">SECURITY / ACCOUNT RECOVERY</div>
+    <h3>RESET PASSWORD.</h3>
+    <p>Enter your registered <b>${isTeam ? 'team' : 'member'} email</b> and set a new password for your account.</p>
+    
+    <label>${label}</label>
+    <input id="forgotEmail" type="email" value="${escapeHtml(currentEmail)}" placeholder="${placeholder}">
+    
+    <label>New Password</label>
+    <input id="forgotNewPass" type="password" placeholder="Enter new strong password">
+    
+    <label>Confirm New Password</label>
+    <input id="forgotConfirmPass" type="password" placeholder="Repeat new password">
+    
+    <div class="notice blue" style="margin-top:14px">
+      ✦ Instant secure reset. Updated credentials are saved directly to the database.
+    </div>
+    
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+      <button class="btn" onclick="submitForgotPassword('${type}')">UPDATE PASSWORD →</button>
+      <button class="btn paper" onclick="closeModal()">CANCEL</button>
+    </div>
+  `;
+
+  modalInner.innerHTML = html;
+  modal.classList.add('show');
+}
+
+async function submitForgotPassword(type = 'team') {
+  const email = (document.getElementById('forgotEmail') ? document.getElementById('forgotEmail').value : '').trim();
+  const newPass = (document.getElementById('forgotNewPass') ? document.getElementById('forgotNewPass').value : '').trim();
+  const confirmPass = (document.getElementById('forgotConfirmPass') ? document.getElementById('forgotConfirmPass').value : '').trim();
+
+  if (!email) {
+    return toast('Please enter your registered email address.');
+  }
+  if (!newPass) {
+    return toast('Please enter a new password.');
+  }
+  if (newPass.length < 4) {
+    return toast('Password must be at least 4 characters long.');
+  }
+  if (newPass !== confirmPass) {
+    return toast('New password and confirmation do not match.');
+  }
+
   try {
-    const res = await fetch('/api/auth/reset', { method: 'POST' });
+    const res = await fetch('/api/auth/forgot-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, newPassword: newPass })
+    });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Failed to reset database');
-    const emailEl = document.getElementById('teamLoginEmail');
-    const idEl = document.getElementById('teamLoginId');
-    const passEl = document.getElementById('teamLoginPass');
-    if (emailEl) emailEl.value = '';
-    if (idEl) idEl.value = '';
-    if (passEl) passEl.value = '';
-    toast('🧹 Workspace database completely cleared.');
-    go('home');
+    if (!res.ok) throw new Error(data.error || 'Failed to reset password');
+
+    toast(data.message || 'Password reset successfully ✓ You can now log in.');
+    closeModal();
+
+    // Prefill into appropriate login input
+    if (type === 'team') {
+      const emailEl = document.getElementById('teamLoginEmail');
+      const passEl = document.getElementById('teamLoginPass');
+      if (emailEl) emailEl.value = email;
+      if (passEl) passEl.value = newPass;
+      go('teamlogin');
+    } else {
+      const emailEl = document.getElementById('memberLoginEmail');
+      const passEl = document.getElementById('memberLoginPass');
+      if (emailEl) emailEl.value = email;
+      if (passEl) passEl.value = newPass;
+      go('memberlogin');
+    }
   } catch (err) {
     toast(`Reset Error: ${err.message}`);
   }
-}
-
-async function quickDemoLogin() {
-  try {
-    await quickLoadDemoData();
-    await submitTeamLogin();
-  } catch (err) {
-    toast(`Demo Login Error: ${err.message}`);
-  }
-}
-
-function fillMember(email, pass) {
-  const emailEl = document.getElementById('memberLoginEmail');
-  const passEl = document.getElementById('memberLoginPass');
-  if (emailEl) emailEl.value = email;
-  if (passEl) passEl.value = pass;
 }
 
 // 1. Team Login
@@ -1490,20 +1417,37 @@ async function submitMemberLogin() {
 }
 
 function updateMemberDisplay() {
+  if (!currentMember) {
+    const av = document.getElementById('sideAvatar');
+    if (av) av.textContent = '?';
+    const nameEl = document.getElementById('sideName');
+    if (nameEl) nameEl.textContent = 'Guest / Not Logged In';
+    const titleEl = document.getElementById('sideTitle');
+    if (titleEl) titleEl.textContent = 'TEAM MEMBER';
+    const greetEl = document.getElementById('dashGreeting');
+    if (greetEl) greetEl.textContent = 'WELCOME TO THRYVE. 👋';
+    const profPill = document.getElementById('profilePill');
+    if (profPill) profPill.textContent = 'NOT LOGGED IN';
+    const profName = document.getElementById('profileName');
+    if (profName) profName.value = '';
+    const profEmail = document.getElementById('profileEmail');
+    if (profEmail) profEmail.value = '';
+    return;
+  }
   const av = document.getElementById('sideAvatar');
-  if (av) av.textContent = (currentMember.name || 'P')[0].toUpperCase();
+  if (av) av.textContent = (currentMember.name || 'U')[0].toUpperCase();
   const nameEl = document.getElementById('sideName');
   if (nameEl) nameEl.textContent = currentMember.name;
   const titleEl = document.getElementById('sideTitle');
-  if (titleEl) titleEl.textContent = currentMember.title;
+  if (titleEl) titleEl.textContent = currentMember.title || 'MEMBER';
   const greetEl = document.getElementById('dashGreeting');
-  if (greetEl) greetEl.textContent = `GOOD MORNING, ${currentMember.name.toUpperCase()}. 👋`;
+  if (greetEl) greetEl.textContent = `GOOD MORNING, ${(currentMember.name || 'TEAMMATE').toUpperCase()}. 👋`;
   const profPill = document.getElementById('profilePill');
-  if (profPill) profPill.textContent = `${currentMember.name.toUpperCase()} / ${currentMember.title}`;
+  if (profPill) profPill.textContent = `${(currentMember.name || 'USER').toUpperCase()} / ${currentMember.title || 'MEMBER'}`;
   const profName = document.getElementById('profileName');
-  if (profName) profName.value = currentMember.name;
+  if (profName) profName.value = currentMember.name || '';
   const profEmail = document.getElementById('profileEmail');
-  if (profEmail) profEmail.value = currentMember.email;
+  if (profEmail) profEmail.value = currentMember.email || '';
 }
 
 // 4. User Signup (Invite)
@@ -1549,30 +1493,37 @@ async function submitDeleteUser() {
 
 // 6. Lead Approval Queue
 async function loadApprovals() {
+  const box = document.getElementById('leadApprovalQueue');
+  const notice = document.getElementById('hubLeadNotice');
+  if (!currentProjectId) {
+    if (notice) notice.innerHTML = '✓ Team lead inbox: <b>0 requests waiting</b> in approval queue.';
+    if (box) box.innerHTML = '<div class="notice green" style="padding:16px;text-align:center">✓ No pending approval requests. Your lead queue is 100% clear!</div>';
+    return;
+  }
   try {
     const res = await fetch('/api/approvals?projectId=' + currentProjectId);
     const items = await res.json();
-    const box = document.getElementById('leadApprovalQueue');
-    const notice = document.getElementById('hubLeadNotice');
     if (notice) {
       notice.innerHTML = `✓ Team lead inbox: <b>${items.length} requests waiting</b> in approval queue.`;
     }
     if (!items.length) {
-      box.innerHTML = '<div class="notice green">✓ All approval requests have been addressed!</div>';
+      if (box) box.innerHTML = '<div class="notice green" style="padding:16px;text-align:center">✓ No pending approval requests. Your lead queue is 100% clear!</div>';
       return;
     }
-    box.innerHTML = items.map(item => `
-      <div class="approval">
-        <b>${item.type.toUpperCase()}:</b> ${escapeHtml(item.item)}<br>
-        <small>${escapeHtml(item.reason || 'Requested by ' + item.from_name)}</small><br>
-        <button class="btn ${item.type === 'user_delete' ? 'red' : (item.type === 'share' ? 'teal' : '')}" onclick="decideApproval(${item.id}, 'approve', '${escapeHtml(item.item)}')">
-          ${item.type === 'user_delete' ? 'APPROVE DELETE' : (item.type === 'share' ? 'APPROVE & AUTO-SHARE' : 'APPROVE')}
-        </button>
-        <button class="btn paper" onclick="decideApproval(${item.id}, 'reject', '${escapeHtml(item.item)}')">
-          ${item.type === 'user_delete' ? 'KEEP USER' : (item.type === 'share' ? 'DENY' : 'REJECT')}
-        </button>
-      </div>
-    `).join('');
+    if (box) {
+      box.innerHTML = items.map(item => `
+        <div class="approval">
+          <b>${item.type.toUpperCase()}:</b> ${escapeHtml(item.item)}<br>
+          <small>${escapeHtml(item.reason || 'Requested by ' + item.from_name)}</small><br>
+          <button class="btn ${item.type === 'user_delete' ? 'red' : (item.type === 'share' ? 'teal' : '')}" onclick="decideApproval(${item.id}, 'approve', '${escapeHtml(item.item)}')">
+            ${item.type === 'user_delete' ? 'APPROVE DELETE' : (item.type === 'share' ? 'APPROVE & AUTO-SHARE' : 'APPROVE')}
+          </button>
+          <button class="btn paper" onclick="decideApproval(${item.id}, 'reject', '${escapeHtml(item.item)}')">
+            ${item.type === 'user_delete' ? 'KEEP USER' : (item.type === 'share' ? 'DENY' : 'REJECT')}
+          </button>
+        </div>
+      `).join('');
+    }
   } catch (err) {
     console.error('Error loading approvals:', err);
   }
@@ -1598,9 +1549,14 @@ async function loadProjects() {
   try {
     const res = await fetch('/api/projects');
     const list = await res.json();
+    const pill = document.getElementById('hubStatsPill');
+    if (pill && Array.isArray(list)) {
+      const totalMembers = list.reduce((sum, p) => sum + (p.member_count || 0), 0);
+      pill.textContent = `${totalMembers} USERS / ${list.length} PROJECTS`;
+    }
     const grid = document.getElementById('projectsGrid');
     if (!grid) return;
-    grid.innerHTML = list.map(p => `
+    grid.innerHTML = (Array.isArray(list) ? list.map(p => `
       <div class="card" onclick="selectProject(${p.id}, '${escapeHtml(p.name)}')">
         <span class="tag ${p.progress > 50 ? 'green' : 'teal'}">${p.progress > 50 ? 'ACTIVE' : 'IN BUILD'}</span>
         <h3>${escapeHtml(p.name)}</h3>
@@ -1608,7 +1564,7 @@ async function loadProjects() {
         <b>${p.member_count} members • ${p.progress}% progress</b>
         <div class="arrow">↗</div>
       </div>
-    `).join('') + `
+    `).join('') : '') + `
       <div class="card" onclick="go('setup')">
         <span class="tag pink">NEW</span>
         <h3>+ Create project</h3>
@@ -1629,45 +1585,286 @@ function selectProject(id, name) {
   go('dashboard');
 }
 
-// 8. Create Project & Trigger AI Roles
-async function submitCreateProject() {
-  const name = document.getElementById('setupProjectName').value;
-  const description = document.getElementById('setupProjectDesc').value;
-  const memberCount = document.getElementById('setupMemberCount').value;
+// 8. Dynamic Member Cards & Project Creation
+let currentSetupRenderLimit = 25;
 
-  const members = [
-    { name: document.getElementById('setupM1Name').value, email: document.getElementById('setupM1Email').value, bio: document.getElementById('setupM1Bio').value, skills: document.getElementById('setupM1Skills').value },
-    { name: document.getElementById('setupM2Name').value, email: document.getElementById('setupM2Email').value, bio: document.getElementById('setupM2Bio').value, skills: document.getElementById('setupM2Skills').value },
-    { name: document.getElementById('setupM3Name').value, email: document.getElementById('setupM3Email').value, bio: document.getElementById('setupM3Bio').value, skills: document.getElementById('setupM3Skills').value },
-    { name: document.getElementById('setupM4Name').value, email: document.getElementById('setupM4Email').value, bio: document.getElementById('setupM4Bio').value, skills: document.getElementById('setupM4Skills').value }
-  ];
+function getSetupMemberValues() {
+  const container = document.getElementById('setupMembersContainer');
+  if (!container) return [];
+  const cards = container.querySelectorAll('.member');
+  const values = [];
+  cards.forEach(card => {
+    const name = (card.querySelector('.setup-m-name')?.value || '').trim();
+    const email = (card.querySelector('.setup-m-email')?.value || '').trim();
+    const bio = (card.querySelector('.setup-m-bio')?.value || '').trim();
+    const skills = (card.querySelector('.setup-m-skills')?.value || '').trim();
+    values.push({ name, email, bio, skills });
+  });
+  return values;
+}
+
+function renderSetupMemberCards(count) {
+  const container = document.getElementById('setupMembersContainer');
+  if (!container) return;
+
+  const currentValues = getSetupMemberValues();
+  let num = parseInt(count);
+  if (isNaN(num) || num < 1) num = 1;
+  if (num > 10000) num = 10000;
+
+  const countInput = document.getElementById('setupMemberCount');
+  if (countInput && parseInt(countInput.value) !== num) {
+    countInput.value = num;
+  }
+
+  const heading = document.getElementById('setupMembersHeading');
+  if (heading) {
+    heading.textContent = `TEAM MEMBER PROFILES (${num} PLANNED SLOT${num > 1 ? 'S' : ''})`;
+  }
+
+  // Render limit prevents UI freeze if a user types 100 or 1000 members
+  const renderLimit = Math.min(num, Math.max(num <= 30 ? num : 20, currentSetupRenderLimit));
+
+  let html = '';
+  if (num > 30) {
+    html += `
+      <div class="notice blue" style="margin-bottom:12px">
+        ⚡ <b>Large Team Capacity (${num} members):</b> Enter the profiles you have ready now (slots 1 to ${renderLimit}).
+        Any remaining slots (${num - renderLimit} open slots) are reserved in your project and can be added or invited later anytime!
+      </div>
+    `;
+  }
+
+  for (let i = 0; i < renderLimit; i++) {
+    const existing = currentValues[i] || {};
+    const isLead = i === 0;
+    html += `
+      <div class="member" data-index="${i}">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <b>MEMBER ${String(i + 1).padStart(2, '0')}${isLead ? ' — TEAM LEAD *' : ''}</b>
+          ${!isLead ? `<button type="button" class="btn paper small" style="padding:2px 8px;font-size:11px" onclick="removeSetupMemberCard(${i})">✕ Remove</button>` : ''}
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Name ${isLead ? '*' : ''}</label>
+            <input class="setup-m-name" value="${escapeHtml(existing.name || '')}" placeholder="${isLead ? 'Team Lead Name *' : 'Teammate ' + (i + 1) + ' Name'}">
+          </div>
+          <div>
+            <label>Email (optional)</label>
+            <input class="setup-m-email" type="email" value="${escapeHtml(existing.email || '')}" placeholder="${isLead ? 'lead@example.com' : 'member' + (i + 1) + '@example.com'}">
+          </div>
+        </div>
+        <label>Personal description</label>
+        <textarea class="setup-m-bio" style="min-height:60px" placeholder="${isLead ? 'Describe background and technical strengths...' : 'Describe their background and technical focus...'}">${escapeHtml(existing.bio || '')}</textarea>
+        <label>Skills</label>
+        <input class="setup-m-skills" value="${escapeHtml(existing.skills || '')}" placeholder="${isLead ? 'e.g. Python, AI, Backend' : (i === 1 ? 'e.g. Frontend, React, UI' : 'e.g. Database, SQL, QA, Cloud')}">
+      </div>
+    `;
+  }
+
+  if (renderLimit < num) {
+    html += `
+      <div style="padding:14px;background:var(--paper);border:2px dashed var(--ink);text-align:center;margin:12px 0">
+        <b>+ ${num - renderLimit} more member slot${(num - renderLimit) > 1 ? 's' : ''} reserved for this project.</b><br>
+        <button type="button" class="btn paper small" style="margin-top:8px" onclick="showMoreSetupCards(${num})">+ Show Next 15 Cards Now</button>
+      </div>
+    `;
+  }
+
+  container.innerHTML = html;
+}
+
+function showMoreSetupCards(total) {
+  currentSetupRenderLimit += 15;
+  renderSetupMemberCards(total);
+}
+
+function onPlannedMemberCountChange(val) {
+  const num = parseInt(val);
+  if (!isNaN(num) && num >= 1) {
+    renderSetupMemberCards(num);
+  }
+}
+
+function adjustMemberCount(delta) {
+  const input = document.getElementById('setupMemberCount');
+  const cur = parseInt(input ? input.value : 4) || 4;
+  const next = Math.max(1, cur + delta);
+  if (input) input.value = next;
+  renderSetupMemberCards(next);
+}
+
+function addMemberCardInstant() {
+  const input = document.getElementById('setupMemberCount');
+  const cur = parseInt(input ? input.value : 4) || 4;
+  const next = cur + 1;
+  if (input) input.value = next;
+  currentSetupRenderLimit = Math.max(currentSetupRenderLimit, next);
+  renderSetupMemberCards(next);
+  toast(`Added Member slot ${next}! Enter their details or save whenever ready ✓`);
+  
+  setTimeout(() => {
+    const names = document.querySelectorAll('.setup-m-name');
+    if (names.length) names[names.length - 1].focus();
+  }, 50);
+}
+
+function removeSetupMemberCard(idx) {
+  const currentValues = getSetupMemberValues();
+  currentValues.splice(idx, 1);
+  const next = Math.max(1, currentValues.length);
+  const input = document.getElementById('setupMemberCount');
+  if (input) input.value = next;
+
+  const container = document.getElementById('setupMembersContainer');
+  if (!container) return;
+  renderSetupMemberCards(next);
+
+  const cards = container.querySelectorAll('.member');
+  currentValues.forEach((val, i) => {
+    if (cards[i]) {
+      const n = cards[i].querySelector('.setup-m-name');
+      const e = cards[i].querySelector('.setup-m-email');
+      const b = cards[i].querySelector('.setup-m-bio');
+      const s = cards[i].querySelector('.setup-m-skills');
+      if (n) n.value = val.name || '';
+      if (e) e.value = val.email || '';
+      if (b) b.value = val.bio || '';
+      if (s) s.value = val.skills || '';
+    }
+  });
+  toast(`Slot removed. Planned team size updated to ${next} ✓`);
+}
+
+async function submitCreateProject() {
+  const name = (document.getElementById('setupProjectName')?.value || '').trim();
+  const description = (document.getElementById('setupProjectDesc')?.value || '').trim();
+  const plannedCount = parseInt(document.getElementById('setupMemberCount')?.value) || 1;
+
+  if (!name) {
+    return toast('Please enter a project name.');
+  }
+
+  const allCards = getSetupMemberValues();
+  const filledMembers = allCards.filter(m => m.name && m.name.trim() !== '');
+
+  if (!filledMembers.length) {
+    return toast('Please provide at least a name for Team Lead (Member 01).');
+  }
+
+  // Support adding remaining members later:
+  // Project is registered with the full planned team size (e.g. 6), with the filled members (e.g. 5) added immediately.
+  const effectiveMemberCount = Math.max(plannedCount, filledMembers.length);
 
   try {
     const res = await fetch('/api/projects', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, description, memberCount, members })
+      body: JSON.stringify({
+        name,
+        description,
+        memberCount: effectiveMemberCount,
+        members: filledMembers
+      })
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Failed to create project');
     currentProjectId = data.projectId;
+
+    const remaining = effectiveMemberCount - filledMembers.length;
+    if (remaining > 0) {
+      toast(`Project "${name}" created with ${filledMembers.length} member(s)! (${remaining} open slot${remaining > 1 ? 's' : ''} reserved to add anytime) ✓`);
+    } else {
+      toast(`Project "${name}" created with all ${filledMembers.length} member(s) ✓`);
+    }
 
     // Render generated roles
     const rolesGrid = document.getElementById('rolesGrid');
     if (rolesGrid && data.roles) {
       rolesGrid.innerHTML = data.roles.map(r => `
         <div class="card">
-          <span class="tag ${r.name === 'Arun' ? 'teal' : (r.name === 'Meena' ? 'pink' : '')}">${r.name.toUpperCase()}</span>
+          <span class="tag">${escapeHtml((r.name || 'MEMBER').toUpperCase())}</span>
           <h3>${escapeHtml(r.role)}</h3>
           <p>Reason: ${escapeHtml(r.why)}</p>
-          <button class="btn" onclick="toast('${r.name} role accepted ✓')">ACCEPT</button> 
-          <button class="btn paper" onclick="openModal('manualRole','${r.name}')">EDIT</button>
+          <button class="btn" onclick="toast('${escapeHtml(r.name)} role accepted ✓')">ACCEPT</button> 
+          <button class="btn paper" onclick="openModal('manualRole','${escapeHtml(r.name)}')">EDIT</button>
         </div>
       `).join('');
     }
 
-    toast('Project created ✓ AI drafted roles + Sprint 01');
+    const pNameEl = document.getElementById('sideProjectName');
+    if (pNameEl) pNameEl.textContent = name;
+    loadProjects();
     go('roles');
+  } catch (err) {
+    toast(`Error: ${err.message}`);
+  }
+}
+
+// 8b. Add Member to Project (Instant or After Entering)
+function openAddMemberModal() {
+  if (!currentProjectId) {
+    return toast('Please select or create an active project first.');
+  }
+  const html = `
+    <div class="eyebrow">TEAM COLLABORATION / INSTANT ONBOARDING</div>
+    <h3>ADD MEMBER TO PROJECT.</h3>
+    <p>Add a new team member to this project right now. AI will analyze their skills and assign an optimized role.</p>
+    
+    <label>Member Name *</label>
+    <input id="newProjMemberName" type="text" placeholder="e.g. Maya Patel" autofocus>
+
+    <label>Member Email (optional)</label>
+    <input id="newProjMemberEmail" type="email" placeholder="e.g. maya@team.demo">
+
+    <label>Personal Description / Strengths</label>
+    <textarea id="newProjMemberBio" style="min-height:65px" placeholder="e.g. Computer Science student, loves React and design systems..."></textarea>
+
+    <label>Skills</label>
+    <input id="newProjMemberSkills" type="text" placeholder="e.g. React, CSS, TypeScript, UI/UX">
+
+    <label>Role (Leave blank for AI auto-recommendation)</label>
+    <input id="newProjMemberRole" type="text" placeholder="e.g. Frontend Engineer / Leave blank for AI">
+
+    <div class="notice green" style="margin-top:14px">
+      ✦ Member will be added immediately to the active project sprint, chat, and reports.
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+      <button class="btn" onclick="submitAddProjectMember()">ADD MEMBER NOW →</button>
+      <button class="btn paper" onclick="closeModal()">CANCEL</button>
+    </div>
+  `;
+  modalInner.innerHTML = html;
+  modal.classList.add('show');
+}
+
+async function submitAddProjectMember() {
+  const name = (document.getElementById('newProjMemberName')?.value || '').trim();
+  const email = (document.getElementById('newProjMemberEmail')?.value || '').trim();
+  const bio = (document.getElementById('newProjMemberBio')?.value || '').trim();
+  const skills = (document.getElementById('newProjMemberSkills')?.value || '').trim();
+  const role = (document.getElementById('newProjMemberRole')?.value || '').trim();
+
+  if (!name) {
+    return toast('Please enter the member name.');
+  }
+
+  try {
+    const res = await fetch(`/api/projects/${currentProjectId}/members`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, bio, skills, role })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to add member');
+
+    toast(`Member ${name} added! Assigned role: ${data.member ? data.member.role : 'Member'} ✓`);
+    closeModal();
+    loadProjects();
+    loadDashboard();
+    if (typeof loadSprint === 'function') loadSprint();
+    if (typeof loadApprovals === 'function') loadApprovals();
   } catch (err) {
     toast(`Error: ${err.message}`);
   }
@@ -1705,12 +1902,57 @@ function switchSprintView(view, btn) {
 }
 
 async function loadSprint() {
+  if (!currentProjectId) {
+    const progEl = document.getElementById('sprintProgress');
+    if (progEl) progEl.textContent = '0%';
+    const doneEl = document.getElementById('sprintDone');
+    if (doneEl) doneEl.textContent = '0 / 0';
+    const onTimeEl = document.getElementById('sprintOnTime');
+    if (onTimeEl) onTimeEl.textContent = '0';
+    const lateEl = document.getElementById('sprintLate');
+    if (lateEl) lateEl.textContent = '0';
+    const goalEl = document.getElementById('sprintGoalText');
+    if (goalEl) goalEl.textContent = 'Sprint goal: Create or select a project to define sprint goals and AI-recommended tasks.';
+    const hrsBadge = document.getElementById('sprintTotalHoursBadge');
+    if (hrsBadge) hrsBadge.textContent = 'TEAM ESTIMATE: 0 HOURS';
+    const sMetaEl = document.getElementById('sprintHeaderMeta');
+    if (sMetaEl) sMetaEl.textContent = '0 TASKS • 0 TEAM MEMBERS • 0 TOTAL HOURS';
+    const dTeamProg = document.getElementById('dashTeamProg');
+    if (dTeamProg) dTeamProg.textContent = '0%';
+    const dOverProg = document.getElementById('dashOverallProg');
+    if (dOverProg) dOverProg.textContent = '0%';
+    const dBar = document.getElementById('dashProgBar');
+    if (dBar) dBar.style.width = '0%';
+    const dNotice = document.getElementById('dashChecklistNotice');
+    if (dNotice) dNotice.textContent = 'Project sprint status: 0 / 0 tasks complete.';
+    const sCheckPill = document.getElementById('sprintCheckPill');
+    if (sCheckPill) sCheckPill.textContent = 'SPRINT 01 / 0 ITEMS';
+    const tablesContainer = document.getElementById('sprintDetailedTables');
+    if (tablesContainer) tablesContainer.innerHTML = '<div class="notice blue">No active sprint yet. Setup a project to generate your team\'s first sprint!</div>';
+    const board = document.getElementById('sprintBoard');
+    if (board) board.innerHTML = '<div class="notice blue" style="grid-column:1/-1">No sprint cards available.</div>';
+    const dashTasks = document.getElementById('dashMySprintTasks');
+    if (dashTasks) dashTasks.innerHTML = '<div class="notice blue">No sprint tasks assigned yet.</div>';
+    const dashDeadlines = document.getElementById('dashDeadlineTasks');
+    if (dashDeadlines) dashDeadlines.innerHTML = '<div class="notice blue">No deadline items yet.</div>';
+    const dlChecklist = document.getElementById('deadlineChecklist');
+    if (dlChecklist) dlChecklist.innerHTML = '<div class="notice blue">No sprint checklist items available.</div>';
+    return;
+  }
+
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/sprint`);
     const data = await res.json();
     
     // Summary
-    const { total, done, onTime, late, progressPct, totalEstHours } = data.summary;
+    const summary = data.summary || {};
+    const total = summary.total || 0;
+    const done = summary.done || 0;
+    const onTime = summary.onTime || 0;
+    const late = summary.late || 0;
+    const progressPct = summary.progressPct || 0;
+    const totalEstHours = summary.totalEstHours || 0;
+
     const progEl = document.getElementById('sprintProgress');
     if (progEl) progEl.textContent = `${progressPct}%`;
     const doneEl = document.getElementById('sprintDone');
@@ -1727,7 +1969,11 @@ async function loadSprint() {
     }
     const hrsBadge = document.getElementById('sprintTotalHoursBadge');
     if (hrsBadge) {
-      hrsBadge.textContent = `TEAM ESTIMATE: ${totalEstHours || (data.meta ? data.meta.total_est_hours : 57)} HOURS`;
+      hrsBadge.textContent = `TEAM ESTIMATE: ${totalEstHours || (data.meta ? data.meta.total_est_hours : 0)} HOURS`;
+    }
+    const sMetaEl = document.getElementById('sprintHeaderMeta');
+    if (sMetaEl) {
+      sMetaEl.textContent = `${total} TASKS • ${(data.members || []).length} TEAM MEMBERS • ${totalEstHours} TOTAL HOURS`;
     }
 
     // Dashboard widgets
@@ -1738,193 +1984,231 @@ async function loadSprint() {
     const dBar = document.getElementById('dashProgBar');
     if (dBar) dBar.style.width = `${progressPct}%`;
     const dNotice = document.getElementById('dashChecklistNotice');
-    if (dNotice) dNotice.textContent = `Project sprint status: ${done} / ${total} tasks complete (${totalEstHours || 57} estimated hours total).`;
+    if (dNotice) dNotice.textContent = `Project sprint status: ${done} / ${total} tasks complete (${totalEstHours} estimated hours total).`;
     const sCheckPill = document.getElementById('sprintCheckPill');
     if (sCheckPill) sCheckPill.textContent = `SPRINT 01 / ${total} ITEMS`;
 
-    // Render Detailed Tables View (Exact Markdown/Tabular Match)
-    const tablesContainer = document.getElementById('sprintDetailedTables');
-    if (tablesContainer && data.members) {
-      tablesContainer.innerHTML = data.members.map(m => {
-        const mDone = m.tasks.filter(t => t.status === 'done' || t.status === 'late').length;
-        const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
-        const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
-        return `
-          <div class="sprint-member-table-wrap">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:12px">
-              <div>
-                <span class="${tagClass}">${m.name.toUpperCase()}</span>
-                <h3 style="margin:4px 0 2px">${escapeHtml(m.name)} — ${escapeHtml(m.role || 'Contributor')}</h3>
-              </div>
-              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-                <span class="pill" style="background:var(--paper2)"><b>Total: ${mHours} hours</b></span>
-                <span class="deadline-badge ${mDone === m.tasks.length ? 'ontime' : ''}">${mDone} / ${m.tasks.length} COMPLETED</span>
-              </div>
-            </div>
+    // Dynamic tabs for sprintcheck and reports
+    if (data.members && data.members.length) {
+      const sTabs = document.getElementById('sprintCheckTabs');
+      if (sTabs) {
+        sTabs.innerHTML = `<button class="active" onclick="filterSprintChecklist('all',this)">ALL MEMBERS</button>` +
+          data.members.map(m => `<button onclick="filterSprintChecklist('${escapeHtml(m.name)}',this)">${escapeHtml(m.name).toUpperCase()}</button>`).join('');
+      }
+      const rTabs = document.getElementById('reportTabs');
+      if (rTabs) {
+        rTabs.innerHTML = `<button class="${selectedReportMember === 'team' ? 'active' : ''}" data-member="team" onclick="selectReportMember('team',this)">TEAM</button>` +
+          data.members.map(m => `<button class="${selectedReportMember === m.name ? 'active' : ''}" data-member="${escapeHtml(m.name)}" onclick="selectReportMember('${escapeHtml(m.name)}',this)">${escapeHtml(m.name).toUpperCase()}</button>`).join('');
+      }
+    }
 
-            <table class="table" style="margin-top:14px;width:100%">
-              <thead>
-                <tr>
-                  <th style="width:34%">Task</th>
-                  <th style="width:12%;text-align:right">Estimate</th>
-                  <th style="width:14%">Deadline</th>
-                  <th style="width:28%">Done when…</th>
-                  <th style="width:12%">Status</th>
-                </tr>
-              </thead>
-              <tbody>
+    // Render Detailed Tables View
+    const tablesContainer = document.getElementById('sprintDetailedTables');
+    if (tablesContainer) {
+      if (!data.members || !data.members.length) {
+        tablesContainer.innerHTML = '<div class="notice blue">No tasks assigned yet. Setup a project or assign tasks to view sprint details.</div>';
+      } else {
+        const colors = ['tag', 'tag teal', 'tag pink', 'tag green'];
+        tablesContainer.innerHTML = data.members.map((m, idx) => {
+          const mDone = m.tasks.filter(t => t.status === 'done' || t.status === 'late').length;
+          const tagClass = colors[idx % colors.length] || 'tag';
+          const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
+          return `
+            <div class="sprint-member-table-wrap">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:12px">
+                <div>
+                  <span class="${tagClass}">${escapeHtml(m.name).toUpperCase()}</span>
+                  <h3 style="margin:4px 0 2px">${escapeHtml(m.name)} — ${escapeHtml(m.role || 'Contributor')}</h3>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                  <span class="pill" style="background:var(--paper2)"><b>Total: ${mHours} hours</b></span>
+                  <span class="deadline-badge ${mDone === m.tasks.length ? 'ontime' : ''}">${mDone} / ${m.tasks.length} COMPLETED</span>
+                </div>
+              </div>
+
+              <table class="table" style="margin-top:14px;width:100%">
+                <thead>
+                  <tr>
+                    <th style="width:34%">Task</th>
+                    <th style="width:12%;text-align:right">Estimate</th>
+                    <th style="width:14%">Deadline</th>
+                    <th style="width:28%">Done when…</th>
+                    <th style="width:12%">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${m.tasks.map(t => {
+                    const isChecked = t.status === 'done' || t.status === 'late';
+                    const isLate = t.status === 'late';
+                    return `
+                      <tr style="${isChecked ? 'background:#f0fdf4' : ''}">
+                        <td>
+                          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
+                            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})" style="margin-top:4px">
+                            <span style="${isChecked ? 'text-decoration:line-through;opacity:0.75' : 'font-weight:700'}">${escapeHtml(t.title)}</span>
+                          </label>
+                        </td>
+                        <td style="text-align:right;font-weight:900">
+                          ${t.est_hours ? t.est_hours + ' hr' + (t.est_hours > 1 ? 's' : '') : '—'}
+                        </td>
+                        <td>
+                          <span class="chip" style="background:#fff">${escapeHtml(t.deadline_day || t.deadline_time || 'Sprint 01')}</span>
+                        </td>
+                        <td>
+                          <div class="small" style="font-weight:700;color:#171717;line-height:1.4">
+                            ${escapeHtml(t.done_when || 'Task completed and verified')}
+                          </div>
+                        </td>
+                        <td>
+                          <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
+                            ${isChecked ? (isLate ? 'LATE' : 'DONE') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
+                          </span>
+                        </td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    // Render Sprint Board Cards
+    const board = document.getElementById('sprintBoard');
+    if (board) {
+      if (!data.members || !data.members.length) {
+        board.innerHTML = '<div class="notice blue" style="grid-column:1/-1">No sprint cards available.</div>';
+      } else {
+        const colors = ['tag', 'tag teal', 'tag pink', 'tag green'];
+        board.innerHTML = data.members.map((m, idx) => {
+          const mDone = m.tasks.filter(t => t.status === 'done' || t.status === 'late').length;
+          const tagClass = colors[idx % colors.length] || 'tag';
+          const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
+          return `
+            <div class="member-sprint">
+              <div class="member-sprint-head">
+                <div>
+                  <span class="${tagClass}">${escapeHtml(m.name).toUpperCase()}</span>
+                  <h3>${escapeHtml(m.name)}</h3>
+                  <span class="small">${escapeHtml(m.role || 'Contributor')} • <b>${mHours} hrs</b></span>
+                </div>
+                <span class="deadline-badge ${mDone === m.tasks.length ? 'ontime' : ''}">${mDone} / ${m.tasks.length} DONE</span>
+              </div>
+              <div class="checklist">
                 ${m.tasks.map(t => {
                   const isChecked = t.status === 'done' || t.status === 'late';
                   const isLate = t.status === 'late';
                   return `
-                    <tr style="${isChecked ? 'background:#f0fdf4' : ''}">
-                      <td>
-                        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
-                          <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})" style="margin-top:4px">
-                          <span style="${isChecked ? 'text-decoration:line-through;opacity:0.75' : 'font-weight:700'}">${escapeHtml(t.title)}</span>
-                        </label>
-                      </td>
-                      <td style="text-align:right;font-weight:900">
-                        ${t.est_hours ? t.est_hours + ' hr' + (t.est_hours > 1 ? 's' : '') : '—'}
-                      </td>
-                      <td>
-                        <span class="chip" style="background:#fff">${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')}</span>
-                      </td>
-                      <td>
-                        <div class="small" style="font-weight:700;color:#171717;line-height:1.4">
-                          ${escapeHtml(t.done_when || 'Task completed and verified')}
-                        </div>
-                      </td>
-                      <td>
-                        <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
-                          ${isChecked ? (isLate ? 'LATE' : 'DONE') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
-                        </span>
-                      </td>
-                    </tr>
+                    <label class="check-item ${isChecked ? (isLate ? 'late' : 'done') : ''}">
+                      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
+                      <span>
+                        <span class="check-title">${escapeHtml(t.title)}</span>
+                        <span class="check-meta">${escapeHtml(t.deadline_day || t.deadline_time || 'Sprint 01')} • Est: ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : (t.notes || 'in progress')}</span>
+                        ${t.done_when ? `<span class="done-when-tag"><b>Done when:</b> ${escapeHtml(t.done_when)}</span>` : ''}
+                      </span>
+                      <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
+                        ${isChecked ? (isLate ? 'LATE' : 'ON TIME') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
+                      </span>
+                    </label>
                   `;
                 }).join('')}
-              </tbody>
-            </table>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // Render Sprint Board Cards (screen: sprint)
-    const board = document.getElementById('sprintBoard');
-    if (board && data.members) {
-      board.innerHTML = data.members.map(m => {
-        const mDone = m.tasks.filter(t => t.status === 'done' || t.status === 'late').length;
-        const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
-        const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
-        return `
-          <div class="member-sprint">
-            <div class="member-sprint-head">
-              <div>
-                <span class="${tagClass}">${m.name.toUpperCase()}</span>
-                <h3>${escapeHtml(m.name)}</h3>
-                <span class="small">${escapeHtml(m.role || 'Contributor')} • <b>${mHours} hrs</b></span>
               </div>
-              <span class="deadline-badge ${mDone === m.tasks.length ? 'ontime' : ''}">${mDone} / ${m.tasks.length} DONE</span>
             </div>
-            <div class="checklist">
-              ${m.tasks.map(t => {
-                const isChecked = t.status === 'done' || t.status === 'late';
-                const isLate = t.status === 'late';
-                return `
-                  <label class="check-item ${isChecked ? (isLate ? 'late' : 'done') : ''}">
-                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
-                    <span>
-                      <span class="check-title">${escapeHtml(t.title)}</span>
-                      <span class="check-meta">${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • Est: ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : (t.notes || 'in progress')}</span>
-                      ${t.done_when ? `<span class="done-when-tag"><b>Done when:</b> ${escapeHtml(t.done_when)}</span>` : ''}
-                    </span>
-                    <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
-                      ${isChecked ? (isLate ? 'LATE' : 'ON TIME') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
-                    </span>
-                  </label>
-                `;
-              }).join('')}
-            </div>
-          </div>
-        `;
-      }).join('');
+          `;
+        }).join('');
+      }
     }
 
-    // Render Deadline Checklist (screen: sprintcheck)
+    // Render Deadline Checklist
     const checkContainer = document.getElementById('deadlineChecklist');
-    if (checkContainer && data.members) {
-      checkContainer.innerHTML = data.members.map((m, idx) => {
-        const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
-        const mOnTime = m.tasks.filter(t => t.is_before_deadline === 1).length;
-        const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
-        return `
-          <div class="panel sprint-check-member" data-member="${escapeHtml(m.name)}" style="${idx > 0 ? 'margin-top:18px' : ''}">
-            <div class="member-sprint-head">
-              <div>
-                <span class="${tagClass}">${m.name.toUpperCase()}</span>
-                <h3>${escapeHtml(m.role || m.name)}</h3>
-                <span class="small">Workload: <b>${mHours} hours total</b></span>
+    if (checkContainer) {
+      if (!data.members || !data.members.length) {
+        checkContainer.innerHTML = '<div class="notice blue">No sprint checklist items available.</div>';
+      } else {
+        const colors = ['tag', 'tag teal', 'tag pink', 'tag green'];
+        checkContainer.innerHTML = data.members.map((m, idx) => {
+          const tagClass = colors[idx % colors.length] || 'tag';
+          const mOnTime = m.tasks.filter(t => t.is_before_deadline === 1).length;
+          const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
+          return `
+            <div class="panel sprint-check-member" data-member="${escapeHtml(m.name)}" style="${idx > 0 ? 'margin-top:18px' : ''}">
+              <div class="member-sprint-head">
+                <div>
+                  <span class="${tagClass}">${escapeHtml(m.name).toUpperCase()}</span>
+                  <h3>${escapeHtml(m.role || m.name)}</h3>
+                  <span class="small">Workload: <b>${mHours} hours total</b></span>
+                </div>
+                <span class="deadline-badge ${mOnTime === m.tasks.length ? 'ontime' : ''}">${mOnTime} / ${m.tasks.length} BEFORE DEADLINE</span>
               </div>
-              <span class="deadline-badge ${mOnTime === m.tasks.length ? 'ontime' : ''}">${mOnTime} / ${m.tasks.length} BEFORE DEADLINE</span>
+              <div class="checklist">
+                ${m.tasks.map(t => {
+                  const isChecked = t.status === 'done' || t.status === 'late';
+                  const isLate = t.status === 'late';
+                  return `
+                    <label class="check-item ${isChecked ? (isLate ? 'late' : 'done') : ''}">
+                      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
+                      <span>
+                        <span class="check-title">${escapeHtml(t.title)}</span>
+                        <span class="check-meta">Deadline: ${escapeHtml(t.deadline_day || t.deadline_time || 'Sprint 01')} • Est: ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'Completed ' + t.completed_at : 'Completed') : 'Not completed'}</span>
+                        ${t.done_when ? `<span class="done-when-tag"><b>Done when:</b> ${escapeHtml(t.done_when)}</span>` : ''}
+                      </span>
+                      <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
+                        ${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
+                      </span>
+                    </label>
+                  `;
+                }).join('')}
+              </div>
             </div>
-            <div class="checklist">
-              ${m.tasks.map(t => {
-                const isChecked = t.status === 'done' || t.status === 'late';
-                const isLate = t.status === 'late';
-                return `
-                  <label class="check-item ${isChecked ? (isLate ? 'late' : 'done') : ''}">
-                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
-                    <span>
-                      <span class="check-title">${escapeHtml(t.title)}</span>
-                      <span class="check-meta">Deadline: ${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • Est: ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'Completed ' + t.completed_at : 'Completed') : 'Not completed'}</span>
-                      ${t.done_when ? `<span class="done-when-tag"><b>Done when:</b> ${escapeHtml(t.done_when)}</span>` : ''}
-                    </span>
-                    <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
-                      ${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
-                    </span>
-                  </label>
-                `;
-              }).join('')}
-            </div>
-          </div>
-        `;
-      }).join('');
+          `;
+        }).join('');
+      }
     }
 
     // Dashboard Tasks widget
     const dMyTasks = document.getElementById('dashMySprintTasks');
-    if (dMyTasks && data.allTasks) {
-      const myTasks = data.allTasks.filter(t => t.member_name.toLowerCase() === currentMember.name.toLowerCase()).slice(0, 4);
-      dMyTasks.innerHTML = myTasks.map(t => `
-        <div class="task ${t.status}">
-          <div>
-            <b>${escapeHtml(t.title)}</b><br>
-            <small>${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • ${t.est_hours || 0} hrs • ${escapeHtml(t.notes || t.status)}</small>
-            ${t.done_when ? `<div class="small" style="color:#555;margin-top:2px">Done when: ${escapeHtml(t.done_when)}</div>` : ''}
+    if (dMyTasks) {
+      const myName = (currentMember && currentMember.name) ? currentMember.name.toLowerCase() : '';
+      const myTasks = myName && data.allTasks ? data.allTasks.filter(t => (t.member_name || '').toLowerCase() === myName).slice(0, 4) : [];
+      if (!myTasks.length) {
+        dMyTasks.innerHTML = '<div class="notice blue">No personal sprint tasks assigned yet.</div>';
+      } else {
+        dMyTasks.innerHTML = myTasks.map(t => `
+          <div class="task ${t.status}">
+            <div>
+              <b>${escapeHtml(t.title)}</b><br>
+              <small>${escapeHtml(t.deadline_day || t.deadline_time || 'Sprint 01')} • ${t.est_hours || 0} hrs • ${escapeHtml(t.notes || t.status)}</small>
+              ${t.done_when ? `<div class="small" style="color:#555;margin-top:2px">Done when: ${escapeHtml(t.done_when)}</div>` : ''}
+            </div>
+            <span class="status">${t.status.toUpperCase()}</span>
           </div>
-          <span class="status">${t.status.toUpperCase()}</span>
-        </div>
-      `).join('');
+        `).join('');
+      }
     }
 
     // Dashboard Deadline tasks
     const dDeadTasks = document.getElementById('dashDeadlineTasks');
-    if (dDeadTasks && data.allTasks) {
-      const sample = data.allTasks.slice(0, 5);
-      dDeadTasks.innerHTML = sample.map(t => {
-        const isChecked = t.status === 'done' || t.status === 'late';
-        const isLate = t.status === 'late';
-        return `
-          <div class="task ${isChecked ? (isLate ? 'blocked' : 'done') : 'pending'}">
-            <div>
-              <b>${isChecked ? '✓' : '○'} ${escapeHtml(t.title)}</b><br>
-              <small>${escapeHtml(t.member_name)} • ${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : 'in progress'}</small>
+    if (dDeadTasks) {
+      if (!data.allTasks || !data.allTasks.length) {
+        dDeadTasks.innerHTML = '<div class="notice blue">No deadline items yet.</div>';
+      } else {
+        const sample = data.allTasks.slice(0, 5);
+        dDeadTasks.innerHTML = sample.map(t => {
+          const isChecked = t.status === 'done' || t.status === 'late';
+          const isLate = t.status === 'late';
+          return `
+            <div class="task ${isChecked ? (isLate ? 'blocked' : 'done') : 'pending'}">
+              <div>
+                <b>${isChecked ? '✓' : '○'} ${escapeHtml(t.title)}</b><br>
+                <small>${escapeHtml(t.member_name)} • ${escapeHtml(t.deadline_day || t.deadline_time || 'Sprint 01')} • ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : 'in progress'}</small>
+              </div>
+              <span class="status">${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : 'PENDING'}</span>
             </div>
-            <span class="status">${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : 'PENDING'}</span>
-          </div>
-        `;
-      }).join('');
+          `;
+        }).join('');
+      }
     }
 
   } catch (err) {
@@ -1966,6 +2250,22 @@ async function submitApproveSprint() {
 
 // 11. Documents & Real File/Folder Uploads
 async function loadDocuments() {
+  const fStat = document.getElementById('docStatFiles');
+  if (fStat) fStat.textContent = '0 FILES';
+  const folStat = document.getElementById('docStatFolders');
+  if (folStat) folStat.textContent = '0 FOLDERS';
+
+  const renderEmpty = (containerId, msg) => {
+    const el = document.getElementById(containerId);
+    if (el) el.innerHTML = `<div style="padding:16px;text-align:center;color:var(--ink-light);font-size:13px;font-weight:700;">${msg}</div>`;
+  };
+
+  if (!currentProjectId) {
+    renderEmpty('docsFileList', 'No project selected. Select or create a project to manage documents.');
+    renderEmpty('dashFileList', 'No shared files yet.');
+    return;
+  }
+
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/documents`);
     const docs = await res.json();
@@ -1973,21 +2273,23 @@ async function loadDocuments() {
     // Stats
     const filesCount = docs.filter(d => !d.is_folder).length;
     const foldersCount = docs.filter(d => d.is_folder).length;
-    const fStat = document.getElementById('docStatFiles');
     if (fStat) fStat.textContent = `${filesCount} FILES`;
-    const folStat = document.getElementById('docStatFolders');
     if (folStat) folStat.textContent = `${foldersCount} FOLDERS`;
 
-    const renderList = (containerId) => {
+    const renderList = (containerId, emptyMsg) => {
       const el = document.getElementById(containerId);
       if (!el) return;
+      if (!docs.length) {
+        el.innerHTML = `<div style="padding:16px;text-align:center;color:var(--ink-light);font-size:13px;font-weight:700;">${emptyMsg}</div>`;
+        return;
+      }
       el.innerHTML = docs.map(d => `
         <div class="file-row">
           <span>
             ${d.is_folder ? '📁' : '📄'} <b>${escapeHtml(d.filename)}</b>
             <span class="chip" style="${d.is_shared ? 'background:var(--teal2)' : ''}">${d.is_shared ? 'SHARED' : 'PRIVATE'}</span>
             <br>
-            <small>${escapeHtml(d.user_name)} • ${d.is_shared ? 'shared' : 'private'} • ${escapeHtml(d.filesize || '')}</small>
+            <small>${escapeHtml(d.user_name || 'Member')} • ${d.is_shared ? 'shared' : 'private'} • ${escapeHtml(d.filesize || '')}</small>
           </span>
           <span>
             ${d.filepath ? `<a class="btn paper" href="/api/documents/download/${d.id}" target="_blank">DOWNLOAD</a>` : ''}
@@ -2000,8 +2302,8 @@ async function loadDocuments() {
       `).join('');
     };
 
-    renderList('docsFileList');
-    renderList('dashFileList');
+    renderList('docsFileList', 'No project documents uploaded yet. Upload files or folders to share with your team!');
+    renderList('dashFileList', 'No shared files yet.');
   } catch (err) {
     console.error('Error loading documents:', err);
   }
@@ -2009,11 +2311,15 @@ async function loadDocuments() {
 
 async function handleRealUpload(input, isFolder, targetId) {
   if (!input.files || !input.files.length) return;
+  if (!currentProjectId) {
+    return toast('Please select or create an active project first.');
+  }
+  const uName = currentMember ? currentMember.name : (currentTeam ? currentTeam.name : 'Team Member');
   const formData = new FormData();
   for (let i = 0; i < input.files.length; i++) {
     formData.append('files', input.files[i]);
   }
-  formData.append('userName', currentMember.name);
+  formData.append('userName', uName);
   formData.append('isFolder', isFolder ? 'true' : 'false');
   if (isFolder && input.files[0].webkitRelativePath) {
     formData.append('folderName', input.files[0].webkitRelativePath.split('/')[0] + '/');
@@ -2036,6 +2342,7 @@ async function handleRealUpload(input, isFolder, targetId) {
 }
 
 async function shareDocument(id, filename) {
+  if (!currentProjectId) return toast('No active project selected.');
   try {
     await fetch(`/api/projects/${currentProjectId}/documents/share`, {
       method: 'POST',
@@ -2056,45 +2363,72 @@ function copyDocLink(filename) {
 
 // 12. Collaboration Requests
 async function loadRequests() {
+  const sentBox = document.getElementById('sentRequests');
+  const dashSentBox = document.getElementById('dashSentRequests');
+  const inbox = document.getElementById('requestsInbox');
+
+  const renderEmptyMsg = (el, text) => {
+    if (el) el.innerHTML = `<div style="padding:12px;text-align:center;color:var(--ink-light);font-size:12px;font-weight:700;">${text}</div>`;
+  };
+
+  if (!currentProjectId) {
+    renderEmptyMsg(sentBox, 'No sent requests yet.');
+    renderEmptyMsg(dashSentBox, 'No requests sent.');
+    renderEmptyMsg(inbox, 'No incoming requests.');
+    return;
+  }
+
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/requests`);
     const items = await res.json();
+    const myName = currentMember ? currentMember.name : (currentTeam ? currentTeam.name : '');
     
     // Sent requests
-    const sentBox = document.getElementById('sentRequests');
     if (sentBox) {
-      sentBox.innerHTML = items.filter(r => r.from_name === currentMember.name).map(r => `
-        <div class="approval">
-          <b>REQUESTED • ${escapeHtml(r.to_name)}</b><br>
-          <span class="small">${escapeHtml(r.item)} • ${escapeHtml(r.reason || '')} • Status: ${r.status.toUpperCase()}</span>
-        </div>
-      `).join('');
+      const mySent = myName ? items.filter(r => r.from_name === myName) : items;
+      if (!mySent.length) {
+        renderEmptyMsg(sentBox, 'No sent requests yet.');
+      } else {
+        sentBox.innerHTML = mySent.map(r => `
+          <div class="approval">
+            <b>REQUESTED • ${escapeHtml(r.to_name)}</b><br>
+            <span class="small">${escapeHtml(r.item)} • ${escapeHtml(r.reason || '')} • Status: ${r.status.toUpperCase()}</span>
+          </div>
+        `).join('');
+      }
     }
-    const dashSentBox = document.getElementById('dashSentRequests');
     if (dashSentBox) {
-      dashSentBox.innerHTML = items.slice(0, 2).map(r => `
-        <div class="approval">
-          <b>REQUESTED • ${escapeHtml(r.to_name)}</b><br>
-          <span class="small">${escapeHtml(r.item)} • ${escapeHtml(r.reason || '')}</span>
-        </div>
-      `).join('');
+      if (!items.length) {
+        renderEmptyMsg(dashSentBox, 'No requests sent.');
+      } else {
+        dashSentBox.innerHTML = items.slice(0, 2).map(r => `
+          <div class="approval">
+            <b>REQUESTED • ${escapeHtml(r.to_name)}</b><br>
+            <span class="small">${escapeHtml(r.item)} • ${escapeHtml(r.reason || '')}</span>
+          </div>
+        `).join('');
+      }
     }
 
     // Inbox requests
-    const inbox = document.getElementById('requestsInbox');
     if (inbox) {
-      inbox.innerHTML = items.filter(r => r.to_name === currentMember.name || r.to_name === 'Team' || r.to_name === 'Lead').map(r => `
-        <div class="task ${r.status === 'pending' ? 'pending' : (r.status === 'approved' ? 'done' : 'blocked')}">
-          <div>
-            <b>${escapeHtml(r.from_name)} requests ${escapeHtml(r.item)}</b><br>
-            <span class="small">Reason: ${escapeHtml(r.reason || 'Project integration')}</span>
+      const myInbox = items.filter(r => !myName || r.to_name === myName || r.to_name === 'Team' || r.to_name === 'Lead');
+      if (!myInbox.length) {
+        renderEmptyMsg(inbox, 'No incoming requests waiting.');
+      } else {
+        inbox.innerHTML = myInbox.map(r => `
+          <div class="task ${r.status === 'pending' ? 'pending' : (r.status === 'approved' ? 'done' : 'blocked')}">
+            <div>
+              <b>${escapeHtml(r.from_name)} requests ${escapeHtml(r.item)}</b><br>
+              <span class="small">Reason: ${escapeHtml(r.reason || 'Project integration')}</span>
+            </div>
+            ${r.status === 'pending' 
+              ? `<button class="btn teal" onclick="approveWorkRequest(${r.id}, '${escapeHtml(r.item)}', '${escapeHtml(r.from_name)}')">APPROVE & SHARE</button>`
+              : `<span class="status">${r.status.toUpperCase()}</span>`
+            }
           </div>
-          ${r.status === 'pending' 
-            ? `<button class="btn teal" onclick="approveWorkRequest(${r.id}, '${escapeHtml(r.item)}', '${escapeHtml(r.from_name)}')">APPROVE & SHARE</button>`
-            : `<span class="status">${r.status.toUpperCase()}</span>`
-          }
-        </div>
-      `).join('');
+        `).join('');
+      }
     }
   } catch (err) {
     console.error('Error loading requests:', err);
@@ -2102,17 +2436,20 @@ async function loadRequests() {
 }
 
 async function sendWorkRequest() {
-  const person = document.getElementById('requestPerson').value;
-  const item = document.getElementById('requestItem').value.trim();
-  const reason = document.getElementById('requestReason').value.trim();
+  if (!currentProjectId) return toast('Please select or create an active project first.');
+  const person = document.getElementById('requestPerson')?.value;
+  const item = document.getElementById('requestItem')?.value.trim();
+  const reason = document.getElementById('requestReason')?.value.trim();
+  if (!person) return toast('No team member available to request from.');
   if (!item) return toast('Enter the work you need first');
 
+  const myName = currentMember ? currentMember.name : (currentTeam ? currentTeam.name : 'Team Member');
   const toName = person.split(' — ')[0];
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/requests`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fromName: currentMember.name, toName, item, reason, type: 'work' })
+      body: JSON.stringify({ fromName: myName, toName, item, reason, type: 'work' })
     });
     const data = await res.json();
     toast(`Work request sent to ${toName} ✓`);
@@ -2123,17 +2460,20 @@ async function sendWorkRequest() {
 }
 
 async function sendDashboardWorkRequest() {
-  const person = document.getElementById('dashRequestPerson').value;
-  const item = document.getElementById('dashRequestItem').value.trim();
-  const reason = document.getElementById('dashRequestReason').value.trim();
+  if (!currentProjectId) return toast('Please select or create an active project first.');
+  const person = document.getElementById('dashRequestPerson')?.value;
+  const item = document.getElementById('dashRequestItem')?.value.trim();
+  const reason = document.getElementById('dashRequestReason')?.value.trim();
+  if (!person) return toast('No team member available to request from.');
   if (!item) return toast('Enter the completed work you need first');
 
+  const myName = currentMember ? currentMember.name : (currentTeam ? currentTeam.name : 'Team Member');
   const toName = person.split(' — ')[0];
   try {
     await fetch(`/api/projects/${currentProjectId}/requests`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fromName: currentMember.name, toName, item, reason, type: 'work' })
+      body: JSON.stringify({ fromName: myName, toName, item, reason, type: 'work' })
     });
     toast(`Work request sent to ${toName} ✓`);
     notifyTeam(`${toName} received a completed-work request`);
@@ -2144,6 +2484,7 @@ async function sendDashboardWorkRequest() {
 }
 
 async function approveWorkRequest(id, item, fromName) {
+  if (!currentProjectId) return toast('No active project selected.');
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/requests/${id}/approve`, { method: 'POST' });
     const data = await res.json();
@@ -2174,11 +2515,35 @@ function quickChatPrompt(text) {
 }
 
 async function loadChat() {
+  const box = document.getElementById('messages');
+  if (!box) return;
+  if (!currentProjectId) {
+    box.innerHTML = `
+      <div class="msg ai">
+        <div class="msg-meta">
+          <span>✦ AI COPILOT</span>
+          <span>Now • SYSTEM</span>
+        </div>
+        <div class="msg-text">Welcome to Thryve! Select or create a project to start collaborating with your team and AI Copilot.</div>
+      </div>
+    `;
+    return;
+  }
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/chat?mode=${chatActiveMode}`);
     const messages = await res.json();
-    const box = document.getElementById('messages');
-    if (!box) return;
+    if (!messages.length) {
+      box.innerHTML = `
+        <div class="msg ai">
+          <div class="msg-meta">
+            <span>✦ AI COPILOT</span>
+            <span>Now • SYSTEM</span>
+          </div>
+          <div class="msg-text">No chat messages yet in this project. Ask questions or collaborate with your teammates here!</div>
+        </div>
+      `;
+      return;
+    }
     box.innerHTML = messages.map(m => {
       const isAi = m.sender_type === 'ai';
       const isMe = m.sender_name && currentMember && m.sender_name.toLowerCase() === currentMember.name.toLowerCase();
@@ -2212,6 +2577,10 @@ function setChatMode(mode, el) {
 async function sendChat() {
   const input = document.getElementById('chat');
   if (!input || !input.value.trim()) return;
+  if (!currentProjectId) {
+    return toast('Please select or create a project first before sending messages.');
+  }
+  const myName = currentMember ? currentMember.name : (currentTeam ? currentTeam.name : 'Team Member');
   const message = input.value.trim();
   input.value = '';
 
@@ -2221,7 +2590,7 @@ async function sendChat() {
   m.className = 'msg me';
   m.innerHTML = `
     <div class="msg-meta">
-      <span>${escapeHtml(currentMember.name)}</span>
+      <span>${escapeHtml(myName)}</span>
       <span>Now • ${chatActiveMode.toUpperCase()}</span>
     </div>
     <div class="msg-text">${escapeHtml(message)}</div>
@@ -2234,7 +2603,7 @@ async function sendChat() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        senderName: currentMember.name,
+        senderName: myName,
         message,
         mode: chatActiveMode
       })
@@ -2246,7 +2615,7 @@ async function sendChat() {
         a.className = 'msg ai';
         a.innerHTML = `
           <div class="msg-meta">
-            <span>✦ AI COPILOT (StudySync AI)</span>
+            <span>✦ AI COPILOT (Thryve AI)</span>
             <span>Now • AI</span>
           </div>
           <div class="msg-text">${escapeHtml(data.aiMessage.message.replace(/^✦\s*Thryve:\s*/i, ''))}</div>
@@ -2262,19 +2631,26 @@ async function sendChat() {
 
 // 14. Analysis Screen
 function loadAnalysis() {
+  if (!currentProjectId) {
+    const p = document.getElementById('analysisTeamProg');
+    if (p) p.textContent = '0%';
+    return;
+  }
   fetch(`/api/projects/${currentProjectId}/sprint`)
     .then(r => r.json())
     .then(data => {
       const p = document.getElementById('analysisTeamProg');
-      if (p) p.textContent = `${data.summary.progressPct}%`;
-    });
+      if (p) p.textContent = `${data.summary ? data.summary.progressPct : 0}%`;
+    })
+    .catch(err => console.error('Error loading analysis:', err));
 }
 
 // 15. Reports Engine
 async function renderReport(member) {
   selectedReportMember = member;
   try {
-    const res = await fetch(`/api/reports?member=${member}&projectId=${currentProjectId}`);
+    const projQuery = currentProjectId ? `&projectId=${currentProjectId}` : '';
+    const res = await fetch(`/api/reports?member=${member}${projQuery}`);
     const d = await res.json();
 
     const ids = {
@@ -2339,8 +2715,10 @@ function setReportType(type) {
   if (type === 'team') {
     selectReportMember('team', document.querySelector('#reportTabs button[data-member="team"]'));
   } else {
-    const current = selectedReportMember === 'team' ? 'Priya' : selectedReportMember;
-    selectReportMember(current, document.querySelector(`#reportTabs button[data-member="${current}"]`));
+    const firstMemberBtn = document.querySelector('#reportTabs button:not([data-member="team"])');
+    const firstMember = firstMemberBtn ? firstMemberBtn.getAttribute('data-member') : 'team';
+    const current = selectedReportMember === 'team' ? firstMember : selectedReportMember;
+    selectReportMember(current, document.querySelector(`#reportTabs button[data-member="${current}"]`) || firstMemberBtn);
   }
 }
 
@@ -2528,6 +2906,7 @@ async function submitEditRole(memberName) {
 
 // Initial Boot
 document.addEventListener('DOMContentLoaded', () => {
+  renderSetupMemberCards(4);
   updateMemberDisplay();
   loadProjects();
   loadApprovals();

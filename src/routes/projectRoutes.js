@@ -13,6 +13,7 @@ router.post('/', projectController.createProject);
 
 // Members
 router.get('/:id/members', projectController.getProjectMembers);
+router.post('/:id/members', projectController.addProjectMember);
 router.post('/:id/members/roles', projectController.updateMemberRoleAndWork);
 
 // Sprints & Tasks

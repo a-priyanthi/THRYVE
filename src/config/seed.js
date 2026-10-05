@@ -22,8 +22,8 @@ function resetDatabase() {
  * @param {boolean} force - If true, bypasses existing team checks
  */
 function seedDatabase(force = false) {
-  if (!force && process.env.DEMO_SEED === 'false') {
-    // Explicitly opted out of demo data
+  if (!force && process.env.DEMO_SEED !== 'true') {
+    // Leave database 100% clean for real first-time usage
     return;
   }
 

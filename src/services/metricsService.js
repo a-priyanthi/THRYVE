@@ -55,11 +55,17 @@ function getSprintSummary(projectId, sprintNum = 1) {
     members[t.member_name].totalActHours += (t.act_hours || 0);
   });
 
-  const meta = db.prepare('SELECT * FROM sprint_meta WHERE project_id = ? AND sprint_num = ?').get(projectId, sprintNum) || {
-    status: 'published',
-    goal: 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.',
-    total_est_hours: 57
-  };
+  let meta = null;
+  if (projectId && projectId !== 'null') {
+    meta = db.prepare('SELECT * FROM sprint_meta WHERE project_id = ? AND sprint_num = ?').get(projectId, sprintNum);
+  }
+  if (!meta) {
+    meta = {
+      status: 'draft',
+      goal: 'Define project goals and tasks to begin tracking sprint progress.',
+      total_est_hours: totalEstHours || 0
+    };
+  }
 
   return {
     sprintNum,

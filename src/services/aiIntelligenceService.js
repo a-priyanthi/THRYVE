@@ -10,13 +10,18 @@ function analyzeChatAndRespond(projectId, message, mode = 'all') {
   let aiReply = null;
 
   if (lower.includes('api') || lower.includes('contract') || lower.includes('block') || lower.includes('stuck')) {
-    aiReply = '✦ Thryve: I analyzed the recent discussion. Meena and Arun both have questions on the API contract. I suggest scheduling a 15-minute peer teaching session before the afternoon checkpoint.';
+    aiReply = '✦ Thryve: I analyzed your message. If your team is experiencing blockers or integration questions, I suggest scheduling a short peer-sync or creating a collaboration request in the Documents tab.';
   } else if (lower.includes('sprint') || lower.includes('deadline') || lower.includes('status')) {
-    const tasks = db.prepare('SELECT status, title FROM tasks WHERE project_id = ?').all(projectId);
+    const tasks = (projectId && projectId !== 'null') ? db.prepare('SELECT status, title FROM tasks WHERE project_id = ?').all(projectId) : [];
     const done = tasks.filter(t => t.status === 'done' || t.status === 'late').length;
-    aiReply = `✦ Thryve: Current Sprint 01 has ${done} of ${tasks.length} items completed. 1 task is late (Deployment verification) and Meena is at risk on analytics integration.`;
+    const late = tasks.filter(t => t.status === 'late').length;
+    if (!tasks.length) {
+      aiReply = '✦ Thryve: No sprint tasks recorded for this project yet. Go to Projects / Setup to define tasks, or ask me for planning advice!';
+    } else {
+      aiReply = `✦ Thryve: Current Sprint has ${done} of ${tasks.length} items completed${late > 0 ? `, with ${late} task(s) marked late.` : '. All active items are moving on schedule!'}`;
+    }
   } else if (lower.includes('scaffold') || lower.includes('code') || lower.includes('placeholder')) {
-    aiReply = '✦ Thryve: I can prepare a safe FastAPI placeholder for the discussion-analysis endpoint using authorized API_Spec_v2.pdf and sprint tasks. Click "Generate Placeholder Code" to review.';
+    aiReply = '✦ Thryve: I can prepare a safe starter placeholder code scaffold based on your project requirements and sprint tasks. Click "Generate Placeholder Code" to review.';
   } else if (mode === 'ai' || lower.includes('help') || lower.includes('thryve')) {
     aiReply = '✦ Thryve: I am monitoring authorized project chat, contribution history, and shared documents. Feel free to request work from teammates, toggle sprint items, or generate reports.';
   }
@@ -47,7 +52,7 @@ function recommendRoles(members = []) {
       role = 'QA / DevOps';
       why = 'Testing, documentation, and continuous integration skills.';
     }
-    return { name: m.name, role, why };
+    return { name: m.name || 'Member', role, why };
   });
 }
 
@@ -55,29 +60,29 @@ function recommendRoles(members = []) {
  * AI Code Scaffold Generator:
  * Creates secure interface scaffolds grounded in active project documentation.
  */
-function getPlaceholderScaffold() {
+function getPlaceholderScaffold(projectId) {
+  const project = (projectId && projectId !== 'null') ? db.prepare('SELECT name, description FROM projects WHERE id = ?').get(projectId) : null;
+  const projName = project ? project.name : 'Thryve';
   return {
-    title: 'FastAPI Discussion Analyzer Scaffold',
-    contextUsed: 'API_Spec_v2.pdf + project chat + Sprint 01',
-    code: `@from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+    title: `${projName} Module Scaffold`,
+    contextUsed: 'Project requirements + team sprint tasks',
+    code: `"""
+Thryve Modular Architecture — Auto-generated Component Scaffold
+Project: ${projName}
+"""
+from typing import Dict, Any
 
-app = FastAPI(title="Thryve Knowledge Analyzer")
+class ModuleController:
+    def __init__(self, project_name: str = "${projName}"):
+        self.project_name = project_name
+        self.status = "initialized"
 
-class DiscussionPayload(BaseModel):
-    project_id: int
-    chat_logs: list[str]
-    shared_doc_ids: list[int]
-
-@app.post("/analyze")
-def analyze_collaboration(payload: DiscussionPayload):
-    # TODO: Connect authorized contribution model (Meena's module)
-    # TODO: Extract repeated queries and knowledge gaps
-    return {
-        "status": "scaffold_approved",
-        "collective_intelligence": 0.78,
-        "recommended_activity": "15-minute peer teaching"
-    }`
+    def execute_workflow(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        # TODO: Implement team business logic here
+        return {
+            "status": "scaffold_approved",
+            "message": "Scaffold executed cleanly"
+        }`
   };
 }
 
@@ -86,15 +91,19 @@ def analyze_collaboration(payload: DiscussionPayload):
  * Proposes schedule interventions when bottlenecks or peer dependencies are detected.
  */
 function getSprintSuggestion(projectId) {
+  const project = (projectId && projectId !== 'null') ? db.prepare('SELECT name, description FROM projects WHERE id = ?').get(projectId) : null;
+  const meta = (projectId && projectId !== 'null') ? db.prepare('SELECT goal, total_est_hours FROM sprint_meta WHERE project_id = ?').get(projectId) : null;
+  const pName = project ? project.name : 'Active Project';
+  const goal = meta ? meta.goal : `Achieve key sprint deliverables for ${pName}`;
+  const totalHours = meta ? meta.total_est_hours : 0;
   return {
-    proposal: 'Sprint 01 optimization: Add 15-minute peer teaching on Day 5 between Arun & Meena, and realign loading/error state delivery.',
-    sprintGoal: 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.',
-    totalHours: 57,
+    proposal: `Sprint optimization for ${pName}: Review workload distribution and schedule a 15-minute peer checkpoint.`,
+    sprintGoal: goal,
+    totalHours: totalHours,
     actions: [
-      { type: 'ADD', title: 'Peer teaching: Frontend → Supabase API Contract', member: 'Arun & Meena', estimate: '0.5 hr', deadline: 'Day 5', doneWhen: 'API endpoints and response formats are verified together' },
-      { type: 'ADJUST', title: 'Connect analytics to dashboard', member: 'Meena', estimate: '1.5 hrs', deadline: 'Day 6', doneWhen: 'Analytics metrics load with real Supabase mock data' }
+      { type: 'CHECKPOINT', title: 'Mid-sprint integration check', member: 'Team', estimate: '0.5 hr', deadline: 'Mid-Sprint', doneWhen: 'All team members synchronize interfaces and verify deliverables' }
     ],
-    reason: 'Repeated API questions detected in project chat without resolution.'
+    reason: 'Proactive peer-learning and collaboration rhythm recommended.'
   };
 }
 

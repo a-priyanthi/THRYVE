@@ -100,7 +100,7 @@ function replanSprint(req, res, next) {
     // Insert peer learning task to resolve blocker
     db.prepare(`
       INSERT INTO tasks (project_id, sprint_num, title, member_name, member_role, start_time, deadline_time, deadline_day, done_when, status, is_before_deadline, est_hours, act_hours, notes)
-      VALUES (?, 1, 'Peer teaching: Frontend → Supabase API contract', 'Arun & Meena', 'Collaboration', '11:30', '12:00', 'Day 5', 'Team validates API request/response format together', 'pending', 0, 0.5, 0.5, 'Generated from leader replan feedback')
+      VALUES (?, 1, 'Peer Learning Session: Integration & Interface Review', 'Team Collaboration', 'Team Sync', '14:00', '14:30', 'Sprint Checkpoint', 'Teammates review blockers and confirm integration requirements together', 'pending', 0, 0.5, 0.5, 'Generated from leader replan feedback')
     `).run(projectId);
 
     db.prepare(`
