@@ -71,6 +71,8 @@ function initDatabase() {
       member_role TEXT,
       start_time TEXT,
       deadline_time TEXT,
+      deadline_day TEXT,
+      done_when TEXT,
       completed_at TEXT,
       status TEXT DEFAULT 'pending',
       is_before_deadline INTEGER DEFAULT 0,
@@ -120,10 +122,18 @@ function initDatabase() {
       project_id INTEGER,
       sprint_num INTEGER DEFAULT 1,
       status TEXT DEFAULT 'published',
+      goal TEXT,
+      total_est_hours REAL DEFAULT 57,
       published_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       replan_reason TEXT
     );
   `);
+
+  // Safe schema migrations for existing databases
+  try { db.exec("ALTER TABLE tasks ADD COLUMN done_when TEXT;"); } catch (e) {}
+  try { db.exec("ALTER TABLE tasks ADD COLUMN deadline_day TEXT;"); } catch (e) {}
+  try { db.exec("ALTER TABLE sprint_meta ADD COLUMN goal TEXT;"); } catch (e) {}
+  try { db.exec("ALTER TABLE sprint_meta ADD COLUMN total_est_hours REAL DEFAULT 57;"); } catch (e) {}
 }
 
 module.exports = {

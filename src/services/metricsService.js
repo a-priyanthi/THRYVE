@@ -35,6 +35,9 @@ function getSprintSummary(projectId, sprintNum = 1) {
   const pending = tasks.filter(t => t.status === 'pending' || t.status === 'blocked').length;
   const progressPct = total > 0 ? Math.round((done / total) * 100) : 0;
 
+  const totalEstHours = tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
+  const totalActHours = tasks.reduce((sum, t) => sum + (t.act_hours || 0), 0);
+
   // Group tasks by member
   const members = {};
   tasks.forEach(t => {
@@ -42,13 +45,21 @@ function getSprintSummary(projectId, sprintNum = 1) {
       members[t.member_name] = {
         name: t.member_name,
         role: t.member_role,
+        totalEstHours: 0,
+        totalActHours: 0,
         tasks: []
       };
     }
     members[t.member_name].tasks.push(t);
+    members[t.member_name].totalEstHours += (t.est_hours || 0);
+    members[t.member_name].totalActHours += (t.act_hours || 0);
   });
 
-  const meta = db.prepare('SELECT * FROM sprint_meta WHERE project_id = ? AND sprint_num = ?').get(projectId, sprintNum) || { status: 'published' };
+  const meta = db.prepare('SELECT * FROM sprint_meta WHERE project_id = ? AND sprint_num = ?').get(projectId, sprintNum) || {
+    status: 'published',
+    goal: 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.',
+    total_est_hours: 57
+  };
 
   return {
     sprintNum,
@@ -59,7 +70,9 @@ function getSprintSummary(projectId, sprintNum = 1) {
       onTime,
       late,
       pending,
-      progressPct
+      progressPct,
+      totalEstHours,
+      totalActHours
     },
     members: Object.values(members),
     allTasks: tasks

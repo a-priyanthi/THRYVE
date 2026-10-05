@@ -87,10 +87,12 @@ def analyze_collaboration(payload: DiscussionPayload):
  */
 function getSprintSuggestion(projectId) {
   return {
-    proposal: 'Add 15-minute peer teaching between Arun & Meena, and postpone Dashboard analytics integration by 30 minutes.',
+    proposal: 'Sprint 01 optimization: Add 15-minute peer teaching on Day 5 between Arun & Meena, and realign loading/error state delivery.',
+    sprintGoal: 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.',
+    totalHours: 57,
     actions: [
-      { type: 'ADD', title: '15-min peer teaching: Arun → Meena' },
-      { type: 'MOVE', title: 'Dashboard integration → after API review' }
+      { type: 'ADD', title: 'Peer teaching: Frontend → Supabase API Contract', member: 'Arun & Meena', estimate: '0.5 hr', deadline: 'Day 5', doneWhen: 'API endpoints and response formats are verified together' },
+      { type: 'ADJUST', title: 'Connect analytics to dashboard', member: 'Meena', estimate: '1.5 hrs', deadline: 'Day 6', doneWhen: 'Analytics metrics load with real Supabase mock data' }
     ],
     reason: 'Repeated API questions detected in project chat without resolution.'
   };

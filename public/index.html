@@ -50,6 +50,177 @@ html,body{max-width:100%;overflow-x:hidden}
 
 .sprint-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.member-sprint{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow-sm);padding:18px}.member-sprint:nth-child(2n){background:var(--paper2)}.member-sprint:nth-child(3n){background:#f6d9ec}.member-sprint-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:12px}.member-sprint-head h3{font-family:Georgia,serif;font-size:28px;margin:0 0 4px}.checklist{display:grid;gap:9px}.check-item{border:2px solid var(--ink);background:#fffdf2;padding:10px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start}.check-item.done{background:#dff0bb}.check-item.late{background:#ffd1d1}.check-item input{width:20px;height:20px;margin:2px 0;box-shadow:none}.check-item .check-title{font-weight:1000}.check-item .check-meta{font-size:10px;font-weight:800;margin-top:3px}.deadline-badge{border:2px solid var(--ink);padding:5px 7px;font-size:9px;font-weight:1000;white-space:nowrap;background:var(--yellow)}.deadline-badge.ontime{background:var(--green)}.deadline-badge.late{background:#ffb8b8}.sprint-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.sprint-summary .metric{min-width:0}.project-sprint{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);padding:20px;margin-bottom:18px}.project-sprint h3{font-family:Georgia,serif;font-size:30px;margin:0 0 8px}.checklist-progress{height:18px;border:3px solid var(--ink);background:#fff;margin-top:8px;overflow:hidden}.checklist-progress span{display:block;height:100%;background:var(--teal2);width:0}.deadline-note{border:2px solid var(--ink);padding:10px;background:var(--blue);color:#fff;font-weight:900;margin-top:10px}.sprint-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.sprint-tabs button{border:2px solid var(--ink);background:var(--paper2);padding:8px 12px;font-weight:1000;box-shadow:3px 3px 0 var(--ink)}.sprint-tabs button.active{background:var(--yellow)}
 @media(max-width:900px){.sprint-board{grid-template-columns:1fr}.sprint-summary{grid-template-columns:repeat(2,1fr)}}
+
+/* --- BIG SPACIOUS CHAT AREA (USER REQUESTED) --- */
+.chatbox {
+  min-height: 640px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 24px !important;
+  background: var(--paper) !important;
+  border: 3px solid var(--ink) !important;
+  box-shadow: var(--shadow) !important;
+  margin-top: 18px !important;
+  position: relative;
+}
+.chatbox.expanded {
+  position: fixed !important;
+  inset: 20px !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  min-height: calc(100vh - 40px) !important;
+  max-height: calc(100vh - 40px) !important;
+  box-shadow: 14px 14px 0 var(--ink) !important;
+}
+.chat-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.messages {
+  flex: 1 1 auto !important;
+  min-height: 420px !important;
+  max-height: 560px !important;
+  overflow-y: auto !important;
+  border: 3px solid var(--ink) !important;
+  padding: 18px 20px !important;
+  background: #fffdf5 !important;
+  box-shadow: inset 3px 3px 0 rgba(0,0,0,0.06) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  scroll-behavior: smooth;
+}
+.chatbox.expanded .messages {
+  min-height: calc(100vh - 320px) !important;
+  max-height: calc(100vh - 320px) !important;
+}
+.msg {
+  padding: 14px 18px !important;
+  border: 2px solid var(--ink) !important;
+  max-width: 86% !important;
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+  box-shadow: 3px 3px 0 var(--ink) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+.msg .msg-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1.5px dashed rgba(23,23,23,0.25);
+}
+.msg.ai {
+  background: #def7f2 !important;
+  border-left: 7px solid var(--teal) !important;
+  align-self: flex-start !important;
+}
+.msg.me {
+  background: var(--pink2) !important;
+  border-right: 7px solid var(--pink) !important;
+  margin-left: auto !important;
+  align-self: flex-end !important;
+}
+.msg.team {
+  background: var(--yellow) !important;
+  border-left: 7px solid var(--orange) !important;
+  align-self: flex-start !important;
+}
+.chat-quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.chat-quick-actions .chip {
+  cursor: pointer;
+  border: 2px solid var(--ink);
+  background: var(--paper2);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 900;
+  transition: transform 0.1s;
+}
+.chat-quick-actions .chip:hover {
+  background: var(--yellow);
+  transform: translate(-1px, -1px);
+}
+.chatinput {
+  display: flex !important;
+  gap: 10px !important;
+  margin-top: 10px !important;
+}
+.chatinput input {
+  flex: 1 !important;
+  padding: 14px 16px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  border: 3px solid var(--ink) !important;
+  background: #fff !important;
+  box-shadow: 3px 3px 0 var(--ink) !important;
+}
+.chatinput .btn {
+  padding: 14px 28px !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
+}
+
+/* --- SPRINT 01 GOAL & DETAILED TASKS --- */
+.sprint-goal-card {
+  border: 3px solid var(--ink);
+  background: var(--yellow);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  margin-bottom: 20px;
+}
+.sprint-goal-card h3 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  margin: 6px 0 12px;
+  line-height: 1.35;
+}
+.done-when-tag {
+  display: block;
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-left: 4px solid var(--teal);
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #171717;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.sprint-member-table-wrap {
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  margin-bottom: 22px;
+}
+.sprint-member-table-wrap h3 {
+  font-family: Georgia, serif;
+  font-size: 26px;
+  margin: 4px 0 2px;
+}
+.sprint-member-table-wrap .table {
+  margin-top: 14px;
+}
+.sprint-member-table-wrap .table th {
+  background: var(--paper2);
+  border-bottom: 3px solid var(--ink);
+}
 </style>
 
 <style>
@@ -569,18 +740,29 @@ html,body{max-width:100%;overflow-x:hidden}
         <button class="btn pink" onclick="openModal('placeholder')">GENERATE PLACEHOLDER CODE</button>
       </div>
 
-      <div class="panel chatbox">
-        <h3>TEAM + AI CHAT</h3>
+      <div class="panel chatbox" id="teamAiChatPanel">
+        <div class="chat-panel-head">
+          <div>
+            <div class="eyebrow" style="color:var(--teal)">COLLABORATIVE INTELLIGENCE & DISCUSSIONS</div>
+            <h3 style="margin:2px 0 0">TEAM + AI CHAT</h3>
+          </div>
+          <button class="pill" id="expandChatBtn" onclick="toggleExpandChat()" title="Expand or shrink chat window">⛶ EXPAND VIEW</button>
+        </div>
         <div class="tabs">
           <button class="active" onclick="setChatMode('all',this)">TEAM + AI</button>
           <button onclick="setChatMode('ai',this)">ASK AI</button>
           <button onclick="setChatMode('team',this)">TEAM ONLY</button>
         </div>
         <div class="messages" id="messages">
-          <!-- Loaded from /api/projects/1/chat -->
+          <!-- Loaded dynamically from /api/projects/1/chat -->
+        </div>
+        <div class="chat-quick-actions">
+          <span class="chip" onclick="quickChatPrompt('Can you suggest a peer-learning activity for our sprint blockers?')">✦ Suggest peer learning</span>
+          <span class="chip" onclick="quickChatPrompt('What is our current sprint deadline status and risk?')">✦ Check sprint risks</span>
+          <span class="chip" onclick="quickChatPrompt('Can you prepare a FastAPI placeholder code scaffold for analyzer.py?')">✦ Generate scaffold</span>
         </div>
         <div class="chatinput">
-          <input id="chat" placeholder="Message your team or ask AI..." onkeydown="if(event.key==='Enter')sendChat()">
+          <input id="chat" placeholder="Message your team or ask AI for code, sprint help, or role advice..." onkeydown="if(event.key==='Enter')sendChat()">
           <button class="btn" onclick="sendChat()">SEND</button>
         </div>
         <div class="notice blue">Chat signals can be used by AI to prepare a <b>detailed sprint suggestion</b>. It will only change the sprint after the user approves the notification.</div>
@@ -749,24 +931,40 @@ html,body{max-width:100%;overflow-x:hidden}
   </div>
   <div class="notice blue"><b>Approval gate:</b> AI drafts the complete sprint from the project description, member profiles, skills, authorized chat and approved documents. The team lead publishes it.</div>
   
+  <div class="sprint-goal-card" style="margin-top:16px">
+    <div class="eyebrow" style="color:var(--ink)">SPRINT 01 — DETAILED TASKS BY MEMBER</div>
+    <h3 id="sprintGoalText">Sprint goal: Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.</h3>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px">
+      <span class="pill" style="background:#171717;color:#fff;border-color:#171717"><b id="sprintTotalHoursBadge">TEAM ESTIMATE: 57 HOURS</b></span>
+      <span class="chip" style="background:#fff"><b>Priya:</b> 17 hrs (Reports, integration, QA, demo)</span>
+      <span class="chip" style="background:#fff"><b>Arun:</b> 14 hrs (Backend, Supabase, authentication)</span>
+      <span class="chip" style="background:#fff"><b>Meena:</b> 13 hrs (Frontend, workspace, task checklist)</span>
+      <span class="chip" style="background:#fff"><b>Vishal:</b> 13 hrs (AI features, documents)</span>
+    </div>
+  </div>
+
   <div class="sprint-summary">
     <div class="metric"><span>SPRINT PROGRESS</span><strong id="sprintProgress">67%</strong></div>
-    <div class="metric"><span>COMPLETED</span><strong id="sprintDone">8 / 12</strong></div>
+    <div class="metric"><span>COMPLETED</span><strong id="sprintDone">8 / 17</strong></div>
     <div class="metric"><span>BEFORE DEADLINE</span><strong id="sprintOnTime">7</strong></div>
     <div class="metric"><span>LATE / AT RISK</span><strong id="sprintLate">1</strong></div>
   </div>
 
-  <div class="project-sprint">
-    <h3>PROJECT TIMELINE</h3>
-    <div class="three-col">
-      <div class="kpi"><b>09:00</b><br><span class="small">Sprint starts • authentication + planning</span></div>
-      <div class="kpi"><b>13:00</b><br><span class="small">Integration checkpoint • frontend + API</span></div>
-      <div class="kpi"><b>16:00</b><br><span class="small">Final sprint checkpoint • testing + analysis</span></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 12px;flex-wrap:wrap;gap:10px">
+    <div class="tabs" style="margin:0">
+      <button id="sprintTableViewBtn" class="active" onclick="switchSprintView('table',this)">DETAILED TASKS TABLE (MARKDOWN FORMAT)</button>
+      <button id="sprintCardsViewBtn" onclick="switchSprintView('cards',this)">CHECKLIST CARDS</button>
     </div>
-    <div class="deadline-note">DEADLINE RULE: a task is marked <b>BEFORE DEADLINE</b> only when its completion time is on or before the assigned deadline.</div>
+    <span class="small" style="font-weight:900">17 TASKS • 4 TEAM MEMBERS • 57 TOTAL HOURS</span>
   </div>
 
-  <div class="sprint-board" id="sprintBoard">
+  <!-- Table View: Exact match to user prompt format -->
+  <div id="sprintDetailedTables">
+    <!-- Populated dynamically from /api/projects/1/sprint -->
+  </div>
+
+  <!-- Cards View: Board layout -->
+  <div class="sprint-board" id="sprintBoard" style="display:none">
     <!-- Populated dynamically from /api/projects/1/sprint -->
   </div>
 
@@ -1410,13 +1608,27 @@ async function submitManualWork() {
 }
 
 // 10. Sprint & Checklist Loading & Mutations
+// 10. Sprint & Checklist Loading & Mutations
+let activeSprintView = 'table';
+function switchSprintView(view, btn) {
+  activeSprintView = view;
+  const tblBtn = document.getElementById('sprintTableViewBtn');
+  const crdBtn = document.getElementById('sprintCardsViewBtn');
+  if (tblBtn) tblBtn.classList.toggle('active', view === 'table');
+  if (crdBtn) crdBtn.classList.toggle('active', view === 'cards');
+  const tbl = document.getElementById('sprintDetailedTables');
+  const brd = document.getElementById('sprintBoard');
+  if (tbl) tbl.style.display = view === 'table' ? 'block' : 'none';
+  if (brd) brd.style.display = view === 'cards' ? 'grid' : 'none';
+}
+
 async function loadSprint() {
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/sprint`);
     const data = await res.json();
     
     // Summary
-    const { total, done, onTime, late, progressPct } = data.summary;
+    const { total, done, onTime, late, progressPct, totalEstHours } = data.summary;
     const progEl = document.getElementById('sprintProgress');
     if (progEl) progEl.textContent = `${progressPct}%`;
     const doneEl = document.getElementById('sprintDone');
@@ -1426,6 +1638,16 @@ async function loadSprint() {
     const lateEl = document.getElementById('sprintLate');
     if (lateEl) lateEl.textContent = String(late);
 
+    // Goal and estimate badge
+    const goalEl = document.getElementById('sprintGoalText');
+    if (goalEl && data.meta && data.meta.goal) {
+      goalEl.textContent = data.meta.goal;
+    }
+    const hrsBadge = document.getElementById('sprintTotalHoursBadge');
+    if (hrsBadge) {
+      hrsBadge.textContent = `TEAM ESTIMATE: ${totalEstHours || (data.meta ? data.meta.total_est_hours : 57)} HOURS`;
+    }
+
     // Dashboard widgets
     const dTeamProg = document.getElementById('dashTeamProg');
     if (dTeamProg) dTeamProg.textContent = `${progressPct}%`;
@@ -1434,21 +1656,92 @@ async function loadSprint() {
     const dBar = document.getElementById('dashProgBar');
     if (dBar) dBar.style.width = `${progressPct}%`;
     const dNotice = document.getElementById('dashChecklistNotice');
-    if (dNotice) dNotice.textContent = `Project sprint status: ${done} / ${total} checklist items complete.`;
+    if (dNotice) dNotice.textContent = `Project sprint status: ${done} / ${total} tasks complete (${totalEstHours || 57} estimated hours total).`;
+    const sCheckPill = document.getElementById('sprintCheckPill');
+    if (sCheckPill) sCheckPill.textContent = `SPRINT 01 / ${total} ITEMS`;
 
-    // Render Sprint Board (screen: sprint)
+    // Render Detailed Tables View (Exact Markdown/Tabular Match)
+    const tablesContainer = document.getElementById('sprintDetailedTables');
+    if (tablesContainer && data.members) {
+      tablesContainer.innerHTML = data.members.map(m => {
+        const mDone = m.tasks.filter(t => t.status === 'done' || t.status === 'late').length;
+        const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
+        const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
+        return `
+          <div class="sprint-member-table-wrap">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:12px">
+              <div>
+                <span class="${tagClass}">${m.name.toUpperCase()}</span>
+                <h3 style="margin:4px 0 2px">${escapeHtml(m.name)} — ${escapeHtml(m.role || 'Contributor')}</h3>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                <span class="pill" style="background:var(--paper2)"><b>Total: ${mHours} hours</b></span>
+                <span class="deadline-badge ${mDone === m.tasks.length ? 'ontime' : ''}">${mDone} / ${m.tasks.length} COMPLETED</span>
+              </div>
+            </div>
+
+            <table class="table" style="margin-top:14px;width:100%">
+              <thead>
+                <tr>
+                  <th style="width:34%">Task</th>
+                  <th style="width:12%;text-align:right">Estimate</th>
+                  <th style="width:14%">Deadline</th>
+                  <th style="width:28%">Done when…</th>
+                  <th style="width:12%">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${m.tasks.map(t => {
+                  const isChecked = t.status === 'done' || t.status === 'late';
+                  const isLate = t.status === 'late';
+                  return `
+                    <tr style="${isChecked ? 'background:#f0fdf4' : ''}">
+                      <td>
+                        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
+                          <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})" style="margin-top:4px">
+                          <span style="${isChecked ? 'text-decoration:line-through;opacity:0.75' : 'font-weight:700'}">${escapeHtml(t.title)}</span>
+                        </label>
+                      </td>
+                      <td style="text-align:right;font-weight:900">
+                        ${t.est_hours ? t.est_hours + ' hr' + (t.est_hours > 1 ? 's' : '') : '—'}
+                      </td>
+                      <td>
+                        <span class="chip" style="background:#fff">${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')}</span>
+                      </td>
+                      <td>
+                        <div class="small" style="font-weight:700;color:#171717;line-height:1.4">
+                          ${escapeHtml(t.done_when || 'Task completed and verified')}
+                        </div>
+                      </td>
+                      <td>
+                        <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
+                          ${isChecked ? (isLate ? 'LATE' : 'DONE') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
+                        </span>
+                      </td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render Sprint Board Cards (screen: sprint)
     const board = document.getElementById('sprintBoard');
     if (board && data.members) {
       board.innerHTML = data.members.map(m => {
         const mDone = m.tasks.filter(t => t.status === 'done' || t.status === 'late').length;
         const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
+        const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
         return `
           <div class="member-sprint">
             <div class="member-sprint-head">
               <div>
                 <span class="${tagClass}">${m.name.toUpperCase()}</span>
                 <h3>${escapeHtml(m.name)}</h3>
-                <span class="small">${escapeHtml(m.role || 'Contributor')}</span>
+                <span class="small">${escapeHtml(m.role || 'Contributor')} • <b>${mHours} hrs</b></span>
               </div>
               <span class="deadline-badge ${mDone === m.tasks.length ? 'ontime' : ''}">${mDone} / ${m.tasks.length} DONE</span>
             </div>
@@ -1461,7 +1754,8 @@ async function loadSprint() {
                     <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
                     <span>
                       <span class="check-title">${escapeHtml(t.title)}</span>
-                      <span class="check-meta">${escapeHtml(t.start_time || '09:00')}–${escapeHtml(t.deadline_time || '11:00')} • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : (t.notes || 'in progress')}</span>
+                      <span class="check-meta">${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • Est: ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : (t.notes || 'in progress')}</span>
+                      ${t.done_when ? `<span class="done-when-tag"><b>Done when:</b> ${escapeHtml(t.done_when)}</span>` : ''}
                     </span>
                     <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
                       ${isChecked ? (isLate ? 'LATE' : 'ON TIME') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
@@ -1481,12 +1775,14 @@ async function loadSprint() {
       checkContainer.innerHTML = data.members.map((m, idx) => {
         const tagClass = m.name === 'Arun' ? 'tag teal' : (m.name === 'Meena' ? 'tag pink' : (m.name === 'Vishal' ? 'tag green' : 'tag'));
         const mOnTime = m.tasks.filter(t => t.is_before_deadline === 1).length;
+        const mHours = m.totalEstHours || m.tasks.reduce((sum, t) => sum + (t.est_hours || 0), 0);
         return `
           <div class="panel sprint-check-member" data-member="${escapeHtml(m.name)}" style="${idx > 0 ? 'margin-top:18px' : ''}">
             <div class="member-sprint-head">
               <div>
                 <span class="${tagClass}">${m.name.toUpperCase()}</span>
                 <h3>${escapeHtml(m.role || m.name)}</h3>
+                <span class="small">Workload: <b>${mHours} hours total</b></span>
               </div>
               <span class="deadline-badge ${mOnTime === m.tasks.length ? 'ontime' : ''}">${mOnTime} / ${m.tasks.length} BEFORE DEADLINE</span>
             </div>
@@ -1499,7 +1795,8 @@ async function loadSprint() {
                     <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTaskDone(this, ${t.id})">
                     <span>
                       <span class="check-title">${escapeHtml(t.title)}</span>
-                      <span class="check-meta">Deadline ${escapeHtml(t.deadline_time || '11:00')} • ${isChecked ? (t.completed_at ? 'Completed ' + t.completed_at : 'Completed') : 'Not completed'}</span>
+                      <span class="check-meta">Deadline: ${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • Est: ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'Completed ' + t.completed_at : 'Completed') : 'Not completed'}</span>
+                      ${t.done_when ? `<span class="done-when-tag"><b>Done when:</b> ${escapeHtml(t.done_when)}</span>` : ''}
                     </span>
                     <span class="deadline-badge ${isChecked ? (isLate ? 'late' : 'ontime') : ''}">
                       ${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : (t.notes && t.notes.includes('AT RISK') ? 'AT RISK' : 'PENDING')}
@@ -1516,12 +1813,13 @@ async function loadSprint() {
     // Dashboard Tasks widget
     const dMyTasks = document.getElementById('dashMySprintTasks');
     if (dMyTasks && data.allTasks) {
-      const myTasks = data.allTasks.filter(t => t.member_name.toLowerCase() === currentMember.name.toLowerCase()).slice(0, 3);
+      const myTasks = data.allTasks.filter(t => t.member_name.toLowerCase() === currentMember.name.toLowerCase()).slice(0, 4);
       dMyTasks.innerHTML = myTasks.map(t => `
         <div class="task ${t.status}">
           <div>
             <b>${escapeHtml(t.title)}</b><br>
-            <small>${escapeHtml(t.start_time || '09:00')}–${escapeHtml(t.deadline_time || '11:00')} • ${escapeHtml(t.notes || t.status)}</small>
+            <small>${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • ${t.est_hours || 0} hrs • ${escapeHtml(t.notes || t.status)}</small>
+            ${t.done_when ? `<div class="small" style="color:#555;margin-top:2px">Done when: ${escapeHtml(t.done_when)}</div>` : ''}
           </div>
           <span class="status">${t.status.toUpperCase()}</span>
         </div>
@@ -1531,7 +1829,7 @@ async function loadSprint() {
     // Dashboard Deadline tasks
     const dDeadTasks = document.getElementById('dashDeadlineTasks');
     if (dDeadTasks && data.allTasks) {
-      const sample = data.allTasks.slice(0, 4);
+      const sample = data.allTasks.slice(0, 5);
       dDeadTasks.innerHTML = sample.map(t => {
         const isChecked = t.status === 'done' || t.status === 'late';
         const isLate = t.status === 'late';
@@ -1539,7 +1837,7 @@ async function loadSprint() {
           <div class="task ${isChecked ? (isLate ? 'blocked' : 'done') : 'pending'}">
             <div>
               <b>${isChecked ? '✓' : '○'} ${escapeHtml(t.title)}</b><br>
-              <small>${escapeHtml(t.member_name)} • deadline ${escapeHtml(t.deadline_time)} • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : 'in progress'}</small>
+              <small>${escapeHtml(t.member_name)} • ${escapeHtml(t.deadline_day || t.deadline_time || 'Day 1')} • ${t.est_hours || 0} hrs • ${isChecked ? (t.completed_at ? 'completed ' + t.completed_at : 'completed') : 'in progress'}</small>
             </div>
             <span class="status">${isChecked ? (isLate ? 'LATE' : 'BEFORE DEADLINE') : 'PENDING'}</span>
           </div>
@@ -1776,17 +2074,45 @@ async function approveWorkRequest(id, item, fromName) {
 }
 
 // 13. Team & AI Live Chat
+function toggleExpandChat() {
+  const p = document.getElementById('teamAiChatPanel');
+  const btn = document.getElementById('expandChatBtn');
+  if (!p) return;
+  p.classList.toggle('expanded');
+  const isExp = p.classList.contains('expanded');
+  if (btn) btn.textContent = isExp ? '✕ COLLAPSE VIEW' : '⛶ EXPAND VIEW';
+}
+
+function quickChatPrompt(text) {
+  const input = document.getElementById('chat');
+  if (input) {
+    input.value = text;
+    input.focus();
+  }
+}
+
 async function loadChat() {
   try {
     const res = await fetch(`/api/projects/${currentProjectId}/chat?mode=${chatActiveMode}`);
     const messages = await res.json();
     const box = document.getElementById('messages');
     if (!box) return;
-    box.innerHTML = messages.map(m => `
-      <div class="msg ${m.sender_type}">
-        ${m.sender_type === 'ai' ? '✦ ' : ''}<b>${escapeHtml(m.sender_name)}:</b> ${escapeHtml(m.message)}
-      </div>
-    `).join('');
+    box.innerHTML = messages.map(m => {
+      const isAi = m.sender_type === 'ai';
+      const isMe = m.sender_name && currentMember && m.sender_name.toLowerCase() === currentMember.name.toLowerCase();
+      const cls = isAi ? 'msg ai' : (isMe ? 'msg me' : 'msg team');
+      const timeStr = m.created_at ? new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today';
+      const badge = isAi ? '✦ AI COPILOT' : escapeHtml(m.sender_name);
+      return `
+        <div class="${cls}">
+          <div class="msg-meta">
+            <span>${badge}</span>
+            <span>${timeStr} • ${m.mode ? m.mode.toUpperCase() : 'CHAT'}</span>
+          </div>
+          <div class="msg-text">${escapeHtml(m.message.replace(/^✦\s*Thryve:\s*/i, ''))}</div>
+        </div>
+      `;
+    }).join('');
     box.scrollTop = box.scrollHeight;
   } catch (err) {
     console.error('Error loading chat:', err);
@@ -1811,7 +2137,13 @@ async function sendChat() {
   // Optimistic render
   const m = document.createElement('div');
   m.className = 'msg me';
-  m.innerHTML = `<b>${escapeHtml(currentMember.name)}:</b> ${escapeHtml(message)}`;
+  m.innerHTML = `
+    <div class="msg-meta">
+      <span>${escapeHtml(currentMember.name)}</span>
+      <span>Now • ${chatActiveMode.toUpperCase()}</span>
+    </div>
+    <div class="msg-text">${escapeHtml(message)}</div>
+  `;
   box.appendChild(m);
   box.scrollTop = box.scrollHeight;
 
@@ -1830,7 +2162,13 @@ async function sendChat() {
       setTimeout(() => {
         const a = document.createElement('div');
         a.className = 'msg ai';
-        a.innerHTML = `✦ <b>Thryve:</b> ${escapeHtml(data.aiMessage.message.replace(/^✦\s*Thryve:\s*/i, ''))}`;
+        a.innerHTML = `
+          <div class="msg-meta">
+            <span>✦ AI COPILOT (StudySync AI)</span>
+            <span>Now • AI</span>
+          </div>
+          <div class="msg-text">${escapeHtml(data.aiMessage.message.replace(/^✦\s*Thryve:\s*/i, ''))}</div>
+        `;
         box.appendChild(a);
         box.scrollTop = box.scrollHeight;
       }, 350);
@@ -2015,13 +2353,19 @@ async function openModal(type, extraArg) {
         <div class="eyebrow">AI SPRINT CHANGE / USER APPROVAL</div>
         <h3>DETAILED SPRINT SUGGESTION.</h3>
         <p>${escapeHtml(sugg.proposal)}</p>
-        <div class="insights">
-          <div class="insight good"><h4>ADD</h4>${escapeHtml(sugg.actions[0].title)}</div>
-          <div class="insight warn"><h4>MOVE</h4>${escapeHtml(sugg.actions[1].title)}</div>
+        <div class="notice green"><b>Sprint Goal:</b> ${escapeHtml(sugg.sprintGoal || '')} • <b>Total Est: ${sugg.totalHours || 57} hours</b></div>
+        <div class="insights" style="margin-top:12px">
+          ${(sugg.actions || []).map(a => `
+            <div class="insight ${a.type === 'ADD' ? 'good' : 'warn'}">
+              <h4>${escapeHtml(a.type)}: ${escapeHtml(a.title)}</h4>
+              <p><b>Assignee:</b> ${escapeHtml(a.member)} • <b>Est:</b> ${escapeHtml(a.estimate)} • <b>Deadline:</b> ${escapeHtml(a.deadline)}</p>
+              <div class="done-when-tag"><b>Done when:</b> ${escapeHtml(a.doneWhen)}</div>
+            </div>
+          `).join('')}
         </div>
-        <div class="notice blue">The published sprint stays unchanged until <b>you approve</b>.</div>
+        <div class="notice blue" style="margin-top:14px">Chat signals can be used by AI to prepare a detailed sprint suggestion. <b>It will only change the sprint after the user approves the notification.</b></div>
         <button class="btn" onclick="approveSprintSuggestion()">APPROVE CHANGE</button> 
-        <button class="btn paper" onclick="closeModal();toast('Sprint unchanged')">KEEP CURRENT</button>
+        <button class="btn paper" onclick="closeModal();toast('Current sprint remains unchanged')">KEEP CURRENT</button>
       `;
     } catch (err) {
       console.error(err);

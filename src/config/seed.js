@@ -6,7 +6,21 @@ const { db } = require('./db');
 function seedDatabase() {
   const teamCheck = db.prepare('SELECT COUNT(*) as count FROM teams').get();
   if (teamCheck && teamCheck.count > 0) {
-    return; // Already seeded
+    // Check if tasks need to be upgraded to the detailed 17-task sprint
+    const taskCount = db.prepare('SELECT COUNT(*) as count FROM tasks WHERE project_id = 1').get();
+    if (!taskCount || taskCount.count < 17) {
+      db.prepare('DELETE FROM tasks WHERE project_id = 1').run();
+      seedSprintTasks();
+      try {
+        db.prepare(`
+          UPDATE sprint_meta 
+          SET goal = 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.',
+              total_est_hours = 57
+          WHERE project_id = 1
+        `).run();
+      } catch (e) {}
+    }
+    return;
   }
 
   console.log('Seeding initial Thryve database...');
@@ -37,31 +51,8 @@ function seedDatabase() {
   insertProject.run(1, 'StudySync', 'An AI platform that analyzes authorized team discussions, documents and task contributions to identify knowledge exchange patterns, summarize collective insights and recommend meaningful collaboration activities.', 4, 72);
   insertProject.run(1, 'CampusCart', 'Student marketplace with smart matching.', 3, 41);
 
-  // 4. Tasks (Sprint 01 - 12 Tasks)
-  const insertTask = db.prepare(`
-    INSERT INTO tasks (project_id, sprint_num, title, member_name, member_role, start_time, deadline_time, completed_at, status, is_before_deadline, est_hours, act_hours, notes)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `);
-
-  // Priya tasks
-  insertTask.run(1, 1, 'Build authentication API', 'Priya', 'Backend + AI', '09:00', '11:00', '10:42', 'done', 1, 2.0, 1.7, 'Completed on time');
-  insertTask.run(1, 1, 'Connect discussion analyzer', 'Priya', 'Backend + AI', '11:15', '13:00', '12:48', 'done', 1, 2.0, 1.5, 'Completed on time');
-  insertTask.run(1, 1, 'Publish insight endpoint', 'Priya', 'Backend + AI', '14:00', '15:30', '15:10', 'done', 1, 1.5, 1.2, 'Completed on time');
-
-  // Arun tasks
-  insertTask.run(1, 1, 'Build project dashboard', 'Arun', 'Frontend', '09:30', '11:30', '11:12', 'done', 1, 2.0, 1.7, 'Completed on time');
-  insertTask.run(1, 1, 'Connect chat interface', 'Arun', 'Frontend', '11:45', '13:00', '12:54', 'done', 1, 1.5, 1.4, 'Completed on time');
-  insertTask.run(1, 1, 'Finish API integration', 'Arun', 'Frontend', '14:00', '16:00', null, 'pending', 0, 0.5, 1.3, 'Awaiting API module');
-
-  // Meena tasks
-  insertTask.run(1, 1, 'Create contribution model', 'Meena', 'Data + Analytics', '09:00', '11:30', '11:05', 'done', 1, 1.5, 1.3, 'Completed on time');
-  insertTask.run(1, 1, 'Build knowledge-exchange metrics', 'Meena', 'Data + Analytics', '12:00', '15:00', null, 'pending', 0, 2.0, 2.0, 'API clarification needed');
-  insertTask.run(1, 1, 'Connect analytics to dashboard', 'Meena', 'Data + Analytics', '15:00', '16:00', null, 'pending', 0, 1.0, 1.9, 'Depends on API module - AT RISK');
-
-  // Vishal tasks
-  insertTask.run(1, 1, 'Prepare test checklist', 'Vishal', 'QA + DevOps', '09:00', '11:00', '10:35', 'done', 1, 1.0, 0.6, 'Completed on time');
-  insertTask.run(1, 1, 'Run integration tests', 'Vishal', 'QA + DevOps', '13:00', '16:00', '16:24', 'late', 0, 2.0, 2.4, 'Completed late');
-  insertTask.run(1, 1, 'Deployment verification', 'Vishal', 'QA + DevOps', '16:00', '17:00', null, 'pending', 0, 1.0, 1.0, 'Waiting for final integration');
+  // 4. Tasks (Sprint 01 - 17 Detailed Tasks / 57 Hours Total)
+  seedSprintTasks();
 
   // 5. Documents
   const insertDoc = db.prepare(`
@@ -94,12 +85,44 @@ function seedDatabase() {
 
   // 8. Sprint Meta
   const insertMeta = db.prepare(`
-    INSERT INTO sprint_meta (project_id, sprint_num, status)
-    VALUES (?, ?, ?)
+    INSERT INTO sprint_meta (project_id, sprint_num, status, goal, total_est_hours)
+    VALUES (?, ?, ?, ?, ?)
   `);
-  insertMeta.run(1, 1, 'published');
+  insertMeta.run(1, 1, 'published', 'Deliver a working StudySync AI workspace with project tasks, document sharing, AI role assignment, and team/member reports.', 57);
 
   console.log('Seeding complete.');
+}
+
+function seedSprintTasks() {
+  const insertTask = db.prepare(`
+    INSERT INTO tasks (project_id, sprint_num, title, member_name, member_role, start_time, deadline_time, deadline_day, done_when, completed_at, status, is_before_deadline, est_hours, act_hours, notes)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  // Priya tasks — Reports, integration, QA, demo (Total: 17 hours)
+  insertTask.run(1, 1, 'Confirm integration branch and teammate branch names', 'Priya', 'Reports, integration, QA, demo', '09:00', '18:00', 'Day 1', 'Team agrees on merge order and branch ownership', '17:30', 'done', 1, 1.0, 1.0, 'Completed on time');
+  insertTask.run(1, 1, 'Build Team Report with work, task, and risk summaries', 'Priya', 'Reports, integration, QA, demo', '09:00', '18:00', 'Day 4', 'Report shows real project data and selected reporting period', '16:45', 'done', 1, 4.0, 3.8, 'Completed on time');
+  insertTask.run(1, 1, 'Build Member Report', 'Priya', 'Reports, integration, QA, demo', '09:00', '18:00', 'Day 6', 'Selecting Priya, Meena, Arun, or Vishal shows only that member’s tasks', '17:15', 'done', 1, 4.0, 4.0, 'Completed on time');
+  insertTask.run(1, 1, 'Add deadline status and print-to-PDF styling', 'Priya', 'Reports, integration, QA, demo', '09:00', '18:00', 'Day 7', 'Completed tasks are labeled on time/late from timestamps; print hides controls', '15:20', 'done', 1, 3.0, 2.7, 'Completed on time');
+  insertTask.run(1, 1, 'Integrate, QA, and prepare demo', 'Priya', 'Reports, integration, QA, demo', '09:00', '18:00', 'Day 10', 'Branches are integrated, key user journeys are checked, and demo flow is ready', null, 'pending', 0, 5.0, 0.0, 'Scheduled for Day 10');
+
+  // Arun tasks — Backend, Supabase, authentication (Total: 14 hours)
+  insertTask.run(1, 1, 'Confirm project, member, sprint, and task data fields', 'Arun', 'Backend, Supabase, authentication', '09:00', '18:00', 'Day 1', 'Required database fields and relationships are documented', '16:00', 'done', 1, 2.0, 1.8, 'Completed on time');
+  insertTask.run(1, 1, 'Connect workspace project data to Supabase', 'Arun', 'Backend, Supabase, authentication', '09:00', '18:00', 'Day 3', 'Workspace loads records for the selected project', '17:40', 'done', 1, 4.0, 3.9, 'Completed on time');
+  insertTask.run(1, 1, 'Add team signup and login validation', 'Arun', 'Backend, Supabase, authentication', '09:00', '18:00', 'Day 4', 'Missing fields and duplicate email are handled clearly', '16:50', 'done', 1, 4.0, 4.2, 'Completed on time');
+  insertTask.run(1, 1, 'Enforce project and member access rules', 'Arun', 'Backend, Supabase, authentication', '09:00', '18:00', 'Day 6', 'Members cannot access another project’s private data', null, 'pending', 0, 4.0, 1.5, 'In progress');
+
+  // Meena tasks — Frontend, workspace, task checklist (Total: 13 hours)
+  insertTask.run(1, 1, 'Build workspace layout and navigation', 'Meena', 'Frontend, workspace, task checklist', '09:00', '18:00', 'Day 2', 'Dashboard, workspace, and Reports links work', '17:05', 'done', 1, 3.0, 2.8, 'Completed on time');
+  insertTask.run(1, 1, 'Build sprint overview and task checklist', 'Meena', 'Frontend, workspace, task checklist', '09:00', '18:00', 'Day 4', 'Tasks display owner, estimate, deadline, and status', '16:30', 'done', 1, 4.0, 4.0, 'Completed on time');
+  insertTask.run(1, 1, 'Add task status update controls', 'Meena', 'Frontend, workspace, task checklist', '09:00', '18:00', 'Day 5', 'Members can update task status and see the saved result', null, 'pending', 0, 3.0, 1.2, 'Awaiting API clarification');
+  insertTask.run(1, 1, 'Add loading, empty, and error states', 'Meena', 'Frontend, workspace, task checklist', '09:00', '18:00', 'Day 7', 'Screens explain when data is loading, missing, or unavailable', null, 'pending', 0, 3.0, 0.0, 'AT RISK: Pending contract alignment');
+
+  // Vishal tasks — AI features, documents (Total: 13 hours)
+  insertTask.run(1, 1, 'Implement AI role assignment', 'Vishal', 'AI features, documents', '09:00', '18:00', 'Day 4', 'Team members receive role suggestions when AI is available', '15:10', 'done', 1, 4.0, 3.6, 'Completed on time');
+  insertTask.run(1, 1, 'Handle AI service failures', 'Vishal', 'AI features, documents', '09:00', '18:00', 'Day 5', 'The app gives a helpful fallback when AI is unavailable', '14:40', 'done', 1, 2.0, 1.7, 'Completed on time');
+  insertTask.run(1, 1, 'Implement document upload and sharing', 'Vishal', 'AI features, documents', '09:00', '18:00', 'Day 7', 'Authorized project members can upload and view documents', '19:15', 'late', 0, 4.0, 4.8, 'Completed late after Day 7 deadline');
+  insertTask.run(1, 1, 'Add document access checks', 'Vishal', 'AI features, documents', '09:00', '18:00', 'Day 8', 'Users cannot view documents belonging to another project', null, 'pending', 0, 3.0, 0.0, 'Scheduled for Day 8');
 }
 
 module.exports = {
